@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Vikram — Deliverable View</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.9/babel.min.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #F5F0EB; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; -webkit-font-smoothing: antialiased; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const { useState, useMemo } = React;
+
+const SCHEDULE = {"generated": "2026-02-16T05:02:43Z", "generated_by": "engine.py", "planning_window": {"start": "2026-02-16", "end": "2026-03-03"}, "capacity": {"total_blocks": 53, "committed_blocks": 42, "completed_blocks": 0, "buffer_blocks": 11, "buffer_pct": 0.21}, "deadlines": [{"id": "physics-lab", "label": "Lab: Non-Ohmic Resistor", "course": "AP Physics C", "due": "2026-02-17T08:00", "type": "lab", "priority": "yellow"}, {"id": "lit-draft", "label": "World Lit Essay Draft", "course": "IB World Lit", "due": "2026-02-18T08:00", "type": "essay_draft", "priority": "red"}, {"id": "history-reading", "label": "Latin America nationalism reading", "course": "IB History", "due": "2026-02-18T08:00", "type": "reading", "priority": "yellow"}, {"id": "health-4.5", "label": "Health Assessment 4.5", "course": "Health Online", "due": "2026-02-18T14:00", "type": "assessment", "priority": "red"}, {"id": "chem-quiz", "label": "Quiz 2.5 Thermo Sec 7-10", "course": "AP Chemistry", "due": "2026-02-19", "type": "quiz", "priority": "yellow"}, {"id": "sysprog-lab4", "label": "Lab 4 Malloc Rectangles", "course": "Intro Sys Prog", "due": "2026-02-20T23:59", "type": "lab", "priority": "yellow"}, {"id": "cs-writeup", "label": "Individual Contribution Write-up", "course": "AP Comp Sci A", "due": "2026-02-23T23:59", "type": "writeup", "priority": "green"}, {"id": "chem-test", "label": "AP Chem Test 2.3 Thermodynamics", "course": "AP Chemistry", "due": "2026-02-24", "type": "major_test", "priority": "red"}, {"id": "physics-test", "label": "Test: Capacitors & Circuits", "course": "AP Physics C", "due": "2026-03-03", "type": "major_test", "priority": "red"}, {"id": "lit-final", "label": "HL Essay Final (Turnitin)", "course": "IB World Lit", "due": "2026-03-03T23:59", "type": "essay_final", "priority": "yellow"}], "prep_plans": [{"id": "lit-draft", "total_blocks": 4, "completed_blocks": 0, "milestones": [{"desc": "Outline + start writing", "blocks": 2, "target_date": "2026-02-16", "done": false}, {"desc": "Continue writing, 500+ words, add quotes", "blocks": 1, "target_date": "2026-02-16", "done": false}, {"desc": "Finish draft, proofread, submit Turnitin", "blocks": 1, "target_date": "2026-02-17", "done": false}]}, {"id": "physics-test", "total_blocks": 12, "completed_blocks": 0, "milestones": [{"desc": "Ch 27: Read 27-9 (RC circuits) + Q5, Q11", "blocks": 1, "target_date": "2026-02-16", "done": false}, {"desc": "Ch 27: P-problems (P5, P7, P17)", "blocks": 1, "target_date": "2026-02-16", "done": false}, {"desc": "Ch 27: P-problems (P19, P31, P39)", "blocks": 1, "target_date": "2026-02-17", "done": false}, {"desc": "Ch 27: RC problems (P47, P51, P53)", "blocks": 1, "target_date": "2026-02-18", "done": false}, {"desc": "Ch 25: Q-problems (Q1, Q5, Q9, Q11)", "blocks": 1, "target_date": "2026-02-19", "done": false}, {"desc": "Ch 25: P-problems (P1-P31)", "blocks": 1, "target_date": "2026-02-20", "done": false}, {"desc": "Ch 25: P-problems (P35-P43) + start Ch 26", "blocks": 1, "target_date": "2026-02-21", "done": false}, {"desc": "Ch 26: Q + P-problems", "blocks": 2, "target_date": "2026-02-22", "done": false}, {"desc": "Error review: redo wrong problems", "blocks": 1, "target_date": "2026-02-23", "done": false}, {"desc": "Timed practice test (50 min, paper)", "blocks": 1, "target_date": "2026-02-25", "done": false}, {"desc": "Error analysis + weak spot review", "blocks": 1, "target_date": "2026-02-27", "done": false}, {"desc": "Light review, key formulas only", "blocks": 1, "target_date": "2026-03-02", "done": false}]}, {"id": "chem-quiz", "total_blocks": 1.5, "completed_blocks": 0, "milestones": [{"desc": "Review Thermo sec 7-10 for quiz", "blocks": 1, "target_date": "2026-02-18", "done": false}]}, {"id": "health-4.5", "total_blocks": 0.5, "completed_blocks": 0, "milestones": [{"desc": "Health Assessment 4.5 — DO NOT MISS", "blocks": 0.5, "target_date": "2026-02-16", "done": false}]}, {"id": "history-reading", "total_blocks": 1, "completed_blocks": 0, "milestones": [{"desc": "History: Latin America reading + brief notes", "blocks": 1, "target_date": "2026-02-17", "done": false}]}, {"id": "sysprog-lab4", "total_blocks": 2, "completed_blocks": 0, "milestones": [{"desc": "Sys Prog: Start Lab 4 (Malloc rectangles)", "blocks": 1, "target_date": "2026-02-18", "done": false}, {"desc": "Sys Prog: Finish Lab 4, test, submit", "blocks": 1, "target_date": "2026-02-19", "done": false}]}, {"id": "cs-writeup", "total_blocks": 1, "completed_blocks": 0, "milestones": [{"desc": "CS: Write individual contribution (due Mon)", "blocks": 1, "target_date": "2026-02-22", "done": false}]}, {"id": "chem-test", "total_blocks": 6, "completed_blocks": 0, "milestones": [{"desc": "Chem: Post-quiz review + start TEST prep", "blocks": 1, "target_date": "2026-02-19", "done": false}, {"desc": "Chem: Review Thermo sections 1-6", "blocks": 1, "target_date": "2026-02-20", "done": false}, {"desc": "Chem: Full unit practice (sec 1-10)", "blocks": 2, "target_date": "2026-02-21", "done": false}, {"desc": "Chem: Timed practice test", "blocks": 1, "target_date": "2026-02-22", "done": false}, {"desc": "Chem: Error review + weak spots. TEST TOMORROW.", "blocks": 1, "target_date": "2026-02-23", "done": false}]}, {"id": "lit-final", "total_blocks": 3, "completed_blocks": 0, "milestones": [{"desc": "World Lit: Read peer feedback, plan revisions", "blocks": 1, "target_date": "2026-02-23", "done": false}, {"desc": "World Lit: Revise and strengthen essay", "blocks": 1, "target_date": "2026-02-25", "done": false}, {"desc": "World Lit: FINAL polish + proofread + SUBMIT", "blocks": 1, "target_date": "2026-02-28", "done": false}]}, {"id": "spanish-hw", "total_blocks": 0.25, "completed_blocks": 0, "milestones": [{"desc": "Spanish: Complete SPANISHDICT assignment", "blocks": 0.25, "target_date": "2026-02-16", "done": false}]}], "days": [{"date": "2026-02-16", "day": "Mon", "type": "off", "label": "Presidents Day — NO SCHOOL", "available_blocks": 4, "blocks": [{"slot": 1, "time": "9:30-10:30", "task": "World Lit: Essay draft — outline + start writing", "prep_id": "lit-draft", "course": "IB World Lit", "done": false, "notes": ""}, {"slot": 2, "time": "10:40-11:40", "task": "World Lit: Continue — hit 500+ words, add quotes", "prep_id": "lit-draft", "course": "IB World Lit", "done": false, "notes": ""}, {"slot": 3, "time": "1:00-2:00", "task": "Physics Ch 27: Read 27-9 (RC circuits) + Q5, Q11", "prep_id": "physics-test", "course": "AP Physics C", "done": false, "notes": ""}, {"slot": 4, "time": "2:10-3:10", "task": "Physics Ch 27: P-problems (P5, P7, P17) + Health 4.5 + Spanish HW", "prep_id": "physics-test", "course": "AP Physics C", "done": false, "notes": ""}]}, {"date": "2026-02-17", "day": "Tue", "type": "school", "label": "", "available_blocks": 3, "blocks": [{"slot": 1, "time": "4:30-5:30", "task": "World Lit: FINISH draft + submit Turnitin tonight", "prep_id": "lit-draft", "course": "IB World Lit", "done": false, "notes": ""}, {"slot": 2, "time": "5:40-6:40", "task": "Physics Ch 27: P-problems (P19, P31, P39)", "prep_id": "physics-test", "course": "AP Physics C", "done": false, "notes": ""}, {"slot": 3, "time": "7:30-8:30", "task": "History: Latin America reading + Chem quiz prep", "prep_id": "history-reading", "course": "IB History", "done": false, "notes": ""}]}, {"date": "2026-02-18", "day": "Wed", "type": "school", "label": "", "available_blocks": 3, "blocks": [{"slot": 1, "time": "4:30-5:30", "task": "Physics Ch 27: RC problems (P47, P51, P53)", "prep_id": "physics-test", "course": "AP Physics C", "done": false, "notes": ""}, {"slot": 2, "time": "5:40-6:40", "task": "Chem: Review Thermo sec 7-10 for quiz tomorrow", "prep_id": "chem-quiz", "course": "AP Chemistry", "done": false, "notes": ""}, {"slot": 3, "time": "7:30-8:30", "task": "Sys Prog: Start Lab 4 (Malloc rectangles)", "prep_id": "sysprog-lab4", "course": "Intro Sys Prog", "done": false, "notes": ""}]}, {"date": "2026-02-19", "day": "Thu", "type": "school", "label": "Chem Quiz Day", "available_blocks": 3, "blocks": [{"slot": 1, "time": "4:30-5:30", "task": "Physics Ch 25: Q-problems (Q1, Q5, Q9, Q11)", "prep_id": "physics-test", "course": "AP Physics C", "done": false, "notes": ""}, {"slot": 2, "time": "5:40-6:40", "task": "Chem: Post-quiz review + start TEST prep", "prep_id": "chem-test", "course": "AP Chemistry", "done": false, "notes": ""}, {"slot": 3, "time": "7:30-8:30", "task": "Sys Prog: Finish Lab 4, test, submit", "prep_id": "sysprog-lab4", "course": "Intro Sys Prog", "done": false, "notes": ""}]}, {"date": "2026-02-20", "day": "Fri", "type": "school", "label": "", "available_blocks": 3, "blocks": [{"slot": 1, "time": "4:30-5:30", "task": "Chem: Review Thermo sections 1-6 — TEST TUESDAY", "prep_id": "chem-test", "course": "AP Chemistry", "done": false, "notes": ""}, {"slot": 2, "time": "5:40-6:40", "task": "Physics Ch 25: P-problems (P1-P31)", "prep_id": "physics-test", "course": "AP Physics C", "done": false, "notes": ""}, {"slot": 3, "time": "7:30-8:30", "task": "Light catch-up + relax", "prep_id": null, "course": null, "done": false, "notes": ""}]}, {"date": "2026-02-21", "day": "Sat", "type": "off", "label": "", "available_blocks": 4, "blocks": [{"slot": 1, "time": "9:30-10:30", "task": "Chem: Full unit practice (sec 1-10)", "prep_id": "chem-test", "course": "AP Chemistry", "done": false, "notes": ""}, {"slot": 2, "time": "10:40-11:40", "task": "Chem: Continue practice + error analysis", "prep_id": "chem-test", "course": "AP Chemistry", "done": false, "notes": ""}, {"slot": 3, "time": "1:00-2:00", "task": "Physics Ch 25: P-problems (P35-P43) + start Ch 26", "prep_id": "physics-test", "course": "AP Physics C", "done": false, "notes": ""}, {"slot": 4, "time": "2:10-3:10", "task": "Physics Ch 26: Q + P-problems (first half)", "prep_id": "physics-test", "course": "AP Physics C", "done": false, "notes": ""}]}, {"date": "2026-02-22", "day": "Sun", "type": "off", "label": "Sunday Reset", "available_blocks": 4, "blocks": [{"slot": 1, "time": "9:30-10:30", "task": "Chem: Timed practice test", "prep_id": "chem-test", "course": "AP Chemistry", "done": false, "notes": ""}, {"slot": 2, "time": "10:40-11:40", "task": "Physics Ch 26: P-problems (second half)", "prep_id": "physics-test", "course": "AP Physics C", "done": false, "notes": ""}, {"slot": 3, "time": "1:00-2:00", "task": "CS: Write individual contribution (due Mon)", "prep_id": "cs-writeup", "course": "AP Comp Sci A", "done": false, "notes": ""}, {"slot": 4, "time": "2:10-3:10", "task": "Sunday Reset: Review week, plan Feb 23-Mar 1", "prep_id": null, "course": null, "done": false, "notes": ""}]}, {"date": "2026-02-23", "day": "Mon", "type": "school", "label": "Day before Chem test", "available_blocks": 3, "blocks": [{"slot": 1, "time": "4:30-5:30", "task": "Chem: Error review + weak spots. TEST TOMORROW.", "prep_id": "chem-test", "course": "AP Chemistry", "done": false, "notes": ""}, {"slot": 2, "time": "5:40-6:40", "task": "Physics: Re-do wrong problems from Ch 25-27", "prep_id": "physics-test", "course": "AP Physics C", "done": false, "notes": ""}, {"slot": 3, "time": "7:30-8:30", "task": "World Lit: Read peer feedback, plan revisions", "prep_id": "lit-final", "course": "IB World Lit", "done": false, "notes": ""}]}, {"date": "2026-02-24", "day": "Tue", "type": "school", "label": "AP CHEM TEST DAY", "available_blocks": 3, "blocks": [{"slot": 1, "time": "4:30-5:30", "task": "Physics: Full review of Ch 25-27", "prep_id": "physics-test", "course": "AP Physics C", "done": false, "notes": ""}, {"slot": 2, "time": "5:40-6:40", "task": "World Lit: Start essay revisions", "prep_id": "lit-final", "course": "IB World Lit", "done": false, "notes": ""}, {"slot": 3, "time": "7:30-8:30", "task": "Health Online weekly assessment", "prep_id": null, "course": "Health Online", "done": false, "notes": ""}]}, {"date": "2026-02-25", "day": "Wed", "type": "school", "label": "", "available_blocks": 3, "blocks": [{"slot": 1, "time": "4:30-5:30", "task": "Physics: TIMED PRACTICE TEST (50 min, paper)", "prep_id": "physics-test", "course": "AP Physics C", "done": false, "notes": ""}, {"slot": 2, "time": "5:40-6:40", "task": "World Lit: Continue essay revisions", "prep_id": "lit-final", "course": "IB World Lit", "done": false, "notes": ""}, {"slot": 3, "time": "7:30-8:30", "task": "Catch-up + any new homework", "prep_id": null, "course": null, "done": false, "notes": ""}]}, {"date": "2026-02-26", "day": "Thu", "type": "school", "label": "", "available_blocks": 3, "blocks": [{"slot": 1, "time": "4:30-5:30", "task": "Physics: Error analysis from practice test", "prep_id": "physics-test", "course": "AP Physics C", "done": false, "notes": ""}, {"slot": 2, "time": "5:40-6:40", "task": "World Lit: Strengthen essay", "prep_id": "lit-final", "course": "IB World Lit", "done": false, "notes": ""}, {"slot": 3, "time": "7:30-8:30", "task": "Light review + homework catch-up", "prep_id": null, "course": null, "done": false, "notes": ""}]}, {"date": "2026-02-27", "day": "Fri", "type": "school", "label": "", "available_blocks": 3, "blocks": [{"slot": 1, "time": "4:30-5:30", "task": "Physics: Targeted review of weak spots", "prep_id": "physics-test", "course": "AP Physics C", "done": false, "notes": ""}, {"slot": 2, "time": "5:40-6:40", "task": "Physics: Second pass on hardest problems", "prep_id": "physics-test", "course": "AP Physics C", "done": false, "notes": ""}, {"slot": 3, "time": "7:30-8:30", "task": "World Lit: Final polish", "prep_id": "lit-final", "course": "IB World Lit", "done": false, "notes": ""}]}, {"date": "2026-02-28", "day": "Sat", "type": "off", "label": "", "available_blocks": 4, "blocks": [{"slot": 1, "time": "9:30-10:30", "task": "Physics: Second practice run OR full review", "prep_id": "physics-test", "course": "AP Physics C", "done": false, "notes": ""}, {"slot": 2, "time": "10:40-11:40", "task": "Physics: RC circuits + capacitor combos", "prep_id": "physics-test", "course": "AP Physics C", "done": false, "notes": ""}, {"slot": 3, "time": "1:00-2:00", "task": "World Lit: FINAL polish + proofread", "prep_id": "lit-final", "course": "IB World Lit", "done": false, "notes": ""}, {"slot": 4, "time": "2:10-3:10", "task": "World Lit: SUBMIT TO TURNITIN", "prep_id": "lit-final", "course": "IB World Lit", "done": false, "notes": ""}]}, {"date": "2026-03-01", "day": "Sun", "type": "off", "label": "Sunday Reset", "available_blocks": 4, "blocks": [{"slot": 1, "time": "9:30-10:30", "task": "Physics: Light review — key formulas", "prep_id": "physics-test", "course": "AP Physics C", "done": false, "notes": ""}, {"slot": 2, "time": "10:40-11:40", "task": "Physics: Walk through key problems per chapter", "prep_id": "physics-test", "course": "AP Physics C", "done": false, "notes": ""}, {"slot": 3, "time": "1:00-2:00", "task": "Sunday Reset + light review", "prep_id": null, "course": null, "done": false, "notes": ""}, {"slot": 4, "time": "2:10-3:10", "task": "Free / early wind-down", "prep_id": null, "course": null, "done": false, "notes": ""}]}, {"date": "2026-03-02", "day": "Mon", "type": "school", "label": "Day before Physics test", "available_blocks": 3, "blocks": [{"slot": 1, "time": "4:30-5:30", "task": "Physics: LIGHT REVIEW ONLY. Key formulas.", "prep_id": "physics-test", "course": "AP Physics C", "done": false, "notes": ""}, {"slot": 2, "time": "5:40-6:40", "task": "Early wind-down. Test tomorrow.", "prep_id": null, "course": null, "done": false, "notes": ""}, {"slot": 3, "time": "7:30-8:30", "task": "Rest. You're ready.", "prep_id": null, "course": null, "done": false, "notes": ""}]}, {"date": "2026-03-03", "day": "Tue", "type": "school", "label": "PHYSICS TEST DAY", "available_blocks": 3, "blocks": [{"slot": 1, "time": "4:30-5:30", "task": "PHYSICS TEST. You've got this.", "prep_id": "physics-test", "course": "AP Physics C", "done": false, "notes": ""}, {"slot": 2, "time": "5:40-6:40", "task": "Celebrate.", "prep_id": null, "course": null, "done": false, "notes": ""}, {"slot": 3, "time": "7:30-8:30", "task": "Breathe.", "prep_id": null, "course": null, "done": false, "notes": ""}]}], "grades": {"courses": [{"course": "AP Physics C", "t2": 86.7, "y1": 90.1, "target": 88, "status": "watch"}, {"course": "AP Chemistry", "t2": 96.3, "y1": 94.9, "target": 95, "status": "strong"}, {"course": "AP Calc BC", "t2": 92.0, "y1": 90.8, "target": 92, "status": "watch"}, {"course": "AP Comp Sci A", "t2": 94.2, "y1": 94.3, "target": 94, "status": "strong"}, {"course": "IB World Lit", "t2": 93.3, "y1": 93.9, "target": 93, "status": "strong"}, {"course": "IB History", "t2": 95.8, "y1": 96.7, "target": 95, "status": "strong"}, {"course": "IB Espanol", "t2": 97.7, "y1": 96.2, "target": 97, "status": "strong"}, {"course": "Intro Sys Prog", "t2": 93.1, "y1": 94.9, "target": 93, "status": "ok"}, {"course": "Health Online", "t2": 71.4, "y1": 85.7, "target": 83, "status": "emergency"}]}, "open_questions": [{"id": "Q2", "question": "When is the Calc BC test?", "priority": "high", "status": "open"}, {"id": "Q5", "question": "Which day presenting for AP CS?", "priority": "medium", "status": "open"}, {"id": "Q6", "question": "Has Vikram started the essay draft?", "priority": "high", "status": "open"}, {"id": "Q7", "question": "Can Health Online zeros be made up?", "priority": "high", "status": "open"}]};
+
+// ── Cowork palette ──
+const ACCENT = "#D4714E";
+
+const COURSE_COLORS = {
+  "AP Physics C":   { bg: "#EFF6FF", text: "#1E40AF", accent: "#3B82F6", dot: "#3B82F6" },
+  "AP Chemistry":   { bg: "#F5F3FF", text: "#5B21B6", accent: "#8B5CF6", dot: "#8B5CF6" },
+  "AP Calc BC":     { bg: "#EEF2FF", text: "#3730A3", accent: "#6366F1", dot: "#6366F1" },
+  "AP Comp Sci A":  { bg: "#ECFDF5", text: "#065F46", accent: "#10B981", dot: "#10B981" },
+  "IB World Lit":   { bg: "#FFF1F2", text: "#9F1239", accent: "#F43F5E", dot: "#F43F5E" },
+  "IB History":     { bg: "#FDF4EC", text: "#78350F", accent: "#D97706", dot: "#D97706" },
+  "IB Espanol":     { bg: "#FFF7ED", text: "#9A3412", accent: "#F97316", dot: "#F97316" },
+  "Intro Sys Prog": { bg: "#F0FDFA", text: "#115E59", accent: "#14B8A6", dot: "#14B8A6" },
+  "Health Online":  { bg: "#FFF1F2", text: "#9F1239", accent: "#FB7185", dot: "#FB7185" },
+};
+
+const TYPE_LABELS = {
+  major_test:   { label: "Test", icon: "🔴", sort: 0 },
+  quiz:         { label: "Quiz", icon: "🟡", sort: 1 },
+  essay_draft:  { label: "Essay Draft", icon: "📝", sort: 2 },
+  essay_final:  { label: "Essay Final", icon: "📄", sort: 2 },
+  lab:          { label: "Lab", icon: "🔬", sort: 3 },
+  writeup:      { label: "Write-up", icon: "✍️", sort: 4 },
+  assessment:   { label: "Assessment", icon: "⚡", sort: 5 },
+  reading:      { label: "Reading", icon: "📖", sort: 6 },
+};
+
+const PRIORITY_COLORS = { red: "#EF4444", yellow: "#F59E0B", green: "#10B981" };
+
+// ── Data processing ──
+function buildDeliverables(schedule) {
+  const dates = schedule.days.map(d => d.date);
+  const blocksByPrepId = {};
+  for (const day of schedule.days) {
+    for (const block of day.blocks) {
+      if (!block.prep_id) continue;
+      if (!blocksByPrepId[block.prep_id]) blocksByPrepId[block.prep_id] = [];
+      blocksByPrepId[block.prep_id].push({ date: day.date, day: day.day, slot: block.slot, time: block.time, task: block.task, course: block.course, done: block.done });
+    }
+  }
+  const deliverables = schedule.deadlines.map(dl => {
+    const blocks = blocksByPrepId[dl.id] || [];
+    const prepPlan = schedule.prep_plans.find(p => p.id === dl.id);
+    const totalBlocks = prepPlan ? prepPlan.total_blocks : blocks.length;
+    const completedBlocks = blocks.filter(b => b.done).length;
+    const dayMap = {};
+    for (const b of blocks) { if (!dayMap[b.date]) dayMap[b.date] = []; dayMap[b.date].push(b); }
+    return { id: dl.id, label: dl.label, course: dl.course, due: dl.due, type: dl.type, priority: dl.priority, totalBlocks, completedBlocks, blocks, dayMap, milestones: prepPlan ? prepPlan.milestones : [] };
+  });
+  deliverables.sort((a, b) => {
+    const ta = (TYPE_LABELS[a.type] || { sort: 99 }).sort;
+    const tb = (TYPE_LABELS[b.type] || { sort: 99 }).sort;
+    if (ta !== tb) return ta - tb;
+    return a.due.localeCompare(b.due);
+  });
+  const freeBlocks = [];
+  for (const day of schedule.days) {
+    for (const block of day.blocks) {
+      if (!block.prep_id) freeBlocks.push({ date: day.date, day: day.day, slot: block.slot, time: block.time, task: block.task, course: block.course, done: block.done });
+    }
+  }
+  return { deliverables, dates, freeBlocks };
+}
+
+// ── Components ──
+const COL_W = 36;
+
+function TimelineRow({ deliverable, dates, isExpanded, onToggle }) {
+  const colors = COURSE_COLORS[deliverable.course] || { bg: "#F9FAFB", text: "#6B7280", accent: "#D1D5DB", dot: "#D1D5DB" };
+  const typeInfo = TYPE_LABELS[deliverable.type] || { label: "Task", icon: "📋" };
+  const dueDate = deliverable.due.slice(0, 10);
+  const pct = deliverable.totalBlocks > 0 ? Math.round((deliverable.completedBlocks / deliverable.totalBlocks) * 100) : 0;
+  const gridCols = `220px ${dates.map(() => COL_W + "px").join(" ")} 56px`;
+
+  return (
+    <div style={{ marginBottom: 2 }}>
+      <div onClick={onToggle} style={{
+        display: "grid", gridTemplateColumns: gridCols, alignItems: "center",
+        padding: "10px 8px", background: isExpanded ? colors.bg : "#FFFFFF",
+        borderLeft: `3px solid ${colors.accent}`, cursor: "pointer",
+        borderBottom: "1px solid #E8E4DF", transition: "background 0.15s",
+      }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 2, overflow: "hidden" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
+            <span style={{ fontSize: 13, flexShrink: 0 }}>{typeInfo.icon}</span>
+            <span style={{ fontWeight: 600, fontSize: 12, color: colors.text, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{deliverable.label}</span>
+          </div>
+          <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 10, color: "#A8A29E" }}>
+            <span>{deliverable.course}</span>
+            <span style={{ color: PRIORITY_COLORS[deliverable.priority], fontWeight: 600 }}>Due {dueDate.slice(5)}</span>
+            <span>{deliverable.completedBlocks}/{deliverable.totalBlocks}b</span>
+          </div>
+        </div>
+
+        {dates.map(date => {
+          const blocksOnDay = deliverable.dayMap[date] || [];
+          const isDueDay = dueDate === date;
+          const count = blocksOnDay.length;
+          const allDone = count > 0 && blocksOnDay.every(b => b.done);
+          const anyDone = blocksOnDay.some(b => b.done);
+          return (
+            <div key={date} style={{ width: COL_W, height: 32, display: "flex", alignItems: "center", justifyContent: "center", position: "relative" }}
+              title={`${date.slice(5)}: ${count} block${count !== 1 ? 's' : ''}`}>
+              {count > 0 ? (
+                <div style={{
+                  width: Math.min(14 + (count - 1) * 5, 26), height: Math.min(14 + (count - 1) * 5, 26),
+                  borderRadius: "50%", background: allDone ? "#10B981" : anyDone ? "#F59E0B" : colors.dot,
+                  opacity: allDone ? 0.5 : 0.85, display: "flex", alignItems: "center", justifyContent: "center",
+                  fontSize: 10, fontWeight: 700, color: "white", transition: "all 0.2s",
+                }}>{count > 1 ? count : ""}</div>
+              ) : (
+                <div style={{ width: isDueDay ? 8 : 3, height: isDueDay ? 8 : 3, borderRadius: "50%", background: isDueDay ? PRIORITY_COLORS[deliverable.priority] : "#E8E4DF" }} />
+              )}
+              {isDueDay && (
+                <div style={{ position: "absolute", bottom: 1, left: "50%", transform: "translateX(-50%)", width: 22, height: 2, background: PRIORITY_COLORS[deliverable.priority], borderRadius: 1 }} />
+              )}
+            </div>
+          );
+        })}
+
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <div style={{
+            width: 36, height: 36, borderRadius: "50%", position: "relative",
+            background: `conic-gradient(${pct > 0 && deliverable.blocks.every(b => b.done) ? "#10B981" : colors.accent} ${pct * 3.6}deg, #E8E4DF 0deg)`,
+          }}>
+            <div style={{
+              position: "absolute", inset: 4, borderRadius: "50%",
+              background: isExpanded ? colors.bg : "#FFFFFF",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              fontSize: 9, fontWeight: 700, color: colors.text,
+            }}>{pct}%</div>
+          </div>
+        </div>
+      </div>
+
+      {isExpanded && (
+        <div style={{ padding: "12px 16px 16px", background: colors.bg, borderLeft: `3px solid ${colors.accent}`, borderBottom: "1px solid #E8E4DF" }}>
+          {deliverable.milestones.length > 0 && (
+            <div style={{ marginBottom: 12 }}>
+              <div style={{ fontSize: 11, fontWeight: 600, color: "#A8A29E", textTransform: "uppercase", letterSpacing: 0.5, marginBottom: 6 }}>Prep Plan Milestones</div>
+              {deliverable.milestones.map((ms, i) => (
+                <div key={i} style={{ display: "flex", alignItems: "center", gap: 8, padding: "4px 0", fontSize: 12, borderBottom: "1px solid rgba(0,0,0,0.04)" }}>
+                  <span style={{ width: 16, height: 16, borderRadius: 4, border: `2px solid ${ms.done ? "#10B981" : colors.accent}`, background: ms.done ? "#10B981" : "white", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 10, color: "white", flexShrink: 0 }}>
+                    {ms.done && "✓"}
+                  </span>
+                  <span style={{ color: ms.done ? "#A8A29E" : colors.text, textDecoration: ms.done ? "line-through" : "none", flex: 1 }}>{ms.desc}</span>
+                  <span style={{ color: "#C4BFB9", fontSize: 11, flexShrink: 0 }}>by {ms.target_date.slice(5)} · {ms.blocks}b</span>
+                </div>
+              ))}
+            </div>
+          )}
+          <div style={{ fontSize: 11, fontWeight: 600, color: "#A8A29E", textTransform: "uppercase", letterSpacing: 0.5, marginBottom: 6 }}>
+            Assigned Blocks ({deliverable.blocks.length})
+          </div>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
+            {deliverable.blocks.map((b, i) => (
+              <div key={i} style={{
+                padding: "4px 8px", borderRadius: 8,
+                background: b.done ? "#D1FAE5" : "rgba(255,255,255,0.8)",
+                border: `1px solid ${b.done ? "#10B981" : "#E8E4DF"}`,
+                fontSize: 11, color: b.done ? "#065F46" : colors.text,
+              }}>
+                <strong>{b.day} {b.date.slice(8)}</strong> · B{b.slot} {b.time} — {b.task.length > 45 ? b.task.slice(0, 45) + "…" : b.task}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function DateHeader({ dates }) {
+  const gridCols = `220px ${dates.map(() => COL_W + "px").join(" ")} 56px`;
+  return (
+    <div style={{
+      display: "grid", gridTemplateColumns: gridCols, padding: "6px 8px",
+      background: "#FFFFFF", borderBottom: "1px solid #E8E4DF",
+      position: "sticky", top: 0, zIndex: 10, alignItems: "center",
+    }}>
+      <div style={{ fontSize: 10, fontWeight: 600, color: "#A8A29E", textTransform: "uppercase", letterSpacing: 0.5 }}>Deliverable</div>
+      {dates.map(date => {
+        const d = new Date(date + "T12:00:00");
+        const dayName = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"][d.getDay()];
+        const isWeekend = d.getDay() === 0 || d.getDay() === 6;
+        const isToday = date === "2026-02-16";
+        return (
+          <div key={date} style={{
+            width: COL_W, textAlign: "center", fontSize: 10, lineHeight: 1.3,
+            color: isToday ? ACCENT : isWeekend ? "#10B981" : "#A8A29E",
+            fontWeight: isToday ? 800 : 500,
+          }}>
+            <div style={{ fontSize: 9 }}>{dayName.charAt(0)}</div>
+            <div>{date.slice(8)}</div>
+          </div>
+        );
+      })}
+      <div style={{ fontSize: 10, fontWeight: 600, color: "#A8A29E", textAlign: "center" }}>%</div>
+    </div>
+  );
+}
+
+function SummaryBar({ deliverables, freeBlocks }) {
+  const totalCommitted = deliverables.reduce((s, d) => s + d.blocks.length, 0);
+  const tests = deliverables.filter(d => d.type === "major_test");
+  const essays = deliverables.filter(d => d.type === "essay_draft" || d.type === "essay_final");
+  const other = deliverables.filter(d => !["major_test", "essay_draft", "essay_final"].includes(d.type));
+
+  return (
+    <div style={{ padding: "24px 20px 18px", background: "#FFFFFF", borderBottom: "1px solid #E8E4DF" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 4 }}>
+        <div style={{ width: 32, height: 32, borderRadius: 9, background: ACCENT, display: "flex", alignItems: "center", justifyContent: "center", color: "white", fontWeight: 700, fontSize: 15 }}>V</div>
+        <div style={{ fontSize: 20, fontWeight: 700, color: "#1A1A1A", letterSpacing: -0.5 }}>Deliverable View</div>
+      </div>
+      <div style={{ fontSize: 13, color: "#A8A29E", marginBottom: 16, marginLeft: 42 }}>Feb 16 — Mar 3 · {totalCommitted} blocks assigned · {freeBlocks.length} buffer</div>
+
+      <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+        {[
+          { n: tests.length, label: "Tests", blocks: tests.reduce((s,d) => s + d.blocks.length, 0), color: "#EF4444", bg: "#FEF2F2" },
+          { n: essays.length, label: "Essays", blocks: essays.reduce((s,d) => s + d.blocks.length, 0), color: "#F43F5E", bg: "#FFF1F2" },
+          { n: other.length, label: "Other", blocks: other.reduce((s,d) => s + d.blocks.length, 0), color: "#6366F1", bg: "#EEF2FF" },
+        ].map(item => (
+          <div key={item.label} style={{ background: item.bg, borderRadius: 12, padding: "10px 14px", flex: 1, minWidth: 90, border: "1px solid #E8E4DF" }}>
+            <div style={{ fontSize: 22, fontWeight: 800, color: item.color }}>{item.n}</div>
+            <div style={{ fontSize: 11, color: "#8C8680" }}>{item.label} · {item.blocks}b</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function FilterBar({ activeFilter, onFilter }) {
+  const filters = [
+    { key: "all", label: "All" },
+    { key: "major_test", label: "Tests" },
+    { key: "essay", label: "Essays" },
+    { key: "quiz", label: "Quizzes" },
+    { key: "lab", label: "Labs" },
+    { key: "other", label: "Other" },
+  ];
+  return (
+    <div style={{ display: "flex", gap: 4, padding: "8px 12px", background: "#FAFAF8", borderBottom: "1px solid #E8E4DF", overflowX: "auto" }}>
+      {filters.map(f => (
+        <button key={f.key} onClick={() => onFilter(f.key)} style={{
+          padding: "5px 14px", borderRadius: 20, border: "none", cursor: "pointer",
+          fontSize: 12, fontWeight: 600, whiteSpace: "nowrap",
+          background: activeFilter === f.key ? ACCENT : "#FFFFFF",
+          color: activeFilter === f.key ? "white" : "#8C8680",
+          border: activeFilter === f.key ? "none" : "1px solid #E8E4DF",
+        }}>{f.label}</button>
+      ))}
+    </div>
+  );
+}
+
+// ── Main App ──
+function DeliverableView() {
+  const { deliverables, dates, freeBlocks } = useMemo(() => buildDeliverables(SCHEDULE), []);
+  const [expanded, setExpanded] = useState({});
+  const [filter, setFilter] = useState("all");
+
+  const toggleExpand = (id) => setExpanded(prev => ({ ...prev, [id]: !prev[id] }));
+
+  const filtered = useMemo(() => {
+    if (filter === "all") return deliverables;
+    if (filter === "essay") return deliverables.filter(d => d.type === "essay_draft" || d.type === "essay_final");
+    if (filter === "other") return deliverables.filter(d => !["major_test", "essay_draft", "essay_final", "quiz", "lab"].includes(d.type));
+    return deliverables.filter(d => d.type === filter);
+  }, [deliverables, filter]);
+
+  return (
+    <div style={{ maxWidth: 1100, margin: "0 auto", background: "#F5F0EB", minHeight: "100vh" }}>
+      <SummaryBar deliverables={deliverables} freeBlocks={freeBlocks} />
+      <FilterBar activeFilter={filter} onFilter={setFilter} />
+      <DateHeader dates={dates} />
+
+      {filtered.map(d => (
+        <TimelineRow key={d.id} deliverable={d} dates={dates} isExpanded={expanded[d.id] || false} onToggle={() => toggleExpand(d.id)} />
+      ))}
+
+      {filter === "all" && freeBlocks.length > 0 && (
+        <div style={{ borderLeft: "3px solid #E8E4DF", background: "#FAFAF8", padding: "10px 12px", borderBottom: "1px solid #E8E4DF" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
+            <span style={{ fontSize: 14 }}>🛡️</span>
+            <span style={{ fontWeight: 600, fontSize: 13, color: "#A8A29E" }}>Buffer / Free Blocks ({freeBlocks.length})</span>
+          </div>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
+            {freeBlocks.map((b, i) => (
+              <div key={i} style={{ padding: "3px 8px", borderRadius: 8, background: "#FFFFFF", border: "1px solid #E8E4DF", fontSize: 11, color: "#8C8680" }}>
+                {b.day} {b.date.slice(8)} B{b.slot} — {b.task}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <div style={{ textAlign: "center", padding: "16px", fontSize: 11, color: "#C4BFB9" }}>
+        Chain: Block → prep_id → Deadline · VikramPlan
+      </div>
+    </div>
+  );
+}
+
+ReactDOM.render(<DeliverableView />, document.getElementById("root"));
+</script>
+</body>
+</html>

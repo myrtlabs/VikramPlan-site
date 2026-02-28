@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vikram — What We Found (Data Review)</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #0f0f23;
+    color: #e0e0e0;
+    min-height: 100vh;
+    padding: 0;
+  }
+  .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+
+  /* Progress bar at top */
+  .progress-bar {
+    position: fixed; top: 0; left: 0; right: 0;
+    height: 4px; background: #1a1a2e; z-index: 100;
+  }
+  .progress-fill {
+    height: 100%; background: linear-gradient(90deg, #00d2ff, #7b2ff7);
+    width: 0%; transition: width 0.3s;
+  }
+
+  /* Navigation */
+  .nav {
+    position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 10px; z-index: 100;
+    background: rgba(15, 15, 35, 0.95); padding: 12px 20px; border-radius: 25px;
+    border: 1px solid #333;
+    backdrop-filter: blur(10px);
+  }
+  .nav button {
+    background: #1a1a3e; color: #fff; border: 1px solid #444;
+    padding: 8px 20px; border-radius: 20px; cursor: pointer;
+    font-size: 14px; transition: all 0.2s;
+  }
+  .nav button:hover { background: #2a2a5e; border-color: #7b2ff7; }
+  .nav button:disabled { opacity: 0.3; cursor: not-allowed; }
+  .nav .page-num { color: #888; font-size: 13px; display: flex; align-items: center; }
+
+  /* Sections (pages) */
+  .section {
+    display: none; min-height: 80vh;
+    animation: fadeIn 0.4s ease;
+    padding-bottom: 80px;
+  }
+  .section.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+  h1 { font-size: 28px; margin-bottom: 8px; }
+  h2 { font-size: 22px; margin: 24px 0 12px; color: #7b2ff7; }
+  h3 { font-size: 17px; margin: 16px 0 8px; color: #00d2ff; }
+  p { line-height: 1.6; margin-bottom: 12px; color: #ccc; }
+
+  .subtitle { color: #888; font-size: 14px; margin-bottom: 30px; }
+  .highlight { color: #ffd700; font-weight: 600; }
+  .good { color: #4ade80; }
+  .watch { color: #fbbf24; }
+  .alert { color: #f87171; }
+
+  /* Cards */
+  .card {
+    background: #1a1a2e; border-radius: 12px; padding: 20px;
+    margin: 16px 0; border-left: 3px solid #333;
+  }
+  .card.green { border-left-color: #4ade80; }
+  .card.yellow { border-left-color: #fbbf24; }
+  .card.red { border-left-color: #f87171; }
+  .card.purple { border-left-color: #7b2ff7; }
+
+  /* Grade table */
+  .grade-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+  .grade-table th { text-align: left; padding: 8px 12px; background: #1a1a2e; color: #888; font-weight: 500; border-bottom: 1px solid #333; }
+  .grade-table td { padding: 8px 12px; border-bottom: 1px solid #1a1a2e; }
+  .grade-table tr:hover { background: rgba(123, 47, 247, 0.05); }
+
+  /* Stat blocks */
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 16px 0; }
+  .stat {
+    background: #1a1a2e; padding: 16px; border-radius: 10px; text-align: center;
+  }
+  .stat-value { font-size: 28px; font-weight: 700; }
+  .stat-label { font-size: 12px; color: #888; margin-top: 4px; }
+
+  /* Pattern block */
+  .pattern {
+    background: linear-gradient(135deg, #1a1a2e, #1a1a3e);
+    border-radius: 12px; padding: 20px; margin: 16px 0;
+    border: 1px solid #2a2a4e;
+  }
+  .pattern-title { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+
+  /* Questions */
+  .question {
+    background: #1a1a2e; border-radius: 12px; padding: 20px; margin: 12px 0;
+    border: 1px solid #333;
+  }
+  .question-num { color: #7b2ff7; font-weight: 700; font-size: 13px; margin-bottom: 6px; }
+  .question-text { font-size: 16px; line-height: 1.5; }
+  textarea {
+    width: 100%; margin-top: 10px; padding: 10px;
+    background: #0f0f23; color: #e0e0e0; border: 1px solid #333;
+    border-radius: 8px; font-family: inherit; font-size: 14px;
+    resize: vertical; min-height: 60px;
+  }
+  textarea:focus { outline: none; border-color: #7b2ff7; }
+
+  /* Deadline list */
+  .deadline {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 14px; margin: 6px 0; border-radius: 8px;
+    background: #1a1a2e; font-size: 14px;
+  }
+  .deadline-date { color: #888; font-size: 12px; min-width: 80px; }
+  .deadline-name { flex: 1; margin: 0 12px; }
+  .deadline-course { color: #888; font-size: 12px; }
+  .deadline.urgent { border-left: 3px solid #f87171; }
+  .deadline.high { border-left: 3px solid #fbbf24; }
+  .deadline.normal { border-left: 3px solid #4ade80; }
+
+  /* Copy button */
+  .copy-btn {
+    background: #7b2ff7; color: #fff; border: none; padding: 12px 24px;
+    border-radius: 10px; cursor: pointer; font-size: 15px;
+    margin-top: 20px; width: 100%; font-weight: 600;
+    transition: all 0.2s;
+  }
+  .copy-btn:hover { background: #6b1fe7; transform: translateY(-1px); }
+
+  .emoji { font-size: 24px; margin-right: 8px; }
+</style>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+<div class="container">
+
+  <!-- PAGE 1: INTRO -->
+  <div class="section active" id="page1">
+    <h1>Hey Vikram</h1>
+    <p class="subtitle">Your dad and I went through your Schoology and PowerSchool today. Here's what we found — no lectures, just data and some questions for you.</p>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-value good">6</div>
+        <div class="stat-label">Courses at A (93+)</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value watch">2</div>
+        <div class="stat-label">Watch List (A-/B+)</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value alert">1</div>
+        <div class="stat-label">Needs Fix (Health)</div>
+      </div>
+    </div>
+
+    <p>The short version: <span class="highlight">you're mostly an A student</span> — 6 out of 8 core subjects are 93+. Two need attention (Calc BC and Physics C, both around 90), and Health online needs a simple system so you don't forget the weekly 30-min assignment.</p>
+
+    <p>But there's a pattern in your data that's worth understanding. Let me show you.</p>
+  </div>
+
+  <!-- PAGE 2: THE GRADE MAP -->
+  <div class="section" id="page2">
+    <h2>Your Grade Map</h2>
+    <p>Here's where everything stands right now (Year grade):</p>
+
+    <table class="grade-table">
+      <tr><th>Course</th><th>Grade</th><th>Vibe</th></tr>
+      <tr><td>IB History of Americas HL</td><td><span class="good">A (96.7)</span></td><td>Crushing it</td></tr>
+      <tr><td>IB Espanol IV SL</td><td><span class="good">A (96.2)</span></td><td>Crushing it</td></tr>
+      <tr><td>AP Chemistry</td><td><span class="good">A (94.9)</span></td><td>Strong</td></tr>
+      <tr><td>Intro Sys Programming</td><td><span class="good">A (94.9)</span></td><td>Strong</td></tr>
+      <tr><td>AP Comp Sci A</td><td><span class="good">A (94.3)</span></td><td>Strong</td></tr>
+      <tr><td>IB World Lit I HL</td><td><span class="good">A (93.9)</span></td><td>Solid</td></tr>
+      <tr><td>AP Calculus BC</td><td><span class="watch">A- (90.8)</span></td><td>Watch list</td></tr>
+      <tr><td>AP Physics C</td><td><span class="watch">A- (90.1)</span></td><td>Watch list</td></tr>
+      <tr><td>Health/First Aid Online</td><td><span class="alert">B (85.7)</span></td><td>Fixable</td></tr>
+      <tr><td>Guitar & Mandolin</td><td><span class="good">A (100)</span></td><td>Perfect</td></tr>
+    </table>
+
+    <div class="card purple">
+      <p><strong>Guitar is 100% — every single assignment, every session.</strong> Something about that class works. The structure? The enjoyment? Social accountability? Understanding what makes Guitar different from Health Online might be the key to everything.</p>
+    </div>
+  </div>
+
+  <!-- PAGE 3: THE TEST PATTERN -->
+  <div class="section" id="page3">
+    <h2>The Pattern We Found</h2>
+    <p>This is the most important thing in your data. Look at this:</p>
+
+    <h3>AP Physics C</h3>
+    <div class="card yellow">
+      <p>Quizzes: <span class="good">80-100% (mostly A)</span></p>
+      <p>Labs: <span class="good">90-100% (A range)</span></p>
+      <p>Tests: <span class="alert">83% and 85% (B range)</span></p>
+    </div>
+
+    <h3>AP Calculus BC</h3>
+    <div class="card yellow">
+      <p>Quizzes: <span class="good">100% (perfect)</span></p>
+      <p>Test #4: <span class="watch">88% (B+)</span></p>
+    </div>
+
+    <h3>Intro Sys Programming</h3>
+    <div class="card yellow">
+      <p>Labs/HW: <span class="good">100% (perfect)</span></p>
+      <p>Test: <span class="watch">84% (B)</span></p>
+    </div>
+
+    <div class="pattern">
+      <div class="pattern-title">What this means:</div>
+      <p>You <em>know</em> the material — your quizzes prove it chapter by chapter. The drop happens when you have to pull it all together for a cumulative test. This isn't a comprehension problem. It's a <strong>consolidation and review</strong> problem.</p>
+      <p style="margin-top:10px;">That's actually good news — it means the fix is about <em>how</em> you prepare for tests, not about learning the content differently.</p>
+    </div>
+  </div>
+
+  <!-- PAGE 4: THIS WEEK -->
+  <div class="section" id="page4">
+    <h2>This Week (Feb 17-19)</h2>
+    <p>School's closed Monday (Presidents Day). But Tuesday through Thursday is packed:</p>
+
+    <div class="deadline urgent"><span class="deadline-date">Tue 17</span><span class="deadline-name">AP CS Project Presentations begin</span><span class="deadline-course">CompSci</span></div>
+    <div class="deadline high"><span class="deadline-date">Tue 17</span><span class="deadline-name">Lab: Non-Ohmic Resistor</span><span class="deadline-course">Physics</span></div>
+    <div class="deadline urgent"><span class="deadline-date">Wed 18</span><span class="deadline-name">HL Essay Draft (Peer Review, turnitin)</span><span class="deadline-course">World Lit</span></div>
+    <div class="deadline normal"><span class="deadline-date">Wed 18</span><span class="deadline-name">Reading: Latin America nationalism</span><span class="deadline-course">History</span></div>
+    <div class="deadline high"><span class="deadline-date">Wed 18</span><span class="deadline-name">Assessment 4.5 (by 2pm!)</span><span class="deadline-course">Health</span></div>
+    <div class="deadline urgent"><span class="deadline-date">Thu 19</span><span class="deadline-name">Quiz 2.5 Thermo (Sections 7-10)</span><span class="deadline-course">Chem</span></div>
+    <div class="deadline high"><span class="deadline-date">Thu 19</span><span class="deadline-name">Lab 4: Malloc Rectangles</span><span class="deadline-course">Sys Prog</span></div>
+    <div class="deadline normal"><span class="deadline-date">Sun 22</span><span class="deadline-name">Write-up: Project Contribution</span><span class="deadline-course">CompSci</span></div>
+
+    <div class="card red" style="margin-top: 20px;">
+      <p><strong>Heads up:</strong> AP Chem Test 2.3 (Thermodynamics) is next Tuesday, Feb 24. And Physics C Test (Capacitors & Circuits) is March 2. Both are in your "test gap" subjects.</p>
+    </div>
+
+    <h3>The Health Thing</h3>
+    <div class="card yellow">
+      <p>Your Health class grade went from A (100%) to C- (71.4%) because of exactly <strong>two missed assignments</strong> — two weeks where you just didn't do the 30-minute online assessment. Before and after those zeros, you're at 100%.</p>
+      <p style="margin-top: 8px;">It doesn't count for GPA but F's on the record aren't great. The fix is dead simple: a weekly reminder. We'll set that up.</p>
+    </div>
+  </div>
+
+  <!-- PAGE 5: COURSE MAP -->
+  <div class="section" id="page5">
+    <h2>Where You Are in Each Course</h2>
+    <p>Here's what's currently being covered — useful for study planning:</p>
+
+    <div class="card green">
+      <h3>AP Chemistry — Unit 6: Thermodynamics</h3>
+      <p>Enthalpy, entropy, free energy. Zumdahl Ch. 6 + Ch. 17. Quiz 2.5 this week covers sections 7-10. Test Feb 24.</p>
+    </div>
+
+    <div class="card yellow">
+      <h3>AP Physics C — Capacitors & Circuits</h3>
+      <p>Ch. 25-26 done. Now Ch. 27, then RC circuits. Non-Ohmic Resistor lab this week. Test Mar 2.</p>
+    </div>
+
+    <div class="card yellow">
+      <h3>AP Calculus BC — Series / BC Topics</h3>
+      <p>Teacher uses OneNote more than Schoology. You're in T2 territory. Quizzes perfect, test gap pattern.</p>
+    </div>
+
+    <div class="card green">
+      <h3>AP Comp Sci A — Unit 5: Multi-D Arrays, Strings, HashMaps</h3>
+      <p>Presentations this week! Write-up due Sunday. Solid at 94.3%.</p>
+    </div>
+
+    <div class="card green">
+      <h3>Intro Sys Programming — Unit 4: Pointers and Structs</h3>
+      <p>Working with malloc in C. Lab 4 due Thursday. Pointers are tricky but you've got this.</p>
+    </div>
+
+    <div class="card green">
+      <h3>IB World Lit — Remains of the Day + HL Essay</h3>
+      <p>HL Essay draft due Wednesday for peer review. Final due Mar 3. Also prepping for IO.</p>
+    </div>
+
+    <div class="card green">
+      <h3>IB History — Mexican-American War / Latin America</h3>
+      <p>Reading on nationalism due Wednesday. Cruising at 96.7%.</p>
+    </div>
+
+    <div class="card green">
+      <h3>IB Espanol IV — Unidad 3: Amor</h3>
+      <p>Preparing for IOA (Internal Oral Assessment). Strong at 96.2%. One missing SpanishDict from Dec.</p>
+    </div>
+  </div>
+
+  <!-- PAGE 6: 3-YEAR TRENDS -->
+  <div class="section" id="page6">
+    <h2>The Bigger Picture (3 Years)</h2>
+    <p>We pulled your data all the way back to freshman year. Some interesting stuff:</p>
+
+    <div class="pattern">
+      <div class="pattern-title">The T2 Dip</div>
+      <p>Every year, your grades tend to dip in Trimester 2. Freshman year: Math went from B+ to B-, Spanish from A to B-, Chemistry from A to B+. Sophomore year it was less pronounced. You're in T2 right now.</p>
+      <p style="margin-top: 8px;">T1 = fresh start energy. T2 = the grind. T3 = finish line push. <strong>Knowing this pattern exists is half the battle.</strong></p>
+    </div>
+
+    <div class="pattern">
+      <div class="pattern-title">Math Is Your Weakest STEM — But It's Getting Better</div>
+      <p>Freshman: B (85.7) in Advanced Math Analysis. Sophomore: A- (92.8). Junior: A- (90.8) in AP Calc BC. The trajectory is upward, but math consistently takes the most effort.</p>
+    </div>
+
+    <div class="pattern">
+      <div class="pattern-title">Online/Self-Paced = Kryptonite</div>
+      <p>Health online, both years, has been your weakest. When there's no teacher in the room and no one checking, it drops off. This is a known exec functioning thing — not a character flaw, just how your brain prioritizes.</p>
+    </div>
+
+    <div class="pattern">
+      <div class="pattern-title">Overall: You're on an Upward Trajectory</div>
+      <p>Freshman year had more B's (Math, Spanish, Entrepreneurship). Sophomore year mostly A's. Junior year maintaining A's across the board with Calc and Physics as the only watch items. <span class="good">That's real growth.</span></p>
+    </div>
+  </div>
+
+  <!-- PAGE 7: QUESTIONS FOR VIKRAM -->
+  <div class="section" id="page7">
+    <h2>Questions for You</h2>
+    <p>We want to build this system <em>with</em> you, not <em>for</em> you. So here are some things only you can tell us:</p>
+
+    <div class="question">
+      <div class="question-num">QUESTION 1</div>
+      <div class="question-text">The test gap — when you sit down for a big test vs. a chapter quiz, what feels different? Is it anxiety? Not enough review time? The format? Trouble connecting concepts across chapters?</div>
+      <textarea placeholder="Your thoughts..."></textarea>
+    </div>
+
+    <div class="question">
+      <div class="question-num">QUESTION 2</div>
+      <div class="question-text">Guitar is 100% — perfect attendance, every assignment done. What makes that class different? Is it the subject? The teacher? The social element? The structure? Something else?</div>
+      <textarea placeholder="Your thoughts..."></textarea>
+    </div>
+
+    <div class="question">
+      <div class="question-num">QUESTION 3</div>
+      <div class="question-text">The morning thing — 7 tardies to Period 1 (World Lit at 8am). What's happening? Late to bed? Hard to wake up? Slow morning routine? Something else?</div>
+      <textarea placeholder="Your thoughts..."></textarea>
+    </div>
+
+    <div class="question">
+      <div class="question-num">QUESTION 4</div>
+      <div class="question-text">What's your current study routine before a test? Walk me through what you actually do (not what you think you should do) in the days before a Physics or Calc test.</div>
+      <textarea placeholder="Your thoughts..."></textarea>
+    </div>
+
+    <div class="question">
+      <div class="question-num">QUESTION 5</div>
+      <div class="question-text">When you procrastinate or get distracted, what's the trigger? Is it "this feels overwhelming" or "this is boring" or "I'll do it later" or something else? And what do you typically escape to?</div>
+      <textarea placeholder="Your thoughts..."></textarea>
+    </div>
+
+    <div class="question">
+      <div class="question-num">QUESTION 6</div>
+      <div class="question-text">If you could fix ONE thing about how your school week goes, what would it be? Not what you think we want to hear — what actually bugs you the most?</div>
+      <textarea placeholder="Your thoughts..."></textarea>
+    </div>
+
+    <div class="question">
+      <div class="question-num">QUESTION 7</div>
+      <div class="question-text">What time of day are you sharpest? When does your brain actually work best? And when does it shut down?</div>
+      <textarea placeholder="Your thoughts..."></textarea>
+    </div>
+
+    <div class="question">
+      <div class="question-num">QUESTION 8</div>
+      <div class="question-text">Your HL Essay draft is due Wednesday and CS presentations start Tuesday. Where are you on those right now? Do you need help with either?</div>
+      <textarea placeholder="Your thoughts..."></textarea>
+    </div>
+
+    <button class="copy-btn" onclick="copyResponses()">Copy My Responses (to paste into Claude)</button>
+    <p id="copyStatus" style="text-align:center; margin-top:10px; color:#4ade80; display:none;">Copied! Paste into Claude chat.</p>
+  </div>
+
+</div>
+
+<!-- Navigation -->
+<div class="nav">
+  <button id="prevBtn" onclick="navigate(-1)" disabled>&larr; Back</button>
+  <span class="page-num" id="pageNum">1 / 7</span>
+  <button id="nextBtn" onclick="navigate(1)">Next &rarr;</button>
+</div>
+
+<script>
+let currentPage = 1;
+const totalPages = 7;
+
+function navigate(dir) {
+  const current = document.getElementById('page' + currentPage);
+  currentPage += dir;
+  currentPage = Math.max(1, Math.min(totalPages, currentPage));
+
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById('page' + currentPage).classList.add('active');
+
+  document.getElementById('prevBtn').disabled = currentPage === 1;
+  document.getElementById('nextBtn').disabled = currentPage === totalPages;
+  document.getElementById('pageNum').textContent = currentPage + ' / ' + totalPages;
+  document.getElementById('progressFill').style.width = ((currentPage / totalPages) * 100) + '%';
+
+  window.scrollTo(0, 0);
+}
+
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+  if (e.target.tagName === 'TEXTAREA') return;
+  if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); navigate(1); }
+  if (e.key === 'ArrowLeft') { e.preventDefault(); navigate(-1); }
+});
+
+function copyResponses() {
+  const questions = [
+    "Test gap — what feels different on big tests vs quizzes?",
+    "Guitar at 100% — what makes it different?",
+    "Morning tardies — what's happening?",
+    "Current test study routine?",
+    "Procrastination triggers?",
+    "One thing to fix about school week?",
+    "Best/worst times of day for focus?",
+    "Status on HL Essay draft and CS presentations?"
+  ];
+
+  const textareas = document.querySelectorAll('textarea');
+  let output = "# Vikram's Responses — Data Review\n\n";
+
+  textareas.forEach((ta, i) => {
+    if (ta.value.trim()) {
+      output += `**Q${i+1}: ${questions[i]}**\n${ta.value.trim()}\n\n`;
+    }
+  });
+
+  if (output === "# Vikram's Responses — Data Review\n\n") {
+    output += "(No responses filled in yet)";
+  }
+
+  navigator.clipboard.writeText(output).then(() => {
+    document.getElementById('copyStatus').style.display = 'block';
+    setTimeout(() => { document.getElementById('copyStatus').style.display = 'none'; }, 3000);
+  });
+}
+
+// Init progress bar
+document.getElementById('progressFill').style.width = ((1 / totalPages) * 100) + '%';
+</script>
+
+</body>
+</html>

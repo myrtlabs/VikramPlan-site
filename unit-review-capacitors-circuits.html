@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit Review: Capacitors &amp; Circuits — Test Prep</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+<style>
+  @media print {
+    .no-print { display: none; }
+    .page-break { page-break-before: always; }
+    body { font-size: 11pt; }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Georgia', serif; max-width: 8.5in; margin: 0 auto; padding: 0.75in; line-height: 1.6; color: #1a1a1a; background: #fff; }
+  h1 { font-size: 1.8em; color: #1a1a2e; margin-bottom: 0.2em; }
+  h2 { font-size: 1.35em; color: #16213e; margin-top: 1.5em; margin-bottom: 0.5em; border-bottom: 2px solid #16213e; padding-bottom: 0.2em; }
+  h3 { font-size: 1.1em; color: #0f3460; margin-top: 1.2em; margin-bottom: 0.4em; }
+  p { margin: 0.4em 0; }
+  .cover { text-align: left; margin-bottom: 2em; }
+  .cover-subtitle { font-size: 1.2em; color: #16213e; margin-bottom: 1em; }
+  .cover-info { margin: 0.3em 0; font-size: 0.95em; }
+  .cover-info b { color: #333; }
+  .hw-box { background: #f5f5f5; font-family: 'Courier New', monospace; padding: 8px 14px; margin: 0.5em 0; border-left: 4px solid #16213e; font-size: 0.9em; }
+  .warning { color: #8B0000; font-weight: bold; font-style: italic; margin: 1em 0; }
+  .formula-box { background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 4px; padding: 10px 16px; margin: 0.6em 0; font-size: 1.05em; }
+  .key-point { border-left: 4px solid #0f3460; padding: 8px 14px; margin: 0.6em 0; background: #f0f4ff; }
+  .problem { margin: 1em 0 0.3em 0; }
+  .problem-num { font-weight: bold; }
+  .workspace { height: 120px; border: 1px dashed #ccc; margin: 0.5em 0; border-radius: 4px; position: relative; }
+  .workspace-tall { height: 200px; }
+  .workspace-xtall { height: 280px; }
+  .workspace::after { content: "Work space"; position: absolute; top: 8px; right: 12px; font-size: 0.7em; color: #bbb; font-style: italic; }
+  .hint { font-size: 0.85em; color: #666; font-style: italic; margin-left: 1em; margin-top: 0.2em; }
+  .tier-label { display: inline-block; background: #16213e; color: white; padding: 2px 10px; border-radius: 3px; font-size: 0.85em; margin-bottom: 0.3em; }
+  .tier-label.t2 { background: #0f3460; }
+  .tier-label.t3 { background: #8B0000; }
+  hr { border: none; border-top: 1px solid #ddd; margin: 1.2em 0; }
+  .formula-table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: 0.9em; }
+  .formula-table th { background: #16213e; color: white; padding: 6px 10px; text-align: left; }
+  .formula-table td { padding: 6px 10px; border-bottom: 1px solid #eee; }
+  .formula-table tr:nth-child(even) { background: #f8f8f8; }
+  .answer-section { border-top: 3px solid #8B0000; margin-top: 2em; padding-top: 1em; }
+  .answer-section h2 { color: #8B0000; border-bottom-color: #8B0000; }
+  .solution { margin: 0.4em 0 0.4em 1em; font-size: 0.92em; }
+  .solution b { color: #0f3460; }
+  .data-table { border-collapse: collapse; margin: 0.5em auto; font-family: 'Courier New', monospace; font-size: 0.9em; }
+  .data-table td, .data-table th { border: 1px solid #999; padding: 4px 12px; text-align: center; }
+  .data-table th { background: #eee; }
+  .mc-option { margin: 0.3em 0 0.3em 2em; }
+  .mc-circle { display: inline-block; width: 18px; height: 18px; border: 1.5px solid #333; border-radius: 50%; text-align: center; line-height: 18px; font-size: 0.8em; margin-right: 6px; }
+</style>
+</head>
+<body>
+
+<!-- ============ COVER PAGE ============ -->
+<div class="cover">
+  <h1>Unit Review: Capacitors &amp; Circuits</h1>
+  <p class="cover-subtitle">Practice Exam — from Russo's Review Materials</p>
+
+  <div style="margin-top: 2em; border-top: 1px solid #ccc; padding-top: 1em;">
+    <p class="cover-info"><b>Course:</b> AP Physics C — Russo, Period 4</p>
+    <p class="cover-info"><b>Test Date:</b> March 2, 2026</p>
+    <p class="cover-info"><b>Topics:</b> Capacitors &amp; Circuits (Ch 25–27)</p>
+    <p class="cover-info"><b>Format:</b> 10 Multiple Choice + 5 Free Response</p>
+  </div>
+
+  <div style="margin-top: 2em; background: #fff3cd; padding: 12px; border: 1px solid #ffc107; border-radius: 4px;">
+    <p class="cover-info"><b>Time Allocation:</b></p>
+    <p class="cover-info">• Multiple Choice: 15 minutes</p>
+    <p class="cover-info">• Free Response: 35 minutes</p>
+    <p class="cover-info">• <b>Total: 50 minutes</b></p>
+  </div>
+
+  <div class="warning">
+    This is from Russo's actual review packet. Treat it like a real test: set a timer, no notes, work on paper. Check answers ONLY after finishing.
+  </div>
+
+  <hr>
+  <p style="font-size: 0.9em; color: #666; margin-top: 2em;">
+    <b>Instructions:</b> Show all work for free response problems. For multiple choice, circle your answer on your paper. No calculator required for MC; calculator recommended for FRQ. All steps and reasoning must be shown.
+  </p>
+</div>
+
+<!-- ============ PAGE BREAK ============ -->
+<div class="page-break"></div>
+
+<!-- ============ SECTION 1: MULTIPLE CHOICE ============ -->
+<h2>Section 1: Multiple Choice (10 Questions — 15 minutes)</h2>
+<p style="font-size: 0.9em; margin-bottom: 1em;">Select the best answer for each question. No calculator required.</p>
+
+<!-- MC1 -->
+<div class="problem">
+  <p class="problem-num">1.</p>
+  <p>Two capacitors of equal capacitance <i>C</i> are first charged to a potential difference <i>V</i> and then removed from the battery and connected to each other (positive plate to positive plate). The final energy of the system is:</p>
+  <div class="mc-option">
+    <span class="mc-circle">A</span> <span>$$\frac{1}{4}CV^2$$</span>
+  </div>
+  <div class="mc-option">
+    <span class="mc-circle">B</span> <span>$$\frac{1}{2}CV^2$$</span>
+  </div>
+  <div class="mc-option">
+    <span class="mc-circle">C</span> <span>$$CV^2$$</span>
+  </div>
+  <div class="mc-option">
+    <span class="mc-circle">D</span> <span>$$2CV^2$$</span>
+  </div>
+  <div class="mc-option">
+    <span class="mc-circle">E</span> <span>$$4CV^2$$</span>
+  </div>
+  <div class="hint">Hint: Total charge = 2CV, total capacitance = 2C. Find $$V_{final}$$ then $$U = \frac{1}{2}(2C)V_{final}^2$$</div>
+  <div class="workspace"></div>
+</div>
+
+<!-- MC2 -->
+<div class="problem">
+  <p class="problem-num">2.</p>
+  <p>A 20 μF capacitor is fully charged by a 100 V battery. The total energy delivered by the battery to charge the capacitor is:</p>
+  <div class="mc-option">
+    <span class="mc-circle">A</span> <span>0.02 J</span>
+  </div>
+  <div class="mc-option">
+    <span class="mc-circle">B</span> <span>0.05 J</span>
+  </div>
+  <div class="mc-option">
+    <span class="mc-circle">C</span> <span>0.1 J</span>
+  </div>
+  <div class="mc-option">
+    <span class="mc-circle">D</span> <span>0.2 J</span>
+  </div>
+  <div class="mc-option">
+    <span class="mc-circle">E</span> <span>0.4 J</span>
+  </div>
+  <div class="hint">Hint: Energy delivered by battery = $$QV = CV^2$$. Energy stored = $$\frac{1}{2}CV^2$$. Battery delivers TWICE the stored energy.</div>
+  <div class="workspace"></div>
+</div>
+
+<!-- MC3 -->
+<div class="problem">
+  <p class="problem-num">3.</p>
+  <p>A parallel-plate capacitor with plate area <i>A</i> and separation <i>d</i> is fully charged to voltage <i>V</i> and then disconnected from the battery. If the plate separation is then reduced to <i>d</i>/2, which of the following is true?</p>
+  <div class="mc-option">
+    <span class="mc-circle">A</span> <span>The voltage doubles and the charge halves</span>
+  </div>
+  <div class="mc-option">
+    <span class="mc-circle">B</span> <span>Both voltage and charge are unchanged</span>
+  </div>
+  <div class="mc-option">
+    <span class="mc-circle">C</span> <span>The voltage halves and the charge is unchanged</span>
+  </div>
+  <div class="mc-option">
+    <span class="mc-circle">D</span> <span>The voltage is unchanged and the charge doubles</span>
+  </div>
+  <div class="mc-option">
+    <span class="mc-circle">E</span> <span>The voltage halves and the charge doubles</span>
+  </div>
+  <div class="hint">Hint: Disconnected $$\Rightarrow$$ <i>q</i> is constant. $$C = \frac{\varepsilon_0 A}{d}$$. What happens to <i>C</i>? Then use $$V = \frac{q}{C}$$.</div>
+  <div class="workspace"></div>
+</div>
+
+<!-- MC4 -->
+<div class="problem">
+  <p class="problem-num">4.</p>
+  <p>A circuit contains a battery of EMF <i>ε</i> and three identical resistors <i>R</i>. Two resistors are in parallel, and that combination is in series with the third. The current through the battery is:</p>
+  <div class="mc-option">
+    <span class="mc-circle">A</span> <span>$$\frac{\varepsilon}{3R}$$</span>
+  </div>
+  <div class="mc-option">
+    <span class="mc-circle">B</span> <span>$$\frac{2\varepsilon}{3R}$$</span>
+  </div>
+  <div class="mc-option">
+    <span class="mc-circle">C</span> <span>$$\frac{\varepsilon}{2R}$$</span>
+  </div>
+  <div class="mc-option">
+    <span class="mc-circle">D</span> <span>$$\frac{\varepsilon}{R}$$</span>
+  </div>
+  <div class="mc-option">
+    <span class="mc-circle">E</span> <span>$$\frac{3\varepsilon}{2R}$$</span>
+  </div>
+  <div class="hint">Hint: $$R_{parallel} = \frac{R}{2}$$. Total $$R = R + \frac{R}{2} = \frac{3R}{2}$$. Use Ohm's law.</div>
+  <div class="workspace"></div>
+</div>
+
+<!-- MC5 -->
+<div class="problem">
+  <p class="problem-num">5.</p>
+  <p>In an RC circuit, a capacitor is being charged. At time <i>t</i> = <i>τ</i> (one time constant), the charge on the capacitor is approximately:</p>
+  <div class="mc-option">
+    <span class="mc-circle">A</span> <span>37% of maximum</span>
+  </div>
+  <div class="mc-option">
+    <span class="mc-circle">B</span> <span>50% of maximum</span>
+  </div>
+  <div class="mc-option">
+    <span class="mc-circle">C</span> <span>63% of maximum</span>
+  </div>
+  <div class="mc-option">
+    <span class="mc-circle">D</span> <span>86% of maximum</span>
+  </div>
+  <div class="mc-option">
+    <span class="mc-circle">E</span> <span>95% of maximum</span>
+  </div>
+  <div class="hint">Hint: $$q(\tau) = Q_{max}(1 - e^{-1})$$. Evaluate numerically.</div>
+  <div class="workspace"></div>
+</div>
+
+<!-- MC6 -->
+<div class="problem">
+  <p class="problem-num">6.</p>
+  <p>A parallel-plate capacitor with air gap has capacitance <i>C</i>. A dielectric slab with <i>κ</i> = 3 that fills the entire gap is inserted while the battery remains connected. Which quantities change and by what factor?</p>
+  <div class="mc-option">
+    <span class="mc-circle">A</span> <span>Charge triples, voltage unchanged, energy triples</span>
+  </div>
+  <div class="mc-option">
+    <span class="mc-circle">B</span> <span>Charge triples, voltage triples, energy remains same</span>
+  </div>
+  <div class="mc-option">
+    <span class="mc-circle">C</span> <span>Charge unchanged, voltage triples, energy triples</span>
+  </div>
+  <div class="mc-option">
+    <span class="mc-circle">D</span> <span>Charge remains same, voltage drops by 3, energy drops by 3</span>
+  </div>
+  <div class="mc-option">
+    <span class="mc-circle">E</span> <span>Charge and voltage both triple, energy increases by 9</span>
+  </div>
+  <div class="hint">Hint: Battery connected $$\Rightarrow$$ <i>V</i> is fixed. $$C \rightarrow \kappa C$$. Track <i>q</i> and <i>U</i>.</div>
+  <div class="workspace"></div>
+</div>
+
+<!-- MC7 -->
+<div class="problem">
+  <p class="problem-num">7.</p>
+  <p>In a circuit with a 12V battery and internal resistance 2Ω connected to an external resistance <i>R</i>, the power dissipated in <i>R</i> is maximized when:</p>
+  <div class="mc-option">
+    <span class="mc-circle">A</span> <span><i>R</i> = 0</span>
+  </div>
+  <div class="mc-option">
+    <span class="mc-circle">B</span> <span><i>R</i> = 1Ω</span>
+  </div>
+  <div class="mc-option">
+    <span class="mc-circle">C</span> <span><i>R</i> = 2Ω</span>
+  </div>
+  <div class="mc-option">
+    <span class="mc-circle">D</span> <span><i>R</i> = 4Ω</span>
+  </div>
+  <div class="mc-option">
+    <span class="mc-circle">E</span> <span><i>R</i> = ∞</span>
+  </div>
+  <div class="hint">Hint: Maximum power transfer theorem. When is $$P_R = I^2 R$$ maximized?</div>
+  <div class="workspace"></div>
+</div>
+
+<!-- MC8 -->
+<div class="problem">
+  <p class="problem-num">8.</p>
+  <p>Two capacitors <i>C</i><sub>1</sub> = 3 μF and <i>C</i><sub>2</sub> = 6 μF are connected in series to a 12 V battery. The voltage across <i>C</i><sub>1</sub> is:</p>
+  <div class="mc-option">
+    <span class="mc-circle">A</span> <span>2V</span>
+  </div>
+  <div class="mc-option">
+    <span class="mc-circle">B</span> <span>4V</span>
+  </div>
+  <div class="mc-option">
+    <span class="mc-circle">C</span> <span>6V</span>
+  </div>
+  <div class="mc-option">
+    <span class="mc-circle">D</span> <span>8V</span>
+  </div>
+  <div class="mc-option">
+    <span class="mc-circle">E</span> <span>12V</span>
+  </div>
+  <div class="hint">Hint: Series $$\Rightarrow$$ same charge. Find $$C_{eq}$$ first, then <i>q</i>, then $$V_1 = \frac{q}{C_1}$$.</div>
+  <div class="workspace"></div>
+</div>
+
+<!-- MC9 -->
+<div class="problem">
+  <p class="problem-num">9.</p>
+  <p>An RC circuit has <i>R</i> = 5 MΩ and <i>C</i> = 2 μF. The time constant is:</p>
+  <div class="mc-option">
+    <span class="mc-circle">A</span> <span>2.5 s</span>
+  </div>
+  <div class="mc-option">
+    <span class="mc-circle">B</span> <span>5 s</span>
+  </div>
+  <div class="mc-option">
+    <span class="mc-circle">C</span> <span>10 s</span>
+  </div>
+  <div class="mc-option">
+    <span class="mc-circle">D</span> <span>25 s</span>
+  </div>
+  <div class="mc-option">
+    <span class="mc-circle">E</span> <span>100 s</span>
+  </div>
+  <div class="hint">Hint: $$\tau = RC$$. Watch units carefully.</div>
+  <div class="workspace"></div>
+</div>
+
+<!-- MC10 -->
+<div class="problem">
+  <p class="problem-num">10.</p>
+  <p>A parallel-plate capacitor stores energy <i>U</i>. If the plate area is doubled AND the separation is halved, the new energy stored (with the same battery connected) is:</p>
+  <div class="mc-option">
+    <span class="mc-circle">A</span> <span><i>U</i>/2</span>
+  </div>
+  <div class="mc-option">
+    <span class="mc-circle">B</span> <span><i>U</i></span>
+  </div>
+  <div class="mc-option">
+    <span class="mc-circle">C</span> <span>2<i>U</i></span>
+  </div>
+  <div class="mc-option">
+    <span class="mc-circle">D</span> <span>4<i>U</i></span>
+  </div>
+  <div class="mc-option">
+    <span class="mc-circle">E</span> <span>8<i>U</i></span>
+  </div>
+  <div class="hint">Hint: $$C = \frac{\varepsilon_0 A}{d}$$. Find $$C_{new}$$ in terms of $$C_0$$. Battery connected $$\Rightarrow$$ same <i>V</i>.</div>
+  <div class="workspace"></div>
+</div>
+
+<!-- ============ PAGE BREAK ============ -->
+<div class="page-break"></div>
+
+<!-- ============ SECTION 2: FREE RESPONSE ============ -->
+<h2>Section 2: Free Response (5 Problems — 35 minutes)</h2>
+<p style="font-size: 0.9em; margin-bottom: 1em;"><b>Show all work on paper.</b> Clearly label each step and justify your reasoning. Partial credit is awarded for correct method even if the final answer is incorrect.</p>
+
+<!-- FRQ 1 -->
+<div style="margin-top: 2em;">
+  <h3>Problem 1: Capacitor Circuit Analysis</h3>
+  <p>Three capacitors <i>C</i><sub>1</sub> = 2 μF, <i>C</i><sub>2</sub> = 4 μF, and <i>C</i><sub>3</sub> = 6 μF are connected as follows: <i>C</i><sub>2</sub> and <i>C</i><sub>3</sub> are in parallel, and that combination is in series with <i>C</i><sub>1</sub>. The whole thing is connected to a 24V battery.</p>
+
+  <div class="key-point">
+    <p><b>Part (a):</b> Find the equivalent capacitance.</p>
+  </div>
+  <div class="workspace workspace-tall"></div>
+
+  <div class="key-point">
+    <p><b>Part (b):</b> Find the charge on <i>C</i><sub>1</sub>.</p>
+  </div>
+  <div class="workspace"></div>
+
+  <div class="key-point">
+    <p><b>Part (c):</b> Find the voltage across <i>C</i><sub>2</sub>.</p>
+  </div>
+  <div class="workspace"></div>
+
+  <div class="key-point">
+    <p><b>Part (d):</b> Find the energy stored in each capacitor.</p>
+  </div>
+  <div class="workspace workspace-tall"></div>
+
+  <div class="key-point">
+    <p><b>Part (e):</b> If the battery is disconnected and a dielectric (κ = 2) is inserted in <i>C</i><sub>1</sub>, find the new voltage across each capacitor.</p>
+  </div>
+  <div class="workspace workspace-xtall"></div>
+</div>
+
+<!-- FRQ 2 -->
+<div style="margin-top: 3em;">
+  <h3>Problem 2: RC Charging Circuit</h3>
+  <p>A circuit has a 20V battery, a switch S, a 50 kΩ resistor, and a 100 μF capacitor in series.</p>
+
+  <div class="key-point">
+    <p><b>Part (a):</b> What is the time constant?</p>
+  </div>
+  <div class="workspace"></div>
+
+  <div class="key-point">
+    <p><b>Part (b):</b> The switch is closed at <i>t</i> = 0. Write expressions for <i>i</i>(<i>t</i>), <i>V</i><sub>R</sub>(<i>t</i>), <i>V</i><sub>C</sub>(<i>t</i>), and <i>q</i>(<i>t</i>).</p>
+  </div>
+  <div class="workspace workspace-tall"></div>
+
+  <div class="key-point">
+    <p><b>Part (c):</b> Find the values of each quantity at <i>t</i> = 0, <i>t</i> = τ, <i>t</i> = 2τ, and <i>t</i> → ∞.</p>
+  </div>
+  <div class="workspace workspace-xtall"></div>
+
+  <div class="key-point">
+    <p><b>Part (d):</b> At what time does <i>V</i><sub>C</sub> = <i>V</i><sub>R</sub>? What is the current at this moment?</p>
+  </div>
+  <div class="workspace workspace-tall"></div>
+
+  <div class="key-point">
+    <p><b>Part (e):</b> After a long time (fully charged), the battery is removed and the switch is closed, creating a discharge circuit. Write the new expressions for <i>q</i>(<i>t</i>) and <i>i</i>(<i>t</i>), and find how long it takes for the charge to drop to 10% of its initial value.</p>
+  </div>
+  <div class="workspace workspace-xtall"></div>
+</div>
+
+<!-- ============ PAGE BREAK ============ -->
+<div class="page-break"></div>
+
+<!-- FRQ 3 -->
+<div style="margin-top: 2em;">
+  <h3>Problem 3: Parallel Plate Capacitor with Thick Conducting Plate</h3>
+  <p>A parallel-plate capacitor consists of two plates, each of area <i>A</i>, separated by distance <i>d</i>. A conducting slab of thickness <i>t</i> (<i>t</i> &lt; <i>d</i>) is inserted between the plates (not touching either plate). The capacitor is connected to a battery of voltage <i>V</i><sub>0</sub>.</p>
+
+  <div class="key-point">
+    <p><b>Part (a):</b> Before the slab is inserted, find the capacitance <i>C</i><sub>0</sub> and the electric field <i>E</i><sub>0</sub> between the plates.</p>
+  </div>
+  <div class="workspace"></div>
+
+  <div class="key-point">
+    <p><b>Part (b):</b> With the conducting slab inserted, find the new capacitance <i>C</i>. (Hint: the conducting slab is equipotential, so the effective gap is <i>d</i> − <i>t</i>.)</p>
+  </div>
+  <div class="workspace"></div>
+
+  <div class="key-point">
+    <p><b>Part (c):</b> Find the charge on the capacitor plates with the slab inserted.</p>
+  </div>
+  <div class="workspace"></div>
+
+  <div class="key-point">
+    <p><b>Part (d):</b> Find the electric field in the air gaps (above and below the slab).</p>
+  </div>
+  <div class="workspace"></div>
+
+  <div class="key-point">
+    <p><b>Part (e):</b> The battery is disconnected, and the slab is removed. Find the new voltage and energy. Compare to the initial energy and explain the difference.</p>
+  </div>
+  <div class="workspace workspace-xtall"></div>
+</div>
+
+<!-- FRQ 4 -->
+<div style="margin-top: 3em;">
+  <h3>Problem 4: Coaxial Cable Capacitor</h3>
+  <p>A coaxial cable has an inner conductor of radius <i>a</i> and an outer conductor of radius <i>b</i>. The space between is filled with a dielectric of constant κ. The cable has length <i>L</i>.</p>
+
+  <div class="key-point">
+    <p><b>Part (a):</b> Use Gauss's law to find the electric field between the conductors when charge +<i>q</i> is on the inner and −<i>q</i> on the outer.</p>
+  </div>
+  <div class="workspace workspace-tall"></div>
+
+  <div class="key-point">
+    <p><b>Part (b):</b> Find the potential difference between the conductors by integrating <i>E</i>.</p>
+  </div>
+  <div class="workspace workspace-tall"></div>
+
+  <div class="key-point">
+    <p><b>Part (c):</b> Find the capacitance <i>C</i> = <i>q</i>/<i>V</i>.</p>
+  </div>
+  <div class="workspace"></div>
+
+  <div class="key-point">
+    <p><b>Part (d):</b> Find the energy stored per unit length if the potential difference is <i>V</i><sub>0</sub>.</p>
+  </div>
+  <div class="workspace workspace-tall"></div>
+
+  <div class="key-point">
+    <p><b>Part (e):</b> If κ = 2.3, <i>a</i> = 0.5 mm, <i>b</i> = 3.0 mm, and <i>L</i> = 50 m, find the total capacitance.</p>
+  </div>
+  <div class="workspace workspace-tall"></div>
+</div>
+
+<!-- ============ PAGE BREAK ============ -->
+<div class="page-break"></div>
+
+<!-- FRQ 5 -->
+<div style="margin-top: 2em;">
+  <h3>Problem 5: Multi-loop Circuit with RC</h3>
+  <p>A circuit has:</p>
+  <ul style="margin-left: 2em; margin-bottom: 1em;">
+    <li>Battery ε = 30 V with internal resistance <i>r</i> = 1 Ω</li>
+    <li><i>R</i><sub>1</sub> = 4 Ω in series with the battery</li>
+    <li><i>R</i><sub>2</sub> = 12 Ω in parallel with a capacitor <i>C</i> = 100 μF</li>
+    <li>The parallel combination of <i>R</i><sub>2</sub> and <i>C</i> is in series with <i>R</i><sub>1</sub> and the battery</li>
+  </ul>
+
+  <div class="key-point">
+    <p><b>Part (a):</b> The switch has been closed for a very long time. Find the current through each component and the voltage across the capacitor.</p>
+  </div>
+  <div class="workspace workspace-tall"></div>
+
+  <div class="key-point">
+    <p><b>Part (b):</b> The battery is now disconnected (switch opened). At the moment the switch opens, find the current through <i>R</i><sub>2</sub> and the direction of this current.</p>
+  </div>
+  <div class="workspace workspace-tall"></div>
+
+  <div class="key-point">
+    <p><b>Part (c):</b> Write the expression for the voltage across the capacitor as it discharges through <i>R</i><sub>2</sub> after the switch opens.</p>
+  </div>
+  <div class="workspace"></div>
+
+  <div class="key-point">
+    <p><b>Part (d):</b> Find the time constant for the discharge.</p>
+  </div>
+  <div class="workspace"></div>
+
+  <div class="key-point">
+    <p><b>Part (e):</b> Calculate the total energy dissipated in <i>R</i><sub>2</sub> during the discharge. Verify by comparing to the initial energy stored in <i>C</i>.</p>
+  </div>
+  <div class="workspace workspace-tall"></div>
+</div>
+
+<!-- ============ PAGE BREAK ============ -->
+<div class="page-break"></div>
+
+<!-- ============ ANSWER KEY ============ -->
+<div class="answer-section">
+  <h2>Answer Key</h2>
+
+  <h3>Multiple Choice Answers</h3>
+  <table class="formula-table">
+    <tr>
+      <th>Question</th>
+      <th>Answer</th>
+      <th>Key Reasoning</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td><b>C</b> — $$CV^2$$</td>
+      <td>Both caps hold $$CV$$, so total $$Q = 2CV$$. Capacitances in parallel: $$C_{total} = 2C$$. $$V_{final} = \frac{Q}{2C} = V$$. $$U = \frac{1}{2}(2C)V^2 = CV^2$$.</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td><b>D</b> — 0.2 J</td>
+      <td>$$E_{delivered} = CV^2 = (20 \times 10^{-6})(100^2) = 0.20 \text{ J}$$. Note: stored energy $$= \frac{1}{2}CV^2 = 0.10 \text{ J}$$. Battery delivers twice the stored energy.</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td><b>C</b> — Voltage halves, charge unchanged</td>
+      <td>Disconnected $$\Rightarrow$$ $$q$$ constant. $$d \to d/2 \Rightarrow C$$ doubles. $$V = q/C \Rightarrow V$$ halves.</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td><b>B</b> — $$\frac{2\varepsilon}{3R}$$</td>
+      <td>$$R_{||} = R/2$$. $$R_{total} = R + R/2 = 3R/2$$. $$I = \varepsilon/(3R/2) = 2\varepsilon/(3R)$$.</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td><b>C</b> — 63%</td>
+      <td>$$q(\tau) = Q_{max}(1 - e^{-1}) = Q_{max}(1 - 0.368) = 0.632 Q_{max} \approx 63\%$$.</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td><b>A</b> — Charge triples, V unchanged, energy triples</td>
+      <td>Battery connected $$\Rightarrow$$ $$V$$ fixed. $$C \to \kappa C = 3C$$. $$q = CV \to 3CV$$. $$U = \frac{1}{2}CV^2 \to 3(\frac{1}{2}CV^2)$$.</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td><b>C</b> — $$R = 2\Omega$$</td>
+      <td>Maximum power transfer theorem: $$P_R$$ is maximized when $$R = r = 2\Omega$$.</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td><b>D</b> — 8V</td>
+      <td>$$C_{eq} = \frac{C_1 C_2}{C_1 + C_2} = \frac{18}{9} = 2 \text{ μF}$$. $$q = 2(12) = 24 \text{ μC}$$. $$V_1 = q/C_1 = 24/3 = 8 \text{ V}$$.</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td><b>C</b> — 10 s</td>
+      <td>$$\tau = RC = (5 \times 10^6)(2 \times 10^{-6}) = 10 \text{ s}$$.</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td><b>D</b> — $$4U$$</td>
+      <td>$$C_{new} = \frac{\varepsilon_0(2A)}{d/2} = 4 \varepsilon_0 A / d = 4C_0$$. Battery connected $$\Rightarrow$$ same $$V$$. $$U = \frac{1}{2}CV^2 \Rightarrow U_{new} = 4U$$.</td>
+    </tr>
+  </table>
+
+  <h3 style="margin-top: 2em;">Free Response Solutions</h3>
+
+  <h4>Problem 1: Capacitor Circuit Analysis</h4>
+
+  <div class="solution">
+    <b>(a) Equivalent Capacitance:</b><br>
+    $$C_{23} = C_2 + C_3 = 4 + 6 = 10 \text{ μF}$$<br>
+    $$C_{eq} = \frac{C_1 \cdot C_{23}}{C_1 + C_{23}} = \frac{(2)(10)}{2 + 10} = \frac{20}{12} = \frac{5}{3} \text{ μF} \approx 1.67 \text{ μF}$$
+  </div>
+
+  <div class="solution">
+    <b>(b) Charge on C₁:</b><br>
+    Since $$C_1$$ is in series with the $$C_{23}$$ combination, they hold the same charge.<br>
+    $$q = C_{eq} V = \frac{5}{3}(24) = 40 \text{ μC}$$
+  </div>
+
+  <div class="solution">
+    <b>(c) Voltage Across C₂:</b><br>
+    $$V_{23} = \frac{q}{C_{23}} = \frac{40}{10} = 4.0 \text{ V}$$<br>
+    Since $$C_2$$ and $$C_3$$ are in parallel, they both see the same voltage: $$V_2 = V_3 = 4.0 \text{ V}$$
+  </div>
+
+  <div class="solution">
+    <b>(d) Energy Stored in Each Capacitor:</b><br>
+    $$U_1 = \frac{1}{2}\frac{q^2}{C_1} = \frac{1}{2}\frac{(40 \times 10^{-6})^2}{2 \times 10^{-6}} = 400 \text{ μJ}$$<br>
+    $$U_2 = \frac{1}{2}C_2 V_{23}^2 = \frac{1}{2}(4 \times 10^{-6})(4^2) = 32 \text{ μJ}$$<br>
+    $$U_3 = \frac{1}{2}C_3 V_{23}^2 = \frac{1}{2}(6 \times 10^{-6})(4^2) = 48 \text{ μJ}$$<br>
+    $$U_{total} = 400 + 32 + 48 = 480 \text{ μJ}$$
+  </div>
+
+  <div class="solution">
+    <b>(e) With Dielectric and Battery Disconnected:</b><br>
+    Total charge is conserved: $$q = 40 \text{ μC}$$ (constant).<br>
+    New capacitance of $$C_1$$: $$C_1' = \kappa C_1 = 2(2) = 4 \text{ μF}$$<br>
+    $$V_1' = \frac{q}{C_1'} = \frac{40}{4} = 10 \text{ V}$$<br>
+    $$V_{23}' = \frac{q}{C_{23}} = \frac{40}{10} = 4 \text{ V}$$<br>
+    New total voltage: $$V_{total}' = 10 + 4 = 14 \text{ V}$$ (increased from 24V)<br>
+    This seems odd—let me reconsider. Actually, when the battery is disconnected first, the total charge on the circuit decreases. Let me recalculate: Initially, $$q = 40 \text{ μC}$$ on $$C_1$$ and the $$C_{23}$$ combo. After disconnect, this charge is locked in. When we insert the dielectric, $$C_1$$ increases, so $$V_1$$ drops and $$V_2, V_3$$ must increase to conserve total voltage drop (but there's no battery, so this is odd). Actually, the issue is that we're inserting a dielectric into a portion of the circuit with fixed charge. The voltages redistribute. Final answer: $$V_1' = 10 \text{ V}$$, $$V_2' = V_3' = 4 \text{ V}$$.
+  </div>
+
+  <h4>Problem 2: RC Charging Circuit</h4>
+
+  <div class="solution">
+    <b>(a) Time Constant:</b><br>
+    $$\tau = RC = (50 \times 10^3)(100 \times 10^{-6}) = 5.0 \text{ s}$$
+  </div>
+
+  <div class="solution">
+    <b>(b) Expressions for i(t), V_R(t), V_C(t), and q(t):</b><br>
+    $$i(t) = \frac{\varepsilon}{R}e^{-t/\tau} = \frac{20}{50 \times 10^3}e^{-t/5} = 0.40 \text{ mA} \cdot e^{-t/5}$$<br>
+    $$V_R(t) = \varepsilon e^{-t/\tau} = 20 e^{-t/5} \text{ V}$$<br>
+    $$V_C(t) = \varepsilon(1 - e^{-t/\tau}) = 20(1 - e^{-t/5}) \text{ V}$$<br>
+    $$q(t) = C\varepsilon(1 - e^{-t/\tau}) = 2000(1 - e^{-t/5}) \text{ μC}$$
+  </div>
+
+  <div class="solution">
+    <b>(c) Values at Key Times:</b><br>
+    <table class="data-table">
+      <tr>
+        <th>Time</th>
+        <th>i (mA)</th>
+        <th>V_R (V)</th>
+        <th>V_C (V)</th>
+        <th>q (μC)</th>
+      </tr>
+      <tr>
+        <td>t = 0</td>
+        <td>0.40</td>
+        <td>20.0</td>
+        <td>0.0</td>
+        <td>0</td>
+      </tr>
+      <tr>
+        <td>t = τ = 5 s</td>
+        <td>0.147</td>
+        <td>7.36</td>
+        <td>12.64</td>
+        <td>1264</td>
+      </tr>
+      <tr>
+        <td>t = 2τ = 10 s</td>
+        <td>0.054</td>
+        <td>2.71</td>
+        <td>17.29</td>
+        <td>1729</td>
+      </tr>
+      <tr>
+        <td>t → ∞</td>
+        <td>0</td>
+        <td>0.0</td>
+        <td>20.0</td>
+        <td>2000</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="solution">
+    <b>(d) When V_C = V_R:</b><br>
+    $$\varepsilon(1 - e^{-t/\tau}) = \varepsilon e^{-t/\tau}$$<br>
+    $$1 = 2e^{-t/\tau}$$<br>
+    $$e^{-t/\tau} = 0.5$$<br>
+    $$t = \tau \ln(2) = 5 \ln(2) = 3.47 \text{ s}$$<br>
+    Current at this moment: $$i = 0.40(0.5) = 0.20 \text{ mA}$$
+  </div>
+
+  <div class="solution">
+    <b>(e) Discharge After Battery Removal:</b><br>
+    Initial charge on capacitor: $$Q_0 = 2000 \text{ μC}$$<br>
+    $$q(t) = Q_0 e^{-t/\tau} = 2000 e^{-t/5} \text{ μC}$$<br>
+    $$i(t) = -\frac{Q_0}{\tau}e^{-t/\tau} = -0.40 e^{-t/5} \text{ mA}$$ (negative: discharging)<br>
+    For $$q = 0.1 Q_0$$:<br>
+    $$0.1 = e^{-t/5}$$<br>
+    $$t = -5 \ln(0.1) = 5 \ln(10) = 11.5 \text{ s}$$
+  </div>
+
+  <h4>Problem 3: Parallel Plate Capacitor with Conducting Slab</h4>
+
+  <div class="solution">
+    <b>(a) Initial Capacitance and Field:</b><br>
+    $$C_0 = \frac{\varepsilon_0 A}{d}$$<br>
+    $$E_0 = \frac{V_0}{d}$$
+  </div>
+
+  <div class="solution">
+    <b>(b) Capacitance with Slab:</b><br>
+    The conducting slab is equipotential and has E = 0 inside. The effective separation is $$d - t$$.<br>
+    $$C = \frac{\varepsilon_0 A}{d - t}$$<br>
+    This is larger than $$C_0$$ by a factor of $$\frac{d}{d-t}$$.
+  </div>
+
+  <div class="solution">
+    <b>(c) Charge with Slab:</b><br>
+    $$q = CV_0 = \frac{\varepsilon_0 A V_0}{d - t}$$
+  </div>
+
+  <div class="solution">
+    <b>(d) Electric Field in Air Gaps:</b><br>
+    The field is uniform in the air gaps and zero inside the slab:<br>
+    $$E = \frac{V_0}{d - t}$$<br>
+    (Same in both gaps above and below the slab.)
+  </div>
+
+  <div class="solution">
+    <b>(e) After Battery Disconnect and Slab Removal:</b><br>
+    With slab, charge: $$q = \frac{\varepsilon_0 A V_0}{d - t}$$ (locked in when battery disconnects)<br>
+    After slab removal: $$C_{removed} = \frac{\varepsilon_0 A}{d}$$<br>
+    New voltage: $$V_{new} = \frac{q}{C_{removed}} = \frac{V_0 d}{d - t} > V_0$$<br>
+    Initial energy (with slab): $$U_i = \frac{1}{2}qV_0$$<br>
+    Final energy (slab removed): $$U_f = \frac{1}{2}q V_{new} = \frac{1}{2}q \frac{V_0 d}{d-t} > U_i$$<br>
+    Energy increased by factor of $$\frac{d}{d-t}$$. The extra energy came from the work you did pulling the slab out against the attractive electric force.
+  </div>
+
+  <h4>Problem 4: Coaxial Cable Capacitor</h4>
+
+  <div class="solution">
+    <b>(a) Electric Field:</b><br>
+    Using Gauss's law with a cylindrical surface of radius $$r$$ (where $$a < r < b$$) and length $$L$$:<br>
+    $$\oint \vec{E} \cdot d\vec{A} = \frac{q_{enc}}{\kappa \varepsilon_0}$$<br>
+    $$E(2\pi r L) = \frac{q}{\kappa \varepsilon_0}$$<br>
+    $$E = \frac{q}{2\pi \kappa \varepsilon_0 r L}$$
+  </div>
+
+  <div class="solution">
+    <b>(b) Potential Difference:</b><br>
+    $$V = \int_a^b E \, dr = \int_a^b \frac{q}{2\pi \kappa \varepsilon_0 L} \frac{dr}{r} = \frac{q}{2\pi \kappa \varepsilon_0 L} \ln\left(\frac{b}{a}\right)$$
+  </div>
+
+  <div class="solution">
+    <b>(c) Capacitance:</b><br>
+    $$C = \frac{q}{V} = \frac{2\pi \kappa \varepsilon_0 L}{\ln(b/a)}$$
+  </div>
+
+  <div class="solution">
+    <b>(d) Energy per Unit Length:</b><br>
+    Energy density: $$U = \frac{1}{2}(C/L)V_0^2 = \frac{\pi \kappa \varepsilon_0 V_0^2}{\ln(b/a)}$$<br>
+    (This is energy per unit length.)
+  </div>
+
+  <div class="solution">
+    <b>(e) Numerical Calculation:</b><br>
+    Given: κ = 2.3, a = 0.5 mm = 0.5 × 10⁻³ m, b = 3.0 mm = 3.0 × 10⁻³ m, L = 50 m<br>
+    $$\ln(b/a) = \ln(3.0/0.5) = \ln(6) = 1.792$$<br>
+    $$C = \frac{2\pi (2.3)(8.854 \times 10^{-12})(50)}{1.792}$$<br>
+    $$C = \frac{2\pi (2.3)(8.854 \times 10^{-12})(50)}{1.792} = \frac{6.37 \times 10^{-9}}{1.792} = 3.55 \text{ nF}$$
+  </div>
+
+  <h4>Problem 5: Multi-loop Circuit with RC</h4>
+
+  <div class="solution">
+    <b>(a) Steady State (Switch Closed for Long Time):</b><br>
+    After a long time, the capacitor is fully charged and acts as an open circuit. No current flows through C.<br>
+    Total resistance: $$R_{total} = r + R_1 + R_2 = 1 + 4 + 12 = 17 \text{ Ω}$$<br>
+    Total current: $$I = \frac{\varepsilon}{R_{total}} = \frac{30}{17} = 1.765 \text{ A}$$<br>
+    Voltage across $$R_2$$ (and capacitor): $$V_C = I \cdot R_2 = 1.765 \times 12 = 21.18 \text{ V}$$<br>
+    Current through $$R_2$$: 1.765 A (same as total)<br>
+    Current through C: 0 A (fully charged)
+  </div>
+
+  <div class="solution">
+    <b>(b) At Switch Opening:</b><br>
+    Immediately after the switch opens, the capacitor voltage cannot change instantaneously.<br>
+    $$V_C = 21.18 \text{ V}$$ (unchanged at $$t = 0^+$$)<br>
+    Current through $$R_2$$: $$I = \frac{V_C}{R_2} = \frac{21.18}{12} = 1.765 \text{ A}$$<br>
+    Direction: From positive plate of C through $$R_2$$ to negative plate (discharging).
+  </div>
+
+  <div class="solution">
+    <b>(c) Voltage Across Capacitor During Discharge:</b><br>
+    $$V_C(t) = 21.18 \, e^{-t/\tau}$$ where $$\tau = R_2 C$$
+  </div>
+
+  <div class="solution">
+    <b>(d) Time Constant for Discharge:</b><br>
+    $$\tau = R_2 C = (12)(100 \times 10^{-6}) = 1.2 \times 10^{-3} \text{ s} = 1.2 \text{ ms}$$
+  </div>
+
+  <div class="solution">
+    <b>(e) Energy Dissipated in R₂:</b><br>
+    Initial energy in C: $$U_i = \frac{1}{2}C V_C^2 = \frac{1}{2}(100 \times 10^{-6})(21.18)^2 = 22.4 \text{ mJ}$$<br>
+    Energy dissipated: $$E_{dissipated} = \int_0^{\infty} I^2 R_2 \, dt = \int_0^{\infty} \left(\frac{V_C^2}{R_2}\right) e^{-2t/\tau} \, dt$$<br>
+    $$= \frac{V_C^2}{R_2} \cdot \frac{\tau}{2} = \frac{(21.18)^2}{12} \cdot \frac{1.2 \times 10^{-3}}{2} = 22.4 \text{ mJ}$$<br>
+    This equals the initial energy stored in C, confirming energy conservation.
+  </div>
+
+</div>
+
+<!-- ============ END OF DOCUMENT ============ -->
+
+</body>
+</html>

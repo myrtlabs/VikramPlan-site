@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VikramPlan — Course Detail</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #F5F0EB; --card: #FFFFFF; --border: #E8E4DF;
+    --text: #2D2D2D; --muted: #8C8680; --faint: #A8A29E; --accent: #D4714E;
+    --red: #EF4444; --yellow: #F59E0B; --green: #10B981; --blue: #3B82F6;
+  }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg); color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+
+  /* ─── Nav Bar ─── */
+  .nav-bar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 20px; max-width: 900px; margin: 0 auto;
+  }
+  .nav-bar a {
+    font-size: 0.8rem; color: var(--accent); text-decoration: none; font-weight: 600;
+  }
+  .nav-bar a:hover { text-decoration: underline; }
+  .course-select {
+    font-family: inherit; font-size: 0.8rem; font-weight: 600;
+    padding: 6px 12px; border-radius: 8px; border: 1px solid var(--border);
+    background: var(--card); color: var(--text); cursor: pointer;
+  }
+
+  /* ─── Header ─── */
+  .course-header {
+    text-align: center; padding: 8px 20px 24px;
+  }
+  .course-header h1 {
+    font-size: 1.6rem; font-weight: 800; letter-spacing: -0.5px;
+    margin-bottom: 4px;
+  }
+  .course-meta {
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+    font-size: 0.8rem; color: var(--muted);
+  }
+
+  /* ─── Container ─── */
+  .container { max-width: 900px; margin: 0 auto; padding: 0 16px 60px; }
+
+  /* ─── Cards ─── */
+  .card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 16px 20px; margin-bottom: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+  }
+
+  /* ─── Section Label ─── */
+  .section-label {
+    font-size: 0.7rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 1.2px; color: var(--faint); margin: 20px 0 8px;
+  }
+
+  /* ─── Status Badge ─── */
+  .status-badge {
+    font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.5px; padding: 3px 10px; border-radius: 6px;
+    display: inline-block;
+  }
+  .status-strong { background: #ECFDF5; color: #059669; }
+  .status-ok { background: #EFF6FF; color: #3B82F6; }
+  .status-watch { background: #FFFBEB; color: #D97706; }
+  .status-emergency { background: #FEF2F2; color: #DC2626; }
+
+  /* ─── Grade Overview ─── */
+  .grade-overview {
+    display: flex; align-items: center; justify-content: center; gap: 28px;
+    padding: 20px 0;
+  }
+  .grade-box { text-align: center; }
+  .grade-box .label {
+    font-size: 0.6rem; color: var(--faint); text-transform: uppercase;
+    letter-spacing: 0.5px; margin-bottom: 2px;
+  }
+  .grade-box .value { font-size: 1.8rem; font-weight: 800; }
+  .grade-box .value.t2 { color: var(--accent); }
+  .grade-box .value.target { color: var(--muted); font-size: 1.3rem; }
+  .grade-delta {
+    font-size: 0.85rem; font-weight: 700; text-align: center;
+    margin-top: 4px;
+  }
+  .delta-up { color: var(--green); }
+  .delta-down { color: var(--red); }
+  .delta-flat { color: var(--muted); }
+
+  /* ─── Strategic Note ─── */
+  .strategic-note {
+    font-size: 0.8rem; color: var(--muted); padding: 12px 16px;
+    background: #FAFAF8; border-radius: 10px; margin-top: 8px;
+    line-height: 1.6; border-left: 3px solid var(--accent);
+  }
+
+  /* ─── Weight Bars ─── */
+  .weight-bar-container {
+    display: flex; height: 28px; border-radius: 8px; overflow: hidden;
+    margin: 12px 0 8px;
+  }
+  .weight-segment {
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.65rem; font-weight: 700; color: white;
+    transition: all 0.3s ease;
+  }
+  .weight-legend {
+    display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px;
+  }
+  .weight-legend-item {
+    display: flex; align-items: center; gap: 6px; font-size: 0.75rem;
+  }
+  .weight-dot {
+    width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0;
+  }
+  .weight-note {
+    font-size: 0.72rem; color: var(--muted); font-style: italic;
+    margin-top: 2px;
+  }
+  .policy-note {
+    font-size: 0.75rem; color: var(--muted); padding: 8px 12px;
+    background: #FAFAF8; border-radius: 8px; margin-top: 10px;
+    line-height: 1.5;
+  }
+
+  /* ─── Deadline Items ─── */
+  .deadline-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 0; border-bottom: 1px solid #F5F0EB;
+  }
+  .deadline-item:last-child { border-bottom: none; }
+  .priority-dot {
+    width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+  }
+  .deadline-info { flex: 1; }
+  .deadline-label { font-size: 0.85rem; font-weight: 600; }
+  .deadline-meta { font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
+  .days-badge {
+    font-size: 0.65rem; font-weight: 700; padding: 3px 10px;
+    border-radius: 10px; white-space: nowrap;
+  }
+  .type-badge {
+    font-size: 0.6rem; font-weight: 600; padding: 2px 6px;
+    border-radius: 4px; text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+
+  /* ─── Study Blocks ─── */
+  .block-day-header {
+    font-size: 0.82rem; font-weight: 700; color: var(--text);
+    padding: 12px 0 4px; border-bottom: 2px solid var(--border);
+    margin-top: 8px;
+  }
+  .block-day-header:first-child { margin-top: 0; }
+  .block-row {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 8px 0; border-bottom: 1px solid #F5F0EB;
+  }
+  .block-row:last-child { border-bottom: none; }
+  .block-time {
+    font-size: 0.7rem; color: var(--faint); font-weight: 500;
+    min-width: 80px; margin-top: 2px;
+  }
+  .block-task { font-size: 0.82rem; color: var(--text); line-height: 1.4; flex: 1; }
+  .block-day-label {
+    font-size: 0.65rem; color: var(--accent); font-weight: 500;
+    margin-left: 4px;
+  }
+
+  /* ─── Resources ─── */
+  .resource-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 0; border-bottom: 1px solid #F5F0EB;
+  }
+  .resource-item:last-child { border-bottom: none; }
+  .resource-icon { font-size: 1.1rem; }
+  .resource-link {
+    font-size: 0.82rem; color: var(--accent); text-decoration: none; font-weight: 600;
+  }
+  .resource-link:hover { text-decoration: underline; }
+  .resource-type {
+    font-size: 0.6rem; font-weight: 600; padding: 2px 6px;
+    border-radius: 4px; text-transform: uppercase; background: #F0F0EE; color: var(--muted);
+  }
+
+  /* ─── Assignment Table ─── */
+  .asgn-table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
+  .asgn-table th {
+    text-align: left; font-size: 0.65rem; text-transform: uppercase;
+    letter-spacing: 0.5px; color: var(--faint); padding: 6px 8px;
+    border-bottom: 2px solid var(--border); font-weight: 600;
+  }
+  .asgn-table td { padding: 7px 8px; border-bottom: 1px solid #F5F0EB; vertical-align: middle; }
+  .asgn-table tr.upcoming td { color: var(--muted); font-style: italic; }
+  .asgn-table tr.missing td { background: #FEF2F2; }
+  .asgn-table tr.zero td { background: #FEF2F2; }
+  .asgn-row-grade { font-weight: 700; min-width: 32px; text-align: center; }
+  .asgn-pct-bar {
+    display: inline-block; height: 6px; border-radius: 3px;
+    vertical-align: middle; margin-right: 6px;
+  }
+  .asgn-status-badge {
+    font-size: 0.6rem; font-weight: 600; padding: 1px 5px;
+    border-radius: 3px; text-transform: uppercase;
+  }
+  .asgn-flag {
+    font-size: 0.6rem; color: var(--red); font-weight: 600;
+    margin-left: 4px;
+  }
+  .asgn-filter-bar {
+    display: flex; gap: 6px; margin-bottom: 10px; flex-wrap: wrap;
+  }
+  .asgn-filter {
+    font-size: 0.68rem; font-weight: 600; padding: 4px 10px;
+    border-radius: 6px; border: 1px solid var(--border);
+    background: var(--card); cursor: pointer; color: var(--muted);
+    font-family: inherit;
+  }
+  .asgn-filter.active { background: var(--accent); color: white; border-color: var(--accent); }
+
+  /* ─── Empty State ─── */
+  .empty-state {
+    font-size: 0.8rem; color: var(--muted); text-align: center; padding: 20px;
+  }
+
+  /* ─── Footer ─── */
+  footer { text-align: center; padding: 24px; color: #C4BFB9; font-size: 0.7rem; }
+
+  /* ─── Responsive ─── */
+  @media (max-width: 600px) {
+    .grade-overview { gap: 16px; }
+    .grade-box .value { font-size: 1.4rem; }
+    .weight-legend { gap: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="nav-bar">
+  <a href="dashboard.html">&larr; Dashboard</a>
+  <select class="course-select" id="course-select" onchange="switchCourse(this.value)">
+    <option>Loading...</option>
+  </select>
+</div>
+
+<div class="course-header" id="course-header">
+  <h1 id="course-name">Loading...</h1>
+  <div class="course-meta" id="course-meta"></div>
+</div>
+
+<div class="container" id="content">
+  <div class="empty-state">Loading schedule data...</div>
+</div>
+
+<footer>VikramPlan — Built with Claude &amp; Prashanth, Feb 2026</footer>
+
+<script>
+// ─── Course Colors (same as dashboard) ───
+const COURSE_COLORS = {
+  "AP Chemistry":   { bg: "#FEF2F2", text: "#991B1B", pill: "#FECACA", bar: "#EF4444" },
+  "AP Physics C":   { bg: "#FFF7ED", text: "#9A3412", pill: "#FED7AA", bar: "#F97316" },
+  "AP Calc BC":     { bg: "#EFF6FF", text: "#1E40AF", pill: "#DBEAFE", bar: "#3B82F6" },
+  "AP Comp Sci A":  { bg: "#F5F3FF", text: "#5B21B6", pill: "#EDE9FE", bar: "#8B5CF6" },
+  "IB World Lit":   { bg: "#ECFDF5", text: "#065F46", pill: "#D1FAE5", bar: "#10B981" },
+  "IB History":     { bg: "#EEF2FF", text: "#3730A3", pill: "#E0E7FF", bar: "#6366F1" },
+  "IB Espanol":     { bg: "#FDF2F8", text: "#9D174D", pill: "#FCE7F3", bar: "#EC4899" },
+  "Intro Sys Prog": { bg: "#F0FDFA", text: "#115E59", pill: "#CCFBF1", bar: "#14B8A6" },
+  "Health Online":  { bg: "#FEF2F2", text: "#DC2626", pill: "#FECACA", bar: "#EF4444" },
+};
+
+const WEIGHT_COLORS = ["#D4714E", "#3B82F6", "#10B981", "#8B5CF6", "#F59E0B"];
+const PRIORITY_COLORS = { red: "#EF4444", yellow: "#F59E0B", green: "#10B981" };
+const TYPE_STYLES = {
+  major_test:  { bg: "#FEF2F2", color: "#DC2626", label: "Test" },
+  quiz:        { bg: "#FFFBEB", color: "#D97706", label: "Quiz" },
+  lab:         { bg: "#EFF6FF", color: "#3B82F6", label: "Lab" },
+  homework:    { bg: "#F0F0EE", color: "#6B7280", label: "HW" },
+  essay_final: { bg: "#FEF2F2", color: "#DC2626", label: "Essay" },
+  assessment:  { bg: "#FFFBEB", color: "#D97706", label: "Assessment" },
+  reading:     { bg: "#ECFDF5", color: "#059669", label: "Reading" },
+  assignment:  { bg: "#F5F3FF", color: "#5B21B6", label: "Assignment" },
+  milestone:   { bg: "#F0F0EE", color: "#6B7280", label: "Milestone" },
+};
+const RESOURCE_ICONS = {
+  study_packet: "📖", mock_test: "📝", review: "🔄", answer_key: "✅",
+};
+const MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+let DATA = null;
+let currentCourse = null;
+
+function daysUntil(dateStr) {
+  const now = new Date(); now.setHours(0,0,0,0);
+  const target = new Date(dateStr + 'T00:00:00');
+  return Math.ceil((target - now) / 86400000);
+}
+
+function formatDate(s) {
+  const d = new Date(s + 'T12:00:00');
+  const day = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"][d.getDay()];
+  return `${day}, ${MONTHS[d.getMonth()].slice(0,3)} ${d.getDate()}`;
+}
+
+function getCourseFromURL() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get('c') || null;
+}
+
+function switchCourse(name) {
+  window.location.href = `course.html?c=${encodeURIComponent(name)}`;
+}
+
+function render() {
+  if (!DATA || !currentCourse) return;
+
+  const cc = COURSE_COLORS[currentCourse] || { bg: "#F0F0EE", text: "#6B7280", pill: "#E5E7EB", bar: "#9CA3AF" };
+  const grade = DATA.grades.courses.find(g => g.course === currentCourse);
+  const teacher = DATA.teachers?.[currentCourse] || "";
+  const weights = DATA.grading_weights?.[currentCourse];
+  const note = DATA.strategic_notes?.[currentCourse];
+  const resources = DATA.resources?.[currentCourse] || [];
+
+  // Filter deadlines and blocks for this course
+  const deadlines = DATA.deadlines.filter(d => d.course === currentCourse);
+  const courseBlocks = [];
+  for (const day of DATA.days) {
+    const blocks = day.blocks.filter(b => b.course === currentCourse);
+    if (blocks.length) courseBlocks.push({ date: day.date, day: day.day, label: day.label, blocks });
+  }
+
+  // ─── Course Selector ───
+  const select = document.getElementById('course-select');
+  select.innerHTML = DATA.grades.courses.map(g =>
+    `<option value="${g.course}" ${g.course === currentCourse ? 'selected' : ''}>${g.course}</option>`
+  ).join('');
+
+  // ─── Header ───
+  document.getElementById('course-name').textContent = currentCourse;
+  document.getElementById('course-name').style.color = cc.text;
+  const metaEl = document.getElementById('course-meta');
+  let metaHtml = '';
+  if (teacher) metaHtml += `<span>${teacher}</span>`;
+  if (grade) metaHtml += `<span class="status-badge status-${grade.status}">${grade.status}</span>`;
+  metaEl.innerHTML = metaHtml;
+
+  // ─── Main Content ───
+  let html = '';
+
+  // Section 1: Grade Overview
+  if (grade) {
+    const deltaClass = grade.delta.startsWith('+') ? 'delta-up' : grade.delta.startsWith('-') ? 'delta-down' : 'delta-flat';
+    const diff = grade.t2 - grade.target;
+    const diffStr = diff >= 0 ? `${diff.toFixed(1)} above target` : `${Math.abs(diff).toFixed(1)} below target`;
+    const diffColor = diff >= 0 ? 'var(--green)' : 'var(--red)';
+
+    html += `
+      <div class="card">
+        <div class="grade-overview">
+          <div class="grade-box">
+            <div class="label">T1</div>
+            <div class="value">${grade.t1}</div>
+          </div>
+          <div class="grade-box">
+            <div class="label">T2 (Current)</div>
+            <div class="value t2">${grade.t2}</div>
+          </div>
+          <div class="grade-box">
+            <div class="label">Y1</div>
+            <div class="value">${grade.y1}</div>
+          </div>
+          <div class="grade-box">
+            <div class="label">Target</div>
+            <div class="value target">${grade.target}</div>
+          </div>
+        </div>
+        <div class="grade-delta ${deltaClass}">
+          ${grade.delta !== '—' ? `${grade.delta} since last pull` : 'No change'}
+          &nbsp;·&nbsp; <span style="color:${diffColor};font-size:0.8rem">${diffStr}</span>
+        </div>
+        ${note ? `<div class="strategic-note">${note}</div>` : ''}
+      </div>`;
+  }
+
+  // Section 2: Grading Weights
+  if (weights) {
+    html += `<div class="section-label">Grading Weights</div><div class="card">`;
+    html += `<div style="font-size:0.72rem;color:var(--muted);margin-bottom:4px">${weights.system} System</div>`;
+
+    // Bar chart
+    html += `<div class="weight-bar-container">`;
+    weights.categories.forEach((cat, i) => {
+      const color = WEIGHT_COLORS[i % WEIGHT_COLORS.length];
+      html += `<div class="weight-segment" style="width:${cat.weight}%;background:${color}">${cat.weight}%</div>`;
+    });
+    html += `</div>`;
+
+    // Legend
+    html += `<div class="weight-legend">`;
+    weights.categories.forEach((cat, i) => {
+      const color = WEIGHT_COLORS[i % WEIGHT_COLORS.length];
+      html += `
+        <div class="weight-legend-item">
+          <div class="weight-dot" style="background:${color}"></div>
+          <div>
+            <div style="font-weight:600">${cat.name} (${cat.weight}%)</div>
+            <div class="weight-note">${cat.note}</div>
+          </div>
+        </div>`;
+    });
+    html += `</div>`;
+
+    if (weights.policy) {
+      html += `<div class="policy-note">${weights.policy}</div>`;
+    }
+    html += `</div>`;
+  }
+
+  // Section 3: Assignment History
+  const assignments = DATA.assignments?.[currentCourse] || [];
+  if (assignments.length) {
+    const categories = [...new Set(assignments.map(a => a.category))];
+
+    html += `<div class="section-label">Assignments &amp; Grades</div><div class="card">`;
+
+    // Filter bar
+    html += `<div class="asgn-filter-bar">
+      <button class="asgn-filter active" onclick="filterAssignments('all', this)">All (${assignments.length})</button>`;
+    for (const cat of categories) {
+      const count = assignments.filter(a => a.category === cat).length;
+      html += `<button class="asgn-filter" onclick="filterAssignments('${cat.replace(/'/g,"\\'")}', this)">${cat} (${count})</button>`;
+    }
+    html += `</div>`;
+
+    // Stats row
+    const graded = assignments.filter(a => a.status === 'graded');
+    const upcoming = assignments.filter(a => a.status === 'upcoming');
+    const missing = assignments.filter(a => a.status === 'missing');
+    const zeros = assignments.filter(a => a.status === 'zero');
+    const avgPct = graded.length ? (graded.reduce((s,a) => s + a.pct, 0) / graded.length).toFixed(1) : '—';
+
+    html += `<div style="display:flex;gap:16px;margin-bottom:10px;font-size:0.72rem;color:var(--muted)">`;
+    html += `<span><b style="color:var(--text)">${graded.length}</b> graded</span>`;
+    html += `<span><b style="color:var(--accent)">${upcoming.length}</b> upcoming</span>`;
+    if (missing.length) html += `<span><b style="color:var(--red)">${missing.length}</b> missing</span>`;
+    if (zeros.length) html += `<span><b style="color:var(--red)">${zeros.length}</b> zeros</span>`;
+    html += `<span>Avg: <b style="color:var(--text)">${avgPct}%</b></span>`;
+    html += `</div>`;
+
+    // Table
+    html += `<table class="asgn-table"><thead><tr>
+      <th>Date</th><th>Assignment</th><th>Category</th><th>Score</th><th style="text-align:center">%</th><th style="text-align:center">Grade</th>
+    </tr></thead><tbody>`;
+
+    for (const a of assignments) {
+      const rowClass = a.status === 'upcoming' ? 'upcoming' : a.status === 'missing' ? 'missing' : a.status === 'zero' ? 'zero' : '';
+      const dateParts = a.date.split('-');
+      const dateDisplay = `${dateParts[1]}/${dateParts[2]}`;
+
+      // Percentage bar color
+      let pctColor = 'var(--green)';
+      if (a.pct !== null && a.pct !== undefined) {
+        if (a.pct < 80) pctColor = 'var(--red)';
+        else if (a.pct < 90) pctColor = 'var(--yellow)';
+      }
+
+      // Status badge for non-graded
+      let statusHtml = '';
+      if (a.status === 'upcoming') statusHtml = '<span class="asgn-status-badge" style="background:#EFF6FF;color:#3B82F6">upcoming</span>';
+      else if (a.status === 'collected') statusHtml = '<span class="asgn-status-badge" style="background:#FFFBEB;color:#D97706">collected</span>';
+      else if (a.status === 'missing') statusHtml = '<span class="asgn-status-badge" style="background:#FEF2F2;color:#DC2626">missing</span>';
+      else if (a.status === 'zero') statusHtml = '<span class="asgn-status-badge" style="background:#FEF2F2;color:#DC2626">zero</span>';
+
+      // Flag (late, etc.)
+      const flagHtml = a.flag ? `<span class="asgn-flag">${a.flag}</span>` : '';
+
+      html += `<tr class="${rowClass}" data-category="${a.category}">
+        <td>${dateDisplay}</td>
+        <td>${a.name}${flagHtml}</td>
+        <td style="font-size:0.7rem;color:var(--muted)">${a.category}</td>
+        <td>${a.score || statusHtml || '—'}</td>
+        <td style="text-align:center">${a.pct !== null && a.pct !== undefined ? `<span class="asgn-pct-bar" style="width:${Math.max(a.pct*0.5,2)}px;background:${pctColor}"></span>${a.pct}%` : '—'}</td>
+        <td class="asgn-row-grade" style="color:${a.pct !== null && a.pct >= 90 ? 'var(--green)' : a.pct !== null && a.pct >= 80 ? 'var(--yellow)' : a.pct !== null ? 'var(--red)' : 'var(--muted)'}">${a.grade || '—'}</td>
+      </tr>`;
+    }
+    html += `</tbody></table></div>`;
+  }
+
+  // Section 4: Upcoming Deadlines
+  html += `<div class="section-label">Upcoming Deadlines</div>`;
+  if (deadlines.length) {
+    html += `<div class="card">`;
+    for (const dl of deadlines) {
+      const du = daysUntil(dl.due);
+      const pColor = PRIORITY_COLORS[dl.priority] || '#10B981';
+      const ts = TYPE_STYLES[dl.type] || { bg: "#F0F0EE", color: "#6B7280", label: dl.type };
+
+      let badgeColor, badgeBg;
+      if (du < 0) { badgeColor = '#9CA3AF'; badgeBg = '#F0F0EE'; }
+      else if (du === 0) { badgeColor = '#DC2626'; badgeBg = '#FEF2F2'; }
+      else if (du <= 1) { badgeColor = '#DC2626'; badgeBg = '#FEF2F2'; }
+      else if (du <= 3) { badgeColor = '#D97706'; badgeBg = '#FFFBEB'; }
+      else { badgeColor = '#059669'; badgeBg = '#ECFDF5'; }
+
+      const timeStr = dl.due_time && dl.due_time !== 'in-class' ? ` @ ${dl.due_time}` : '';
+      const inClass = dl.due_time === 'in-class' ? ' · <span style="font-style:italic">in-class</span>' : '';
+      const badgeText = du < 0 ? 'PAST' : du === 0 ? 'TODAY' : du === 1 ? 'TOMORROW' : `${du}d`;
+
+      html += `
+        <div class="deadline-item">
+          <div class="priority-dot" style="background:${pColor}"></div>
+          <div class="deadline-info">
+            <div class="deadline-label">${dl.label}</div>
+            <div class="deadline-meta">${formatDate(dl.due)}${timeStr}${inClass}
+              &nbsp;<span class="type-badge" style="background:${ts.bg};color:${ts.color}">${ts.label}</span>
+            </div>
+          </div>
+          <span class="days-badge" style="color:${badgeColor};background:${badgeBg}">${badgeText}</span>
+        </div>`;
+    }
+    html += `</div>`;
+  } else {
+    html += `<div class="card"><div class="empty-state">No upcoming deadlines for this course</div></div>`;
+  }
+
+  // Section 4: Study Blocks
+  html += `<div class="section-label">Study Blocks</div>`;
+  if (courseBlocks.length) {
+    html += `<div class="card">`;
+    for (const day of courseBlocks) {
+      const du = daysUntil(day.date);
+      const isPast = du < 0;
+      const isToday = du === 0;
+      const opacity = isPast ? 'opacity:0.5' : '';
+      const todayMarker = isToday ? ' <span style="color:var(--accent);font-weight:700">(today)</span>' : '';
+
+      html += `<div class="block-day-header" style="${opacity}">${day.day} ${day.date.slice(5)}${todayMarker}`;
+      if (day.label) html += `<span class="block-day-label"> — ${day.label}</span>`;
+      html += `</div>`;
+
+      for (const block of day.blocks) {
+        html += `
+          <div class="block-row" style="${opacity}">
+            <span class="block-time">${block.time}</span>
+            <span class="block-task">${block.task}</span>
+          </div>`;
+      }
+    }
+    html += `</div>`;
+  } else {
+    html += `<div class="card"><div class="empty-state">No study blocks assigned for this course</div></div>`;
+  }
+
+  // Section 5: Resources
+  if (resources.length) {
+    html += `<div class="section-label">Resources</div><div class="card">`;
+    for (const res of resources) {
+      const icon = RESOURCE_ICONS[res.type] || "📄";
+      const typeLabel = res.type.replace(/_/g, ' ');
+      html += `
+        <div class="resource-item">
+          <span class="resource-icon">${icon}</span>
+          <a class="resource-link" href="${res.url}" target="_blank">${res.label}</a>
+          <span class="resource-type">${typeLabel}</span>
+        </div>`;
+    }
+    html += `</div>`;
+  }
+
+  document.getElementById('content').innerHTML = html;
+}
+
+// ─── Assignment Filter ───
+function filterAssignments(category, btn) {
+  document.querySelectorAll('.asgn-filter').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.asgn-table tbody tr').forEach(row => {
+    if (category === 'all' || row.dataset.category === category) {
+      row.style.display = '';
+    } else {
+      row.style.display = 'none';
+    }
+  });
+}
+
+// ─── Load Data ───
+fetch('schedule.json')
+  .then(r => r.json())
+  .then(data => {
+    DATA = data;
+    currentCourse = getCourseFromURL() || (data.grades.courses[0]?.course ?? null);
+    document.title = `VikramPlan — ${currentCourse}`;
+    render();
+  })
+  .catch(err => {
+    document.getElementById('content').innerHTML =
+      `<div class="card"><div class="empty-state">Error loading data: ${err.message}</div></div>`;
+  });
+</script>
+</body>
+</html>

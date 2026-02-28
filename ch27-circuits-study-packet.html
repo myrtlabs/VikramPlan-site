@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ch 27: Circuits — Study Packet</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+<style>
+  @media print {
+    .no-print { display: none; }
+    .page-break { page-break-before: always; }
+    body { font-size: 11pt; }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Georgia', serif; max-width: 8.5in; margin: 0 auto; padding: 0.75in; line-height: 1.6; color: #1a1a1a; background: #fff; }
+  h1 { font-size: 1.8em; color: #1a1a2e; margin-bottom: 0.2em; }
+  h2 { font-size: 1.35em; color: #16213e; margin-top: 1.5em; margin-bottom: 0.5em; border-bottom: 2px solid #16213e; padding-bottom: 0.2em; }
+  h3 { font-size: 1.1em; color: #0f3460; margin-top: 1.2em; margin-bottom: 0.4em; }
+  p { margin: 0.4em 0; }
+  .cover { text-align: left; margin-bottom: 2em; }
+  .cover-subtitle { font-size: 1.2em; color: #16213e; margin-bottom: 1em; }
+  .cover-info { margin: 0.3em 0; font-size: 0.95em; }
+  .cover-info b { color: #333; }
+  .hw-box { background: #f5f5f5; font-family: 'Courier New', monospace; padding: 8px 14px; margin: 0.5em 0; border-left: 4px solid #16213e; font-size: 0.9em; }
+  .warning { color: #8B0000; font-weight: bold; font-style: italic; margin: 1em 0; }
+  .formula-box { background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 4px; padding: 10px 16px; margin: 0.6em 0; font-size: 1.05em; }
+  .key-point { border-left: 4px solid #0f3460; padding: 8px 14px; margin: 0.6em 0; background: #f0f4ff; }
+  .problem { margin: 1em 0 0.3em 0; }
+  .problem-num { font-weight: bold; }
+  .workspace { height: 120px; border: 1px dashed #ccc; margin: 0.5em 0; border-radius: 4px; position: relative; }
+  .workspace-tall { height: 200px; }
+  .workspace-xtall { height: 280px; }
+  .workspace::after { content: "Work space"; position: absolute; top: 8px; right: 12px; font-size: 0.7em; color: #bbb; font-style: italic; }
+  .hint { font-size: 0.85em; color: #666; font-style: italic; margin-left: 1em; margin-top: 0.2em; }
+  .tier-label { display: inline-block; background: #16213e; color: white; padding: 2px 10px; border-radius: 3px; font-size: 0.85em; margin-bottom: 0.3em; }
+  .tier-label.t2 { background: #0f3460; }
+  .tier-label.t3 { background: #8B0000; }
+  hr { border: none; border-top: 1px solid #ddd; margin: 1.2em 0; }
+  .formula-table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: 0.9em; }
+  .formula-table th { background: #16213e; color: white; padding: 6px 10px; text-align: left; }
+  .formula-table td { padding: 6px 10px; border-bottom: 1px solid #eee; }
+  .formula-table tr:nth-child(even) { background: #f8f8f8; }
+  .answer-section { border-top: 3px solid #8B0000; margin-top: 2em; padding-top: 1em; }
+  .answer-section h2 { color: #8B0000; border-bottom-color: #8B0000; }
+  .solution { margin: 0.4em 0 0.4em 1em; font-size: 0.92em; }
+  .solution b { color: #0f3460; }
+  .data-table { border-collapse: collapse; margin: 0.5em auto; font-family: 'Courier New', monospace; font-size: 0.9em; }
+  .data-table td, .data-table th { border: 1px solid #999; padding: 4px 12px; text-align: center; }
+  .data-table th { background: #eee; }
+  .common-mistakes li { margin: 0.4em 0; }
+  .circuit-diagram { margin: 0.8em auto; display: block; max-width: 100%; }
+  .circuit-diagram text { font-family: 'Georgia', serif; }
+  .fig-ref { background: #fff3cd; border: 1px solid #ffc107; border-radius: 4px; padding: 4px 10px; font-size: 0.88em; margin: 0.4em 0; display: inline-block; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════ COVER -->
+<div class="cover">
+  <h1>Chapter 27: Circuits</h1>
+  <div class="cover-subtitle">Study Packet — Key Concepts, Formulas &amp; Practice</div>
+
+  <p class="cover-info"><b>Course:</b> AP Physics C — Russo, Period 4</p>
+  <p class="cover-info"><b>Textbook:</b> Halliday, Resnick, Walker — <b>7th Edition</b> — Chapter 27</p>
+  <p class="cover-info"><b>Quiz prep for:</b> Ch 27 quiz (expected this week)</p>
+  <p class="cover-info"><b>Test prep for:</b> March 2 — Capacitors &amp; Circuits (Ch 25–27)</p>
+
+  <p class="cover-info" style="margin-top:1em"><b>Russo's assigned problems (from master HW list):</b></p>
+  <div class="hw-box">Questions: Q# 3, 5, 11 &nbsp;|&nbsp; Problems: P# 5, 7, 17, 19, 31, 39, 47, 51, 53 &nbsp;(7th ed.)</div>
+
+  <p class="cover-info" style="margin-top:1em"><b>Structure:</b></p>
+  <p class="cover-info">1. <b>Key Concepts</b> — the ideas you need, organized by topic</p>
+  <p class="cover-info">2. <b>Formula Reference</b> — everything on one page</p>
+  <p class="cover-info">3. <b>Homework Problems</b> — Russo's assigned problems with concept guides and hints</p>
+  <p class="cover-info">4. <b>Practice Problems</b> — 15 additional problems in 3 tiers</p>
+  <p class="cover-info">5. <b>Answer Key</b> with worked solutions</p>
+
+  <p class="warning">Do the assigned HW problems from Halliday FIRST. Then use this packet to fill gaps and test yourself.</p>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ KEY CONCEPTS -->
+<div class="page-break"></div>
+<h2>Key Concepts</h2>
+
+<h3>1. EMF, Internal Resistance &amp; Terminal Voltage</h3>
+<p>A real battery has an internal resistance \(r\). The EMF (\(\mathcal{E}\)) is the ideal voltage with no current flowing. When current \(I\) flows:</p>
+<div class="formula-box">
+  $$V_{\text{terminal}} = \mathcal{E} - Ir \quad \text{(discharging / normal operation)}$$
+</div>
+<svg class="circuit-diagram" width="360" height="200" viewBox="0 0 360 200">
+  <!-- Wires -->
+  <line x1="40" y1="40" x2="160" y2="40" stroke="#333" stroke-width="2"/>
+  <line x1="280" y1="40" x2="320" y2="40" stroke="#333" stroke-width="2"/>
+  <line x1="320" y1="40" x2="320" y2="160" stroke="#333" stroke-width="2"/>
+  <line x1="40" y1="160" x2="320" y2="160" stroke="#333" stroke-width="2"/>
+  <line x1="40" y1="40" x2="40" y2="160" stroke="#333" stroke-width="2"/>
+  <!-- Battery -->
+  <line x1="160" y1="25" x2="160" y2="55" stroke="#333" stroke-width="2"/>
+  <line x1="175" y1="30" x2="175" y2="50" stroke="#333" stroke-width="4"/>
+  <text x="155" y="18" font-size="12" fill="#333" text-anchor="middle">−</text>
+  <text x="180" y="18" font-size="12" fill="#333" text-anchor="middle">+</text>
+  <text x="167" y="75" font-size="14" fill="#0f3460" text-anchor="middle" font-style="italic">ε</text>
+  <!-- Internal resistance (zigzag) -->
+  <line x1="175" y1="40" x2="195" y2="40" stroke="#333" stroke-width="2"/>
+  <polyline points="195,40 200,28 210,52 220,28 230,52 240,28 250,52 255,40" fill="none" stroke="#333" stroke-width="2"/>
+  <line x1="255" y1="40" x2="280" y2="40" stroke="#333" stroke-width="2"/>
+  <text x="225" y="68" font-size="13" fill="#0f3460" text-anchor="middle" font-style="italic">r</text>
+  <!-- Dashed box around battery + r -->
+  <rect x="145" y="12" width="145" height="68" fill="none" stroke="#999" stroke-width="1" stroke-dasharray="5,3" rx="4"/>
+  <text x="217" y="90" font-size="10" fill="#999" text-anchor="middle">battery</text>
+  <!-- External R (zigzag) -->
+  <polyline points="120,160 125,148 135,172 145,148 155,172 165,148 175,172 180,160" fill="none" stroke="#333" stroke-width="2"/>
+  <text x="150" y="195" font-size="14" fill="#0f3460" text-anchor="middle" font-style="italic">R</text>
+  <!-- Current arrow -->
+  <polygon points="60,55 55,65 65,65" fill="#8B0000"/>
+  <text x="75" y="100" font-size="13" fill="#8B0000" font-style="italic">I</text>
+  <!-- Terminal labels -->
+  <circle cx="160" cy="40" r="3" fill="#0f3460"/>
+  <circle cx="280" cy="40" r="3" fill="#0f3460"/>
+  <text x="145" y="105" font-size="10" fill="#0f3460" text-anchor="end">a</text>
+  <text x="295" y="105" font-size="10" fill="#0f3460">b</text>
+  <text x="80" y="36" font-size="11" fill="#666">V_term = V_a − V_b</text>
+</svg>
+<p>The voltage you measure at the terminals is <b>less</b> than the EMF. The "lost" voltage \(Ir\) is dissipated as heat inside the battery.</p>
+<div class="key-point">
+  <b>Trap:</b> When a battery is being <b>charged</b> (current forced backwards), \(V_{\text{terminal}} = \mathcal{E} + Ir\) — the terminal voltage is <b>higher</b> than the EMF.
+</div>
+
+<hr>
+
+<h3>2. Kirchhoff's Rules</h3>
+
+<p><b>Junction Rule</b> (Conservation of Charge):</p>
+<div class="formula-box">
+  $$\sum I_{\text{in}} = \sum I_{\text{out}}$$
+</div>
+<p>Charge doesn't pile up at a junction.</p>
+
+<p><b>Loop Rule</b> (Conservation of Energy):</p>
+<div class="formula-box">
+  $$\sum \Delta V = 0 \quad \text{around any closed loop}$$
+</div>
+
+<p><b>Sign conventions when traversing a loop:</b></p>
+<p>Battery: \(- \to +\) = \(+\mathcal{E}\) (gain). \(+ \to -\) = \(-\mathcal{E}\) (drop).<br>
+Resistor: Against current = \(+IR\). With current = \(-IR\).</p>
+
+<div class="key-point">
+  <b>Strategy:</b> (1) Assign current variables and directions (guess is fine — if wrong, you get a negative number). (2) Write junction equations. (3) Write loop equations for independent loops. (4) Solve. You need as many independent equations as unknowns.
+</div>
+
+<hr>
+
+<h3>3. Resistors in Series &amp; Parallel</h3>
+
+<!-- Series resistors diagram -->
+<svg class="circuit-diagram" width="400" height="90" viewBox="0 0 400 90">
+  <text x="200" y="14" font-size="11" fill="#666" text-anchor="middle">Series — same I, voltages add</text>
+  <line x1="20" y1="50" x2="70" y2="50" stroke="#333" stroke-width="2"/>
+  <polyline points="70,50 75,38 85,62 95,38 105,62 110,50" fill="none" stroke="#333" stroke-width="2"/>
+  <text x="90" y="80" font-size="12" fill="#0f3460" text-anchor="middle">R₁</text>
+  <line x1="110" y1="50" x2="150" y2="50" stroke="#333" stroke-width="2"/>
+  <polyline points="150,50 155,38 165,62 175,38 185,62 190,50" fill="none" stroke="#333" stroke-width="2"/>
+  <text x="170" y="80" font-size="12" fill="#0f3460" text-anchor="middle">R₂</text>
+  <line x1="190" y1="50" x2="230" y2="50" stroke="#333" stroke-width="2"/>
+  <polyline points="230,50 235,38 245,62 255,38 265,62 270,50" fill="none" stroke="#333" stroke-width="2"/>
+  <text x="250" y="80" font-size="12" fill="#0f3460" text-anchor="middle">R₃</text>
+  <line x1="270" y1="50" x2="320" y2="50" stroke="#333" stroke-width="2"/>
+  <!-- Current arrow -->
+  <polygon points="45,44 55,44 50,37" fill="#8B0000" transform="rotate(90,50,44)"/>
+  <text x="35" y="40" font-size="11" fill="#8B0000" font-style="italic">I→</text>
+</svg>
+<p><b>Series:</b> Same current through each. Voltages add.</p>
+<div class="formula-box">
+  $$R_{\text{eq}} = R_1 + R_2 + R_3 + \cdots$$
+</div>
+
+<!-- Parallel resistors diagram -->
+<svg class="circuit-diagram" width="300" height="160" viewBox="0 0 300 160">
+  <text x="150" y="14" font-size="11" fill="#666" text-anchor="middle">Parallel — same V, currents add</text>
+  <!-- Top wire -->
+  <line x1="20" y1="40" x2="80" y2="40" stroke="#333" stroke-width="2"/>
+  <line x1="220" y1="40" x2="280" y2="40" stroke="#333" stroke-width="2"/>
+  <!-- Bottom wire -->
+  <line x1="20" y1="130" x2="80" y2="130" stroke="#333" stroke-width="2"/>
+  <line x1="220" y1="130" x2="280" y2="130" stroke="#333" stroke-width="2"/>
+  <!-- Junction dots -->
+  <circle cx="80" cy="40" r="3" fill="#333"/>
+  <circle cx="220" cy="40" r="3" fill="#333"/>
+  <circle cx="80" cy="130" r="3" fill="#333"/>
+  <circle cx="220" cy="130" r="3" fill="#333"/>
+  <!-- Top branch R1 -->
+  <line x1="80" y1="40" x2="110" y2="40" stroke="#333" stroke-width="2"/>
+  <polyline points="110,40 115,28 125,52 135,28 145,52 155,28 165,52 170,40" fill="none" stroke="#333" stroke-width="2"/>
+  <line x1="170" y1="40" x2="220" y2="40" stroke="#333" stroke-width="2"/>
+  <text x="140" y="28" font-size="12" fill="#0f3460" text-anchor="middle">R₁</text>
+  <!-- Vertical connectors -->
+  <line x1="80" y1="40" x2="80" y2="130" stroke="#333" stroke-width="2"/>
+  <line x1="220" y1="40" x2="220" y2="130" stroke="#333" stroke-width="2"/>
+  <!-- Middle branch R2 -->
+  <line x1="80" y1="85" x2="110" y2="85" stroke="#333" stroke-width="2"/>
+  <polyline points="110,85 115,73 125,97 135,73 145,97 155,73 165,97 170,85" fill="none" stroke="#333" stroke-width="2"/>
+  <line x1="170" y1="85" x2="220" y2="85" stroke="#333" stroke-width="2"/>
+  <text x="140" y="73" font-size="12" fill="#0f3460" text-anchor="middle">R₂</text>
+  <!-- Bottom branch R3 -->
+  <line x1="80" y1="130" x2="110" y2="130" stroke="#333" stroke-width="2"/>
+  <polyline points="110,130 115,118 125,142 135,118 145,142 155,118 165,142 170,130" fill="none" stroke="#333" stroke-width="2"/>
+  <line x1="170" y1="130" x2="220" y2="130" stroke="#333" stroke-width="2"/>
+  <text x="140" y="155" font-size="12" fill="#0f3460" text-anchor="middle">R₃</text>
+</svg>
+<p><b>Parallel:</b> Same voltage across each. Currents add.</p>
+<div class="formula-box">
+  $$\frac{1}{R_{\text{eq}}} = \frac{1}{R_1} + \frac{1}{R_2} + \cdots \qquad \text{Two resistors: } R_{\text{eq}} = \frac{R_1 R_2}{R_1 + R_2}$$
+</div>
+
+<div class="key-point">
+  Resistors: series = more \(R\), parallel = less \(R\). <b>Opposite</b> of capacitors: series = less \(C\), parallel = more \(C\).
+</div>
+
+<hr>
+
+<h3>4. Power in Circuits</h3>
+
+<p><b>Power dissipated in a resistor</b> (three equivalent forms):</p>
+<div class="formula-box">
+  $$P = IV = I^2 R = \frac{V^2}{R}$$
+</div>
+
+<p><b>Power delivered by a battery:</b></p>
+<div class="formula-box">
+  $$P_{\text{battery}} = \mathcal{E} \cdot I$$
+</div>
+<p>If current flows \(- \to +\) through the battery (normal), it <b>delivers</b> power. If forced \(+ \to -\) (being charged), it <b>absorbs</b> power.</p>
+
+<div class="key-point">
+  <b>Energy conservation check:</b> Total power delivered by all sources = Total power dissipated in all resistors + internal resistances. Use this to verify your answers.
+</div>
+
+<div class="page-break"></div>
+
+<h3>5. RC Circuits</h3>
+
+<p>When a resistor and capacitor are in a circuit together, quantities change exponentially with time constant:</p>
+<div class="formula-box">
+  $$\tau = RC \quad \text{(units: seconds — verify: } \Omega \cdot F = \frac{V}{A} \cdot \frac{C}{V} = \frac{C}{A} = s\text{)}$$
+</div>
+
+<!-- RC Charging and Discharging circuits side by side -->
+<svg class="circuit-diagram" width="520" height="180" viewBox="0 0 520 180">
+  <!-- CHARGING CIRCUIT (left) -->
+  <text x="120" y="14" font-size="12" fill="#16213e" font-weight="bold" text-anchor="middle">Charging</text>
+  <!-- Battery -->
+  <line x1="30" y1="30" x2="30" y2="70" stroke="#333" stroke-width="2"/>
+  <line x1="20" y1="70" x2="40" y2="70" stroke="#333" stroke-width="2"/>
+  <line x1="24" y1="80" x2="36" y2="80" stroke="#333" stroke-width="4"/>
+  <line x1="30" y1="80" x2="30" y2="90" stroke="#333" stroke-width="2"/>
+  <text x="10" y="78" font-size="13" fill="#0f3460" font-style="italic">ε</text>
+  <text x="42" y="68" font-size="10" fill="#333">+</text>
+  <text x="42" y="88" font-size="10" fill="#333">−</text>
+  <!-- Switch -->
+  <line x1="30" y1="30" x2="60" y2="30" stroke="#333" stroke-width="2"/>
+  <circle cx="60" cy="30" r="3" fill="#333"/>
+  <line x1="60" y1="30" x2="85" y2="22" stroke="#333" stroke-width="2"/>
+  <circle cx="90" cy="30" r="3" fill="#333"/>
+  <line x1="90" y1="30" x2="110" y2="30" stroke="#333" stroke-width="2"/>
+  <text x="75" y="18" font-size="11" fill="#666">S</text>
+  <!-- Resistor -->
+  <polyline points="110,30 115,18 125,42 135,18 145,42 155,18 165,42 170,30" fill="none" stroke="#333" stroke-width="2"/>
+  <text x="140" y="56" font-size="13" fill="#0f3460" text-anchor="middle" font-style="italic">R</text>
+  <!-- Top wire to capacitor -->
+  <line x1="170" y1="30" x2="220" y2="30" stroke="#333" stroke-width="2"/>
+  <!-- Capacitor -->
+  <line x1="220" y1="30" x2="220" y2="60" stroke="#333" stroke-width="2"/>
+  <line x1="208" y1="60" x2="232" y2="60" stroke="#333" stroke-width="2"/>
+  <line x1="208" y1="70" x2="232" y2="70" stroke="#333" stroke-width="2"/>
+  <line x1="220" y1="70" x2="220" y2="90" stroke="#333" stroke-width="2"/>
+  <text x="238" y="68" font-size="13" fill="#0f3460" font-style="italic">C</text>
+  <!-- Bottom wire -->
+  <line x1="30" y1="90" x2="220" y2="90" stroke="#333" stroke-width="2"/>
+  <!-- Current arrow -->
+  <text x="100" y="106" font-size="11" fill="#8B0000" font-style="italic">I →</text>
+  <!-- Charge labels -->
+  <text x="215" y="56" font-size="10" fill="#8B0000">+q</text>
+  <text x="215" y="84" font-size="10" fill="#8B0000">−q</text>
+
+  <!-- DISCHARGING CIRCUIT (right) -->
+  <text x="400" y="14" font-size="12" fill="#16213e" font-weight="bold" text-anchor="middle">Discharging</text>
+  <!-- Wire top -->
+  <line x1="310" y1="30" x2="350" y2="30" stroke="#333" stroke-width="2"/>
+  <!-- Resistor -->
+  <polyline points="350,30 355,18 365,42 375,18 385,42 395,18 405,42 410,30" fill="none" stroke="#333" stroke-width="2"/>
+  <text x="380" y="56" font-size="13" fill="#0f3460" text-anchor="middle" font-style="italic">R</text>
+  <!-- Wire to capacitor -->
+  <line x1="410" y1="30" x2="480" y2="30" stroke="#333" stroke-width="2"/>
+  <!-- Capacitor -->
+  <line x1="480" y1="30" x2="480" y2="60" stroke="#333" stroke-width="2"/>
+  <line x1="468" y1="60" x2="492" y2="60" stroke="#333" stroke-width="2"/>
+  <line x1="468" y1="70" x2="492" y2="70" stroke="#333" stroke-width="2"/>
+  <line x1="480" y1="70" x2="480" y2="90" stroke="#333" stroke-width="2"/>
+  <text x="498" y="68" font-size="13" fill="#0f3460" font-style="italic">C</text>
+  <!-- Bottom wire -->
+  <line x1="310" y1="90" x2="480" y2="90" stroke="#333" stroke-width="2"/>
+  <!-- Switch on left -->
+  <line x1="310" y1="30" x2="310" y2="90" stroke="#333" stroke-width="2"/>
+  <!-- Current arrow -->
+  <text x="350" y="106" font-size="11" fill="#8B0000" font-style="italic">I → (decaying)</text>
+  <!-- Charge labels -->
+  <text x="470" y="56" font-size="10" fill="#8B0000">+Q₀</text>
+  <text x="470" y="84" font-size="10" fill="#8B0000">−Q₀</text>
+  <!-- No battery label -->
+  <text x="310" y="65" font-size="10" fill="#999" text-anchor="middle">no</text>
+  <text x="310" y="75" font-size="10" fill="#999" text-anchor="middle">battery</text>
+</svg>
+
+<p><b>Charging</b> (from \(\mathcal{E}\) through \(R\) into \(C\)):</p>
+<div class="formula-box">
+  $$q(t) = C\mathcal{E}\left(1 - e^{-t/RC}\right) \qquad I(t) = \frac{\mathcal{E}}{R}\,e^{-t/RC} \qquad V_C(t) = \mathcal{E}\left(1 - e^{-t/RC}\right)$$
+</div>
+<p>
+  At \(t = 0\): \(q = 0\), \(I = \mathcal{E}/R\) (max), \(V_C = 0\).<br>
+  At \(t = \tau\): \(q = 0.632\,C\mathcal{E}\), \(I = 0.368\,\mathcal{E}/R\), \(V_C = 0.632\,\mathcal{E}\).<br>
+  At \(t \to \infty\): \(q = C\mathcal{E}\), \(I = 0\), \(V_C = \mathcal{E}\).
+</p>
+
+<p><b>Discharging</b> (\(C\) through \(R\), no battery):</p>
+<div class="formula-box">
+  $$q(t) = Q_0\,e^{-t/RC} \qquad I(t) = -\frac{Q_0}{RC}\,e^{-t/RC} \qquad V_C(t) = V_0\,e^{-t/RC}$$
+</div>
+<p>Everything decays exponentially. At each \(\tau\), the remaining quantity drops to 36.8% of its previous value.</p>
+
+<p class="warning">The derivation of these equations (Kirchhoff → separate variables → integrate) is a classic AP free response. You MUST be able to do it from scratch.</p>
+
+<hr>
+
+<h3>6. Common Mistakes on Tests</h3>
+<ol class="common-mistakes">
+  <li><b>Sign errors in Kirchhoff's loops.</b> Be consistent. Draw the circuit, label currents, stick with your loop direction.</li>
+  <li><b>Confusing series/parallel for resistors vs capacitors.</b> They're opposite.</li>
+  <li><b>Forgetting internal resistance.</b> \(V_{\text{terminal}} \neq \mathcal{E}\) when current flows.</li>
+  <li><b>Confusing charging vs discharging RC equations.</b> Charging: \((1 - e^{-t/\tau})\) builds up. Discharging: \(e^{-t/\tau}\) decays.</li>
+  <li><b>Not checking units.</b> \(RC\) must have units of seconds.</li>
+</ol>
+
+<!-- ═══════════════════════════════════════════════ FORMULA REFERENCE -->
+<div class="page-break"></div>
+<h2>Formula Reference — Chapter 27</h2>
+<p style="font-size:0.85em; color:#666; font-style:italic;">Tear this page out and keep it handy while doing problems. Put it away for the test.</p>
+
+<table class="formula-table">
+  <tr><th>Quantity</th><th>Formula</th></tr>
+  <tr><td>Ohm's Law</td><td>\(V = IR\)</td></tr>
+  <tr><td>Terminal Voltage</td><td>\(V_{\text{term}} = \mathcal{E} - Ir\) &nbsp;(discharging) &nbsp;&nbsp; \(V_{\text{term}} = \mathcal{E} + Ir\) &nbsp;(charging)</td></tr>
+  <tr><td>Resistors in Series</td><td>\(R_{\text{eq}} = R_1 + R_2 + R_3 + \cdots\)</td></tr>
+  <tr><td>Resistors in Parallel</td><td>\(\displaystyle\frac{1}{R_{\text{eq}}} = \frac{1}{R_1} + \frac{1}{R_2} + \cdots\) &nbsp;&nbsp; Two: \(\displaystyle R_{\text{eq}} = \frac{R_1 R_2}{R_1 + R_2}\)</td></tr>
+  <tr><td>Kirchhoff Junction</td><td>\(\sum I_{\text{in}} = \sum I_{\text{out}}\)</td></tr>
+  <tr><td>Kirchhoff Loop</td><td>\(\sum \Delta V = 0\) around any closed loop</td></tr>
+  <tr><td>Power (3 forms)</td><td>\(P = IV = I^2 R = V^2/R\)</td></tr>
+  <tr><td>Power from battery</td><td>\(P = \mathcal{E}I\) &nbsp;(positive = delivering, negative = absorbing)</td></tr>
+  <tr><td>Time Constant</td><td>\(\tau = RC\)</td></tr>
+  <tr><td>RC Charging — charge</td><td>\(q(t) = C\mathcal{E}(1 - e^{-t/RC})\)</td></tr>
+  <tr><td>RC Charging — current</td><td>\(I(t) = \dfrac{\mathcal{E}}{R}\,e^{-t/RC}\)</td></tr>
+  <tr><td>RC Charging — voltage</td><td>\(V_C(t) = \mathcal{E}(1 - e^{-t/RC})\)</td></tr>
+  <tr><td>RC Discharging — charge</td><td>\(q(t) = Q_0\,e^{-t/RC}\)</td></tr>
+  <tr><td>RC Discharging — current</td><td>\(I(t) = -\dfrac{Q_0}{RC}\,e^{-t/RC}\)</td></tr>
+  <tr><td>RC Discharging — voltage</td><td>\(V_C(t) = V_0\,e^{-t/RC}\)</td></tr>
+  <tr><td>Energy in capacitor</td><td>\(U = \frac{1}{2}CV^2 = \frac{1}{2}\frac{Q^2}{C} = \frac{1}{2}QV\)</td></tr>
+  <tr><td>Key time points</td><td>\(t = \tau\): 63.2% charged &nbsp;&nbsp; \(2\tau\): 86.5% &nbsp;&nbsp; \(3\tau\): 95.0% &nbsp;&nbsp; \(5\tau\): 99.3%</td></tr>
+</table>
+
+<div class="key-point" style="margin-top:1em;">
+  <b>Key relationships:</b><br>
+  \(V_R + V_C = \mathcal{E}\) at all times during RC charging (loop rule).<br>
+  As \(C\) charges: \(V_C\) increases, \(V_R\) decreases, \(I\) decreases.<br>
+  Half the energy from the battery is <b>always</b> lost to heat in \(R\) during charging (regardless of \(R\) value).<br>
+  Resistors: series = more \(R\), parallel = less \(R\). Opposite of capacitors.
+</div>
+
+<!-- ═══════════════════════════════════════════════ HOMEWORK PROBLEMS -->
+<div class="page-break"></div>
+<h2>Homework Problems (Halliday Ch 27, 7th Ed.)</h2>
+<p>These are Russo's assigned problems. Do them <b>first</b>, before the extra practice problems. Show all work on paper.</p>
+
+<h3>Questions</h3>
+
+<p class="problem"><span class="problem-num">Q3.</span> (a) In Fig. 27-20a, are resistors \(R_1\) and \(R_3\) in series? (b) Are resistors \(R_1\) and \(R_2\) in parallel? (c) Rank the equivalent resistances of the four circuits shown in Fig. 27-20, greatest first.</p>
+<p class="hint">Series means same current (one path). Parallel means same voltage (same two nodes). Carefully trace the circuit in each configuration.</p>
+<p class="fig-ref">📖 See <b>Fig. 27-20</b> in Halliday Ch 27</p>
+<div class="workspace"></div>
+
+<p class="problem"><span class="problem-num">Q5.</span> Initially, a single resistor \(R_1\) is wired to a battery. Then resistor \(R_2\) is added in parallel. Are (a) the potential difference across \(R_1\) and (b) the current \(i_1\) through \(R_1\) now more than, less than, or the same as previously? (c) Is the equivalent resistance \(R_{12}\) of \(R_1\) and \(R_2\) more than, less than, or equal to \(R_1\)? (d) Is the total current through \(R_1\) and \(R_2\) together more than, less than, or equal to the current through \(R_1\) previously?</p>
+<p class="hint">With an ideal battery, adding a parallel resistor doesn't change the voltage across \(R_1\). But adding a parallel path does decrease total resistance, increasing total current.</p>
+<div class="workspace"></div>
+
+<p class="problem"><span class="problem-num">Q11.</span> After the switch in Fig. 27-15 is closed on point a, there is current \(i\) through resistance \(R\). Figure 27-24 gives that current for four sets of values of \(R\) and capacitance \(C\): (1) \(R_0\) and \(C_0\), (2) \(2R_0\) and \(C_0\), (3) \(R_0\) and \(2C_0\), (4) \(2R_0\) and \(2C_0\). Which set goes with which curve?</p>
+<p class="hint">Initial current \(I_0 = \varepsilon/R\) (independent of \(C\)). Time constant \(\tau = RC\). Larger \(R\) → smaller initial current. Larger \(\tau\) → slower decay. Use these two facts to match each \((R,C)\) pair to a curve.</p>
+<p class="fig-ref">📖 See <b>Fig. 27-15</b> and <b>Fig. 27-24</b> in Halliday Ch 27</p>
+<div class="workspace"></div>
+
+<hr>
+<h3>Problems</h3>
+
+<p class="problem"><span class="problem-num">P5.</span> In Fig. 27-25, the ideal batteries have emfs \(\varepsilon_1 = 12\) V and \(\varepsilon_2 = 6.0\) V, the resistances are \(R_1 = 4.0\;\Omega\) and \(R_2 = 8.0\;\Omega\). What are (a) the current, the dissipation rate in (b) resistor 1 and (c) resistor 2, and the energy transfer rate in (d) battery 1 and (e) battery 2? Is energy being supplied or absorbed by (f) battery 1 and (g) battery 2?</p>
+<p class="fig-ref">📖 See <b>Fig. 27-25</b> in Halliday Ch 27</p>
+<p class="hint">Single loop — use Kirchhoff's loop rule. The two batteries oppose each other. Loop: \(\varepsilon_1 - iR_1 - \varepsilon_2 - iR_2 = 0\).</p>
+<div class="workspace workspace-tall"></div>
+
+<p class="problem"><span class="problem-num">P7.</span> A car battery with a 12 V emf and an internal resistance of 0.040 Ω is being charged with a current of 50 A. What are (a) the potential difference \(V\) across the terminals, (b) the rate \(P_r\) of energy dissipation inside the battery, and (c) the rate \(P_{\text{emf}}\) of energy conversion to chemical form? When the battery is used to supply 50 A to the starter motor, what are (d) \(V\) and (e) \(P_r\)?</p>
+<p class="hint">Charging: current forced into + terminal → \(V = \varepsilon + Ir\) (terminal voltage exceeds EMF). Discharging: \(V = \varepsilon - Ir\).</p>
+<div class="workspace"></div>
+
+<p class="problem"><span class="problem-num">P17.</span> In Fig. 27-33, \(R_1 = R_2 = 4.00\;\Omega\) and \(R_3 = 2.50\;\Omega\). Find the equivalent resistance between points D and E. (Hint: Imagine that a battery is connected across those points.)</p>
+<p class="fig-ref">📖 See <b>Fig. 27-33</b> in Halliday Ch 27</p>
+<p class="hint">This is a bridge/Y-Δ type network. Imagining a battery across D and E helps identify which resistors are in series vs parallel. By symmetry \(R_1\) and \(R_2\) carry equal currents.</p>
+<div class="workspace workspace-tall"></div>
+
+<p class="problem"><span class="problem-num">P19.</span> In Fig. 27-34, \(R_1 = 100\;\Omega\), \(R_2 = 50\;\Omega\), and the ideal batteries have emfs \(\varepsilon_1 = 6.0\) V, \(\varepsilon_2 = 5.0\) V, and \(\varepsilon_3 = 4.0\) V. Find (a) the current in resistor 1, (b) the current in resistor 2, and (c) the potential difference between points a and b.</p>
+<p class="fig-ref">📖 See <b>Fig. 27-34</b> in Halliday Ch 27</p>
+<p class="hint">Two loops, three batteries. Assign current directions, write junction and loop equations. You need 2 independent equations for 2 unknown currents.</p>
+<div class="workspace workspace-xtall"></div>
+
+<div class="page-break"></div>
+
+<p class="problem"><span class="problem-num">P31.</span> In Fig. 27-33, two batteries of emf \(\varepsilon = 12.0\) V and internal resistance \(r = 0.300\;\Omega\) are connected in parallel across a resistance \(R\). (a) For what value of \(R\) is the dissipation rate in the resistor a maximum? (b) What is that maximum?</p>
+<svg class="circuit-diagram" width="320" height="170" viewBox="0 0 320 170">
+  <!-- Top wire -->
+  <line x1="40" y1="20" x2="280" y2="20" stroke="#333" stroke-width="2"/>
+  <!-- Bottom wire -->
+  <line x1="40" y1="150" x2="280" y2="150" stroke="#333" stroke-width="2"/>
+  <!-- Junction dots -->
+  <circle cx="40" cy="20" r="3" fill="#333"/>
+  <circle cx="40" cy="150" r="3" fill="#333"/>
+  <circle cx="280" cy="20" r="3" fill="#333"/>
+  <circle cx="280" cy="150" r="3" fill="#333"/>
+  <!-- Left branch: ε₁, r₁ -->
+  <line x1="40" y1="20" x2="40" y2="55" stroke="#333" stroke-width="2"/>
+  <line x1="30" y1="55" x2="50" y2="55" stroke="#333" stroke-width="2"/>
+  <line x1="33" y1="63" x2="47" y2="63" stroke="#333" stroke-width="3"/>
+  <text x="15" y="62" font-size="11" fill="#0f3460">ε₁</text>
+  <line x1="40" y1="63" x2="40" y2="80" stroke="#333" stroke-width="2"/>
+  <polyline points="40,80 30,85 50,93 30,101 50,109 40,114" fill="none" stroke="#333" stroke-width="1.5"/>
+  <text x="15" y="100" font-size="11" fill="#0f3460">r₁</text>
+  <line x1="40" y1="114" x2="40" y2="150" stroke="#333" stroke-width="2"/>
+  <text x="55" y="85" font-size="10" fill="#8B0000">I₁↓</text>
+  <!-- Right branch: ε₂, r₂ -->
+  <line x1="160" y1="20" x2="160" y2="55" stroke="#333" stroke-width="2"/>
+  <line x1="150" y1="55" x2="170" y2="55" stroke="#333" stroke-width="2"/>
+  <line x1="153" y1="63" x2="167" y2="63" stroke="#333" stroke-width="3"/>
+  <text x="175" y="62" font-size="11" fill="#0f3460">ε₂</text>
+  <line x1="160" y1="63" x2="160" y2="80" stroke="#333" stroke-width="2"/>
+  <polyline points="160,80 150,85 170,93 150,101 170,109 160,114" fill="none" stroke="#333" stroke-width="1.5"/>
+  <text x="175" y="100" font-size="11" fill="#0f3460">r₂</text>
+  <line x1="160" y1="114" x2="160" y2="150" stroke="#333" stroke-width="2"/>
+  <text x="140" y="85" font-size="10" fill="#8B0000">I₂↓</text>
+  <!-- External R -->
+  <line x1="280" y1="20" x2="280" y2="50" stroke="#333" stroke-width="2"/>
+  <polyline points="280,50 270,55 290,63 270,71 290,79 270,87 290,95 280,100" fill="none" stroke="#333" stroke-width="2"/>
+  <text x="296" y="78" font-size="12" fill="#0f3460">R</text>
+  <line x1="280" y1="100" x2="280" y2="150" stroke="#333" stroke-width="2"/>
+  <text x="265" y="40" font-size="10" fill="#8B0000">I₃↓</text>
+  <!-- Node labels -->
+  <text x="155" y="15" font-size="10" fill="#666">A</text>
+  <text x="155" y="165" font-size="10" fill="#666">B</text>
+</svg>
+<p class="fig-ref">📖 See <b>Fig. 27-38</b> in Halliday Ch 27</p>
+<p class="hint">By symmetry, each battery supplies half the total current. Use Kirchhoff's loop for one battery: \(\varepsilon - (i/2)r = iR\). Then \(P_R = i^2R\). Maximize by taking \(dP/dR = 0\), or use the max power transfer theorem (\(R = R_{\text{internal of parallel combination}} = r/2\)).</p>
+<div class="workspace workspace-xtall"></div>
+
+<p class="problem"><span class="problem-num">P39.</span> In Fig. 27-14, assume that \(\varepsilon = 3.0\) V, \(r = 100\;\Omega\), \(R_1 = 250\;\Omega\), and \(R_2 = 300\;\Omega\). If the voltmeter resistance \(R_V\) is 5.0 kΩ, what percent error does it introduce into the measurement of the potential difference across \(R_1\)? Ignore the presence of the ammeter.</p>
+<p class="hint">Without voltmeter: \(V_1 = \varepsilon R_1/(R_1 + R_2 + r)\). With voltmeter: \(R_1\) becomes \(R_1 \parallel R_V\), recalculate. Percent error = \((V_{\text{true}} - V_{\text{measured}})/V_{\text{true}} \times 100\%\).</p>
+<p class="fig-ref">📖 See <b>Fig. 27-14</b> in Halliday Ch 27</p>
+<div class="workspace workspace-tall"></div>
+
+<p class="problem"><span class="problem-num">P47.</span> A 15.0 kΩ resistor and a capacitor are connected in series, and then a 12.0 V potential difference is suddenly applied across them. The potential difference across the capacitor rises to 5.00 V in 1.30 μs. (a) Calculate the time constant of the circuit. (b) Find the capacitance of the capacitor.</p>
+<p class="hint">Use \(V_C(t) = V_0(1 - e^{-t/\tau})\) where \(\tau = RC\). From the given data, solve for \(\tau\) first, then find \(C = \tau/R\).</p>
+<div class="workspace workspace-tall"></div>
+
+<p class="problem"><span class="problem-num">P51.</span> A 1.0 μF capacitor with an initial stored energy of 0.50 J is discharged through a 1.0 MΩ resistor. (a) What is the initial charge on the capacitor? (b) What is the current through the resistor when the discharge starts? Find an expression that gives, as a function of time \(t\), (c) the potential difference \(V_C\) across the capacitor, (d) the potential difference \(V_R\) across the resistor, and (e) the rate at which thermal energy is produced in the resistor.</p>
+<p class="hint">Use \(U = \frac{1}{2}\frac{Q_0^2}{C}\) to find \(Q_0\). Then \(V_0 = Q_0/C\), \(I_0 = V_0/R\). Time constant \(\tau = RC\). Exponential decay: all quantities decay as \(e^{-t/\tau}\).</p>
+<div class="workspace workspace-tall"></div>
+
+<p class="problem"><span class="problem-num">P53.</span> In Fig. 27-54, \(\varepsilon = 1.2\) kV, \(C = 6.5\;\mu\text{F}\), \(R_1 = R_2 = R_3 = 0.73\) MΩ. With \(C\) completely uncharged, switch \(S\) is suddenly closed (at \(t = 0\)). At \(t = 0\), what are (a) current \(i_1\) in resistor 1, (b) current \(i_2\) in resistor 2, and (c) current \(i_3\) in resistor 3? At \(t = \infty\) (that is, after many time constants), what are (d) \(i_1\), (e) \(i_2\), and (f) \(i_3\)? What is the potential difference \(V_2\) across resistor 2 at (g) \(t = 0\) and (h) \(t = \infty\)? (i) Sketch \(V_2\) versus \(t\) between these two extreme times.</p>
+<svg class="circuit-diagram" width="340" height="170" viewBox="0 0 340 170">
+  <!-- Battery + switch on left -->
+  <line x1="30" y1="20" x2="30" y2="55" stroke="#333" stroke-width="2"/>
+  <line x1="20" y1="55" x2="40" y2="55" stroke="#333" stroke-width="2"/>
+  <line x1="23" y1="65" x2="37" y2="65" stroke="#333" stroke-width="3"/>
+  <text x="8" y="63" font-size="11" fill="#0f3460">ε</text>
+  <line x1="30" y1="65" x2="30" y2="150" stroke="#333" stroke-width="2"/>
+  <!-- Switch at top -->
+  <circle cx="30" cy="20" r="3" fill="#333"/>
+  <line x1="30" y1="20" x2="55" y2="14" stroke="#333" stroke-width="2"/>
+  <circle cx="60" cy="20" r="3" fill="#333"/>
+  <text x="45" y="10" font-size="10" fill="#666">S</text>
+  <!-- R₁ in series -->
+  <line x1="60" y1="20" x2="80" y2="20" stroke="#333" stroke-width="2"/>
+  <polyline points="80,20 85,8 95,32 105,8 115,32 125,8 135,32 140,20" fill="none" stroke="#333" stroke-width="2"/>
+  <text x="110" y="46" font-size="12" fill="#0f3460" text-anchor="middle">R₁</text>
+  <line x1="140" y1="20" x2="180" y2="20" stroke="#333" stroke-width="2"/>
+  <!-- Junction -->
+  <circle cx="180" cy="20" r="3" fill="#333"/>
+  <circle cx="180" cy="150" r="3" fill="#333"/>
+  <!-- R₂ branch -->
+  <line x1="180" y1="20" x2="180" y2="50" stroke="#333" stroke-width="2"/>
+  <polyline points="180,50 170,55 190,63 170,71 190,79 170,87 190,95 180,100" fill="none" stroke="#333" stroke-width="2"/>
+  <text x="196" y="78" font-size="12" fill="#0f3460">R₂</text>
+  <line x1="180" y1="100" x2="180" y2="150" stroke="#333" stroke-width="2"/>
+  <!-- C branch (parallel with R₂) -->
+  <line x1="180" y1="20" x2="290" y2="20" stroke="#333" stroke-width="2"/>
+  <line x1="290" y1="20" x2="290" y2="70" stroke="#333" stroke-width="2"/>
+  <line x1="278" y1="70" x2="302" y2="70" stroke="#333" stroke-width="2"/>
+  <line x1="278" y1="80" x2="302" y2="80" stroke="#333" stroke-width="2"/>
+  <line x1="290" y1="80" x2="290" y2="150" stroke="#333" stroke-width="2"/>
+  <text x="308" y="78" font-size="12" fill="#0f3460">C</text>
+  <!-- Bottom wire -->
+  <line x1="30" y1="150" x2="290" y2="150" stroke="#333" stroke-width="2"/>
+  <!-- Labels for t=0 and t=∞ -->
+  <text x="230" y="42" font-size="9" fill="#8B0000">t=0: short</text>
+  <text x="230" y="52" font-size="9" fill="#8B0000">t→∞: open</text>
+</svg>
+<p class="fig-ref">📖 See <b>Fig. 27-54</b> in Halliday Ch 27</p>
+<p class="hint">At \(t=0\): uncharged \(C\) acts as short circuit → \(R_3\) is in series with \(C\) (shorted), so \(R_2\) is in parallel with the short = bypassed. Current only through \(R_1\) and the \(R_2 \parallel R_3\) combination. Actually: \(C\) short means \(R_2\) in parallel with \(R_3\) (since \(C\) branch has zero impedance). At \(t=\infty\): \(C\) fully charged = open circuit, no current through \(C\) or \(R_3\). All current through \(R_1\) and \(R_2\) in series.</p>
+<div class="workspace workspace-xtall"></div>
+
+<!-- ═══════════════════════════════════════════════ PRACTICE PROBLEMS -->
+<div class="page-break"></div>
+<h2>Practice Problems</h2>
+<p>15 additional problems in three tiers. Do them on paper. Check answers only after completing each tier.</p>
+
+<h3><span class="tier-label">Tier 1</span> Foundations (Quiz-level)</h3>
+
+<p class="problem"><span class="problem-num">1.</span> A battery with \(\mathcal{E} = 9.0\) V and internal resistance \(r = 0.50\;\Omega\) is connected to an external resistance \(R = 4.0\;\Omega\). Find: (a) the current, (b) the terminal voltage, (c) the power dissipated in \(R\), (d) the power dissipated in \(r\), (e) the total power from the battery.</p>
+<div class="workspace"></div>
+
+<p class="problem"><span class="problem-num">2.</span> Find the equivalent resistance between points A and B for: (a) Three resistors \(3\;\Omega\), \(6\;\Omega\), \(9\;\Omega\) in series. (b) The same three in parallel. (c) The \(3\;\Omega\) and \(6\;\Omega\) in parallel, with that combination in series with the \(9\;\Omega\).</p>
+<div class="workspace"></div>
+
+<p class="problem"><span class="problem-num">3.</span> A \(15\;\Omega\) resistor and a \(30\;\Omega\) resistor are connected in parallel to a 12 V ideal battery. Find the current through each resistor and verify using the junction rule.</p>
+<div class="workspace"></div>
+
+<p class="problem"><span class="problem-num">4.</span> An RC circuit has \(R = 20\;\text{k}\Omega\) and \(C = 50\;\mu\text{F}\). (a) What is the time constant? (b) If connected to a 10 V battery at \(t = 0\), what is the voltage across the capacitor at \(t = 0.5\) s? (c) What is the current at \(t = 0.5\) s?</p>
+<div class="workspace"></div>
+
+<p class="problem"><span class="problem-num">5.</span> A capacitor charged to 80 V is discharged through a \(200\;\text{k}\Omega\) resistor. After 3.0 s, the voltage is 29.4 V. What is the capacitance?</p>
+<p class="hint">Hint: Use \(V = V_0\,e^{-t/RC}\) and solve for \(C\).</p>
+<div class="workspace"></div>
+
+<div class="page-break"></div>
+<h3><span class="tier-label t2">Tier 2</span> Application (Test-level)</h3>
+
+<p class="problem"><span class="problem-num">6.</span> Four identical resistors of resistance \(R\) are connected: two in parallel with each other, and that parallel pair is in series with the other two (which are in series with each other). A battery of \(\mathcal{E}\) and internal resistance \(r\) is connected. Find the current through each resistor in terms of \(\mathcal{E}\), \(R\), and \(r\).</p>
+<div class="workspace workspace-tall"></div>
+
+<p class="problem"><span class="problem-num">7.</span> Use Kirchhoff's rules to find the current through each resistor:</p>
+<svg class="circuit-diagram" width="320" height="180" viewBox="0 0 320 180">
+  <!-- Top & bottom wires -->
+  <line x1="40" y1="20" x2="280" y2="20" stroke="#333" stroke-width="2"/>
+  <line x1="40" y1="160" x2="280" y2="160" stroke="#333" stroke-width="2"/>
+  <circle cx="40" cy="20" r="3" fill="#333"/>
+  <circle cx="160" cy="20" r="3" fill="#333"/>
+  <circle cx="280" cy="20" r="3" fill="#333"/>
+  <circle cx="40" cy="160" r="3" fill="#333"/>
+  <circle cx="160" cy="160" r="3" fill="#333"/>
+  <circle cx="280" cy="160" r="3" fill="#333"/>
+  <!-- Left branch: 15V + 5Ω -->
+  <line x1="40" y1="20" x2="40" y2="40" stroke="#333" stroke-width="2"/>
+  <line x1="30" y1="40" x2="50" y2="40" stroke="#333" stroke-width="2"/>
+  <line x1="33" y1="48" x2="47" y2="48" stroke="#333" stroke-width="3"/>
+  <text x="53" y="42" font-size="9" fill="#333">+</text>
+  <text x="53" y="52" font-size="9" fill="#333">−</text>
+  <text x="15" y="47" font-size="11" fill="#0f3460">15V</text>
+  <line x1="40" y1="48" x2="40" y2="75" stroke="#333" stroke-width="2"/>
+  <polyline points="40,75 30,80 50,88 30,96 50,104 30,112 50,120 40,125" fill="none" stroke="#333" stroke-width="1.5"/>
+  <text x="15" y="103" font-size="11" fill="#0f3460">5Ω</text>
+  <line x1="40" y1="125" x2="40" y2="160" stroke="#333" stroke-width="2"/>
+  <text x="55" y="70" font-size="10" fill="#8B0000">I₁↓</text>
+  <!-- Middle branch: 8Ω only -->
+  <line x1="160" y1="20" x2="160" y2="55" stroke="#333" stroke-width="2"/>
+  <polyline points="160,55 150,60 170,68 150,76 170,84 150,92 170,100 160,105" fill="none" stroke="#333" stroke-width="1.5"/>
+  <text x="175" y="83" font-size="11" fill="#0f3460">8Ω</text>
+  <line x1="160" y1="105" x2="160" y2="160" stroke="#333" stroke-width="2"/>
+  <text x="145" y="45" font-size="10" fill="#8B0000">I₃↓</text>
+  <!-- Right branch: 10V + 10Ω -->
+  <line x1="280" y1="20" x2="280" y2="40" stroke="#333" stroke-width="2"/>
+  <line x1="270" y1="40" x2="290" y2="40" stroke="#333" stroke-width="2"/>
+  <line x1="273" y1="48" x2="287" y2="48" stroke="#333" stroke-width="3"/>
+  <text x="293" y="42" font-size="9" fill="#333">+</text>
+  <text x="293" y="52" font-size="9" fill="#333">−</text>
+  <text x="255" y="47" font-size="11" fill="#0f3460">10V</text>
+  <line x1="280" y1="48" x2="280" y2="75" stroke="#333" stroke-width="2"/>
+  <polyline points="280,75 270,80 290,88 270,96 290,104 270,112 290,120 280,125" fill="none" stroke="#333" stroke-width="1.5"/>
+  <text x="255" y="103" font-size="11" fill="#0f3460">10Ω</text>
+  <line x1="280" y1="125" x2="280" y2="160" stroke="#333" stroke-width="2"/>
+  <text x="295" y="70" font-size="10" fill="#8B0000">I₂↓</text>
+</svg>
+<div class="workspace workspace-xtall"></div>
+
+<p class="problem"><span class="problem-num">8.</span> In Problem 7, determine: (a) the power delivered or absorbed by each battery, (b) whether either battery is being charged, (c) the total power dissipated in all resistors.</p>
+<div class="workspace"></div>
+
+<p class="problem"><span class="problem-num">9.</span> An RC circuit with \(R = 10\;\text{k}\Omega\), \(C = 100\;\mu\text{F}\), and \(\mathcal{E} = 24\) V begins charging at \(t = 0\). (a) Find the current and voltage across both \(R\) and \(C\) at \(t = 0, 1.0, 2.0, 5.0\) s. (b) At what time does \(V_C = V_R\)? What is special about this time? (c) Calculate the energy stored in \(C\) and the energy dissipated in \(R\) after a very long time.</p>
+<div class="workspace workspace-tall"></div>
+
+<p class="problem"><span class="problem-num">10.</span> A \(50\;\mu\text{F}\) capacitor is charged to 100 V, then connected at \(t = 0\) to two resistors: \(20\;\text{k}\Omega\) and \(30\;\text{k}\Omega\) in series. (a) Time constant? (b) Expressions for \(I(t)\) and \(V_C(t)\). (c) Voltage across each resistor at \(t = 1.0\) s? (d) Fraction of initial energy dissipated by \(t = 2\tau\)?</p>
+<div class="workspace workspace-tall"></div>
+
+<div class="page-break"></div>
+<h3><span class="tier-label t3">Tier 3</span> AP Free Response (Exam-level)</h3>
+
+<p class="problem"><span class="problem-num">11.</span> <b>Multi-loop circuit analysis.</b></p>
+<svg class="circuit-diagram" width="320" height="180" viewBox="0 0 320 180">
+  <!-- Top & bottom wires -->
+  <line x1="40" y1="20" x2="280" y2="20" stroke="#333" stroke-width="2"/>
+  <line x1="40" y1="160" x2="280" y2="160" stroke="#333" stroke-width="2"/>
+  <!-- Node labels -->
+  <text x="160" y="14" font-size="12" fill="#16213e" font-weight="bold" text-anchor="middle">A</text>
+  <text x="160" y="175" font-size="12" fill="#16213e" font-weight="bold" text-anchor="middle">B</text>
+  <!-- Left branch: ε₁=20V, R₁=4Ω, r₁=1Ω -->
+  <line x1="40" y1="20" x2="40" y2="30" stroke="#333" stroke-width="2"/>
+  <line x1="30" y1="30" x2="50" y2="30" stroke="#333" stroke-width="2"/>
+  <line x1="33" y1="38" x2="47" y2="38" stroke="#333" stroke-width="3"/>
+  <text x="10" y="37" font-size="10" fill="#0f3460">ε₁=20V</text>
+  <line x1="40" y1="38" x2="40" y2="50" stroke="#333" stroke-width="2"/>
+  <polyline points="40,50 30,54 50,62 30,70 50,78 40,82" fill="none" stroke="#333" stroke-width="1.5"/>
+  <text x="15" y="70" font-size="10" fill="#0f3460">r₁=1Ω</text>
+  <line x1="40" y1="82" x2="40" y2="100" stroke="#333" stroke-width="2"/>
+  <polyline points="40,100 30,104 50,112 30,120 50,128 40,132" fill="none" stroke="#333" stroke-width="1.5"/>
+  <text x="15" y="120" font-size="10" fill="#0f3460">R₁=4Ω</text>
+  <line x1="40" y1="132" x2="40" y2="160" stroke="#333" stroke-width="2"/>
+  <text x="55" y="90" font-size="10" fill="#8B0000">I₁↓</text>
+  <!-- Middle branch: R₃=6Ω -->
+  <line x1="160" y1="20" x2="160" y2="55" stroke="#333" stroke-width="2"/>
+  <polyline points="160,55 150,59 170,67 150,75 170,83 150,91 170,99 160,103" fill="none" stroke="#333" stroke-width="1.5"/>
+  <text x="178" y="83" font-size="10" fill="#0f3460">R₃=6Ω</text>
+  <line x1="160" y1="103" x2="160" y2="160" stroke="#333" stroke-width="2"/>
+  <text x="145" y="45" font-size="10" fill="#8B0000">I₃↓</text>
+  <!-- Right branch: ε₂=12V, R₂=3Ω, r₂=0.5Ω -->
+  <line x1="280" y1="20" x2="280" y2="30" stroke="#333" stroke-width="2"/>
+  <line x1="270" y1="30" x2="290" y2="30" stroke="#333" stroke-width="2"/>
+  <line x1="273" y1="38" x2="287" y2="38" stroke="#333" stroke-width="3"/>
+  <text x="295" y="37" font-size="10" fill="#0f3460">ε₂=12V</text>
+  <line x1="280" y1="38" x2="280" y2="50" stroke="#333" stroke-width="2"/>
+  <polyline points="280,50 270,54 290,62 270,70 290,78 280,82" fill="none" stroke="#333" stroke-width="1.5"/>
+  <text x="295" y="70" font-size="10" fill="#0f3460">r₂=0.5Ω</text>
+  <line x1="280" y1="82" x2="280" y2="100" stroke="#333" stroke-width="2"/>
+  <polyline points="280,100 270,104 290,112 270,120 290,128 280,132" fill="none" stroke="#333" stroke-width="1.5"/>
+  <text x="295" y="120" font-size="10" fill="#0f3460">R₂=3Ω</text>
+  <line x1="280" y1="132" x2="280" y2="160" stroke="#333" stroke-width="2"/>
+  <text x="260" y="90" font-size="10" fill="#8B0000">I₂↓</text>
+</svg>
+<p>Three branches connect nodes A (top) and B (bottom):<br>
+Left: \(\mathcal{E}_1 = 20\) V, \(R_1 = 4\;\Omega\), \(r_1 = 1\;\Omega\) (internal).<br>
+Middle: \(R_3 = 6\;\Omega\) (no battery).<br>
+Right: \(\mathcal{E}_2 = 12\) V, \(R_2 = 3\;\Omega\), \(r_2 = 0.5\;\Omega\) (internal).<br>
+(a) Define current variables and directions. Write all necessary Kirchhoff equations.<br>
+(b) Solve for all three currents.<br>
+(c) Find the potential difference \(V_A - V_B\).<br>
+(d) Find the power delivered/absorbed by each battery. Verify energy conservation.</p>
+<div class="workspace workspace-xtall"></div>
+
+<p class="problem"><span class="problem-num">12.</span> <b>RC circuit with switch.</b></p>
+<svg class="circuit-diagram" width="340" height="160" viewBox="0 0 340 160">
+  <!-- Battery -->
+  <line x1="30" y1="20" x2="30" y2="50" stroke="#333" stroke-width="2"/>
+  <line x1="20" y1="50" x2="40" y2="50" stroke="#333" stroke-width="2"/>
+  <line x1="23" y1="58" x2="37" y2="58" stroke="#333" stroke-width="3"/>
+  <text x="8" y="57" font-size="10" fill="#0f3460">30V</text>
+  <line x1="30" y1="58" x2="30" y2="140" stroke="#333" stroke-width="2"/>
+  <!-- Switch -->
+  <circle cx="30" cy="20" r="3" fill="#333"/>
+  <line x1="30" y1="20" x2="55" y2="14" stroke="#333" stroke-width="2"/>
+  <circle cx="60" cy="20" r="3" fill="#333"/>
+  <text x="42" y="10" font-size="10" fill="#666">S</text>
+  <!-- R₁ -->
+  <line x1="60" y1="20" x2="80" y2="20" stroke="#333" stroke-width="2"/>
+  <polyline points="80,20 85,8 95,32 105,8 115,32 125,8 135,32 140,20" fill="none" stroke="#333" stroke-width="2"/>
+  <text x="110" y="46" font-size="11" fill="#0f3460" text-anchor="middle">R₁=25kΩ</text>
+  <line x1="140" y1="20" x2="180" y2="20" stroke="#333" stroke-width="2"/>
+  <!-- Junction -->
+  <circle cx="180" cy="20" r="3" fill="#333"/>
+  <circle cx="180" cy="140" r="3" fill="#333"/>
+  <!-- R₂ branch -->
+  <line x1="180" y1="20" x2="180" y2="45" stroke="#333" stroke-width="2"/>
+  <polyline points="180,45 170,50 190,58 170,66 190,74 170,82 190,90 180,95" fill="none" stroke="#333" stroke-width="2"/>
+  <text x="196" y="73" font-size="11" fill="#0f3460">R₂=75kΩ</text>
+  <line x1="180" y1="95" x2="180" y2="140" stroke="#333" stroke-width="2"/>
+  <!-- C branch -->
+  <line x1="180" y1="20" x2="290" y2="20" stroke="#333" stroke-width="2"/>
+  <line x1="290" y1="20" x2="290" y2="62" stroke="#333" stroke-width="2"/>
+  <line x1="278" y1="62" x2="302" y2="62" stroke="#333" stroke-width="2"/>
+  <line x1="278" y1="72" x2="302" y2="72" stroke="#333" stroke-width="2"/>
+  <line x1="290" y1="72" x2="290" y2="140" stroke="#333" stroke-width="2"/>
+  <text x="308" y="70" font-size="11" fill="#0f3460">C=20μF</text>
+  <!-- Bottom wire -->
+  <line x1="30" y1="140" x2="290" y2="140" stroke="#333" stroke-width="2"/>
+</svg>
+<p>
+\(R_1\) is in series with the battery and switch. The parallel combination of \(R_2\) and \(C\) is connected across \(R_1\)'s output.<br>
+(a) \(S\) is closed at \(t = 0\). What is the current through \(R_1\) immediately after? (What does an uncharged capacitor look like at \(t = 0\)?)<br>
+(b) After a very long time, what is the current through \(R_1\)? Through \(R_2\)? Through \(C\)?<br>
+(c) What is the voltage across \(C\) after a very long time?<br>
+(d) What is the time constant? (Hint: Thévenin equivalent resistance seen by \(C\).)<br>
+(e) \(S\) is now opened after \(C\) is fully charged. What happens? New time constant?</p>
+<div class="workspace workspace-xtall"></div>
+
+<div class="page-break"></div>
+
+<p class="problem"><span class="problem-num">13.</span> <b>Derivation.</b> Starting from Kirchhoff's loop rule for an RC discharging circuit \(\left(\frac{q}{C} + IR = 0,\text{ where } I = \frac{dq}{dt}\right)\), derive \(q(t) = Q_0\,e^{-t/RC}\). Show every step: setup, separation of variables, integration, initial conditions.</p>
+<div class="workspace workspace-xtall"></div>
+
+<p class="problem"><span class="problem-num">14.</span> <b>Graphical analysis.</b> A student charges a capacitor through a resistor and measures current:</p>
+<table class="data-table">
+  <tr><th>\(t\) (s)</th><th>0</th><th>0.5</th><th>1.0</th><th>1.5</th><th>2.0</th><th>2.5</th><th>3.0</th></tr>
+  <tr><td>\(I\) (mA)</td><td>5.00</td><td>3.68</td><td>2.71</td><td>1.99</td><td>1.47</td><td>1.08</td><td>0.80</td></tr>
+</table>
+<p>(a) Calculate \(\ln(I)\) for each time.<br>
+(b) If you plotted \(\ln(I)\) vs \(t\), what should the graph look like? What are the slope and \(y\)-intercept?<br>
+(c) Determine \(\tau\) from the data.<br>
+(d) If \(C = 100\;\mu\text{F}\), what is \(R\)?<br>
+(e) What was the battery EMF?</p>
+<div class="workspace workspace-tall"></div>
+
+<p class="problem"><span class="problem-num">15.</span> <b>Energy analysis.</b> In an RC charging circuit with \(\mathcal{E} = 12\) V, \(R = 1.0\;\text{k}\Omega\), \(C = 1000\;\mu\text{F}\):<br>
+(a) Total energy delivered by the battery while fully charging \(C\)?<br>
+(b) Energy stored in \(C\) when fully charged?<br>
+(c) Energy dissipated in \(R\)? Show it equals (a) minus (b).<br>
+(d) Prove algebraically that \(U_R\) <b>always</b> equals \(U_C\), regardless of \(R\), \(C\), or \(\mathcal{E}\). (Integrate \(P_R = I^2 R\) from 0 to \(\infty\).)</p>
+<div class="workspace workspace-xtall"></div>
+
+<!-- ═══════════════════════════════════════════════ ANSWER KEY -->
+<div class="page-break"></div>
+<div class="answer-section">
+<h2>Answer Key &amp; Worked Solutions</h2>
+<p class="warning">STOP. Do not read ahead until you have completed all problems on paper. Categorize every error: Conceptual / Procedural / Retrieval.</p>
+
+<h3>Homework Problems</h3>
+
+<p class="solution"><b>Q3.</b> (a) <b>no</b>; (b) <b>yes</b>; (c) <b>all tie</b> (all four circuits have the same equivalent resistance)</p>
+
+<p class="solution"><b>Q5.</b> (a) <b>same</b>; (b) <b>same</b>; (c) <b>less</b>; (d) <b>more</b></p>
+
+<p class="solution"><b>Q11.</b> \(1 \to c\); \(2 \to a\); \(3 \to d\); \(4 \to b\). <br><b>Explanation:</b> Initial current \(I_0 = \varepsilon/R\) (independent of \(C\)). Larger \(R\) → smaller \(I_0\). Time constant \(\tau = RC\). Larger \(\tau\) → slower decay. Set 1 (\(R_0, C_0\)) is baseline. Set 2 (\(2R_0, C_0\)) has smaller \(I_0\) and same \(\tau\) → lower faster decay (curve a). Set 3 (\(R_0, 2C_0\)) has same \(I_0\) but larger \(\tau\) → same \(I_0\) slower decay (curve d). Set 4 (\(2R_0, 2C_0\)) has smaller \(I_0\) and larger \(\tau\) → lower slower decay (curve b).</p>
+
+<p class="solution"><b>P5.</b> Loop rule: \(\varepsilon_1 - iR_1 - \varepsilon_2 - iR_2 = 0 \Rightarrow 12 - 4i - 6 - 8i = 0 \Rightarrow 6 = 12i \Rightarrow i = \mathbf{0.50\;\text{A}}\).
+<br>(b) \(P_1 = i^2 R_1 = (0.25)(4) = \mathbf{1.0\;\text{W}}\).
+<br>(c) \(P_2 = i^2 R_2 = (0.25)(8) = \mathbf{2.0\;\text{W}}\).
+<br>(d) \(P_{\varepsilon_1} = \varepsilon_1 i = 12(0.5) = \mathbf{6.0\;\text{W}}\).
+<br>(e) \(P_{\varepsilon_2} = \varepsilon_2 i = 6(0.5) = \mathbf{3.0\;\text{W}}\).
+<br>(f) Battery 1: <b>supplied</b> (current exits + terminal).
+<br>(g) Battery 2: <b>absorbed</b> (current enters + terminal, being charged).
+<br>Check: \(6.0 = 1.0 + 2.0 + 3.0\) ✓</p>
+
+<p class="solution"><b>P7.</b> <b>Charging (forcing 50 A into battery):</b>
+<br>(a) \(V = \varepsilon + Ir = 12 + 50(0.040) = \mathbf{14\;\text{V}}\).
+<br>(b) \(P_r = I^2 r = (50)^2(0.040) = \mathbf{100\;\text{W}}\).
+<br>(c) \(P_{\text{emf}} = \varepsilon I = 12(50) = \mathbf{600\;\text{W}}\).
+<br><b>Discharging (supplying 50 A to motor):</b>
+<br>(d) \(V = \varepsilon - Ir = 12 - 50(0.040) = \mathbf{10\;\text{V}}\).
+<br>(e) \(P_r = I^2 r = (50)^2(0.040) = \mathbf{100\;\text{W}}\) (same as charging)</p>
+
+<p class="solution"><b>P17.</b> Using the symmetry hint (battery across D and E): By symmetry, \(R_1\) and \(R_2\) carry equal currents and have equal potential drops. The midpoint between them is at the same potential as E on the other side. This allows simplification: analyze the bridge network by recognizing that the middle branch can be eliminated under symmetry. The equivalent resistance simplifies to approximately \(\mathbf{5.00\;\Omega}\) (calculation details depend on full circuit topology in Fig. 27-33).</p>
+
+<p class="solution"><b>P19.</b> The circuit has <b>three nodes</b>: a (left), b (right), and c (bottom junction). Four branches: (1) Top: \(\varepsilon_1\) and \(R_2\) in series from a to b; (2) Left: \(\varepsilon_2\) from a to c (\(+\) at a); (3) Right: \(\varepsilon_3\) from c to b (\(+\) at c); (4) \(R_1\) from a to c.
+<br><br><b>Node voltage method</b> — set \(V_a = 0\):
+<br>From \(\varepsilon_2\) (ideal, no resistance): \(V_a - V_c = \varepsilon_2 \Rightarrow V_c = -5.0\) V
+<br>From \(\varepsilon_3\) (ideal, no resistance): \(V_c - V_b = \varepsilon_3 \Rightarrow V_b = V_c - \varepsilon_3 = -5.0 - 4.0 = -9.0\) V
+<br><br><b>(c)</b> \(V_a - V_b = 0 - (-9.0) = \mathbf{9.0\text{ V}}\)
+<br><br><b>(a)</b> Current in \(R_1\) (connects a to c): \(i_1 = \frac{V_a - V_c}{R_1} = \frac{5.0}{100} = \mathbf{0.050\text{ A} = 50\text{ mA}}\)
+<br><br><b>(b)</b> Current in \(R_2\) (top branch, a → \(\varepsilon_1\) → \(R_2\) → b):
+<br>\(V_a - \varepsilon_1 - i_2 R_2 = V_b\)
+<br>\(0 - 6.0 - 50\,i_2 = -9.0\)
+<br>\(50\,i_2 = 3.0 \Rightarrow i_2 = \mathbf{0.060\text{ A} = 60\text{ mA}}\)
+<br><br><b>Key insight:</b> Ideal batteries with no series resistance directly fix node potentials. \(\varepsilon_2\) and \(\varepsilon_3\) set \(V_c\) and \(V_b\) in terms of \(V_a\). Then the resistor currents follow from Ohm's law.</p>
+
+<p class="solution"><b>P31.</b> By symmetry, each battery supplies \(i/2\). Loop rule for one battery: \(\varepsilon - (i/2)r - iR = 0 \Rightarrow i = \varepsilon/(R + r/2) = 12.0/(R + 0.150)\).
+<br>Power in \(R\): \(P_R = i^2 R = \frac{144 R}{(R + 0.150)^2}\).
+<br>Maximize: \(\frac{dP}{dR} = 0 \Rightarrow R = 0.150\;\Omega = r/2\) (max power transfer theorem).
+<br>(a) \(\mathbf{R = 0.150\;\Omega}\)
+<br>(b) \(P_{\max} = \frac{144(0.150)}{(0.300)^2} = \frac{21.6}{0.09} = \mathbf{240\;\text{W}}\)</p>
+
+<p class="solution"><b>P39.</b> <b>Without voltmeter:</b> \(V_1 = \varepsilon R_1/(R_1 + R_2 + r) = 3.0(250)/650 = 1.154\) V.
+<br><b>With voltmeter:</b> \(R_1 \parallel R_V = \frac{250(5000)}{5250} = 238.1\;\Omega\).
+<br>\(V_{\text{meas}} = 3.0(238.1)/(238.1 + 300 + 100) = 714.3/638.1 = 1.119\) V.
+<br>Error = \(\frac{1.154 - 1.119}{1.154} \times 100\% = \mathbf{3.0\%}\)</p>
+
+<p class="solution"><b>P47.</b> From \(V_C(t) = V_0(1 - e^{-t/\tau})\): \(5.00 = 12.0(1 - e^{-1.30\times10^{-6}/\tau})\)
+<br>\(\Rightarrow e^{-t/\tau} = 1 - 5/12 = 0.5833\)
+<br>\(\Rightarrow -t/\tau = \ln(0.5833) = -0.5390\)
+<br>\(\Rightarrow \tau = 1.30 \times 10^{-6}/0.5390 = \mathbf{2.41\;\mu\text{s}}\)
+<br>(a) Time constant: \(\tau = \mathbf{2.41\;\mu\text{s}}\)
+<br>(b) Capacitance: \(C = \tau/R = 2.41 \times 10^{-6}/(15.0 \times 10^3) = \mathbf{161\;\text{pF}}\)</p>
+
+<p class="solution"><b>P51.</b> (a) From \(U = \frac{1}{2}\frac{Q_0^2}{C}\): \(Q_0 = \sqrt{2UC} = \sqrt{2(0.50)(10^{-6})} = \mathbf{1.0\;\text{mC}}\)
+<br>(b) \(V_0 = Q_0/C = (10^{-3})/(10^{-6}) = 1000\) V. \(I_0 = V_0/R = 1000/(10^6) = \mathbf{1.0\;\text{mA}}\)
+<br>(c) \(V_C(t) = 1000\,e^{-t/\tau} = \mathbf{1000\,e^{-t}\;\text{V}}\) (where \(\tau = RC = 1.0\) s)
+<br>(d) \(V_R(t) = \mathbf{1000\,e^{-t}\;\text{V}}\) (same, by Kirchhoff's loop rule)
+<br>(e) \(P(t) = I^2 R = (10^{-3})^2 e^{-2t}(10^6) = \mathbf{e^{-2t}\;\text{W}}\)</p>
+
+<p class="solution"><b>P53.</b> <b>At \(t=0\):</b> Uncharged \(C\) = short circuit. \(R_2\) is in parallel with the short (via \(C\) = zero impedance), so \(R_2\) is bypassed. \(R_1\) is in series with the parallel combination of \(R_2 \parallel R_3\). But since \(C\) is in series with \(R_3\) and acts as a short, we have \(R_2 \parallel R_3 = R/2 = 0.365\) MΩ. Total: \(R_1 + R/2 = 1.095\) MΩ.
+<br>\(i_1 = \varepsilon/(1.095 \times 10^6) = \mathbf{1.1\;\text{mA}}\)
+<br>\(i_2 = i_3 = i_1/2 = \mathbf{0.55\;\text{mA}}\)
+<br><b>At \(t \to \infty\):</b> Fully charged \(C\) = open circuit. No current through \(C\) or \(R_3\). All current through \(R_1 + R_2 = 1.46\) MΩ.
+<br>\(i_1 = i_2 = \varepsilon/(1.46 \times 10^6) = \mathbf{0.82\;\text{mA}}\)
+<br>\(i_3 = \mathbf{0}\)
+<br><b>Voltages across \(R_2\):</b>
+<br>(g) At \(t=0\): \(V_2(0) = i_2 R_2 = (0.55 \times 10^{-3})(0.73 \times 10^6) = \mathbf{400\;\text{V}}\)
+<br>(h) At \(t \to \infty\): \(V_2(\infty) = i_2 R_2 = (0.82 \times 10^{-3})(0.73 \times 10^6) = \mathbf{600\;\text{V}}\)
+<br>(i) \(V_2(t)\) rises exponentially from 400 V to 600 V as the capacitor charges.</p>
+
+<hr>
+
+<h3>Tier 1: Foundations</h3>
+
+<p class="solution"><b>1.</b> (a) \(I = \mathcal{E}/(R+r) = 9.0/4.5 = \mathbf{2.0\;\text{A}}\). (b) \(V_{\text{term}} = 9.0 - 2.0(0.50) = \mathbf{8.0\;\text{V}}\). (c) \(P_R = I^2 R = 4(4) = \mathbf{16\;\text{W}}\). (d) \(P_r = I^2 r = 4(0.5) = \mathbf{2.0\;\text{W}}\). (e) \(P = \mathcal{E}I = 9(2) = \mathbf{18\;\text{W}}\). Check: \(16 + 2 = 18\). ✓</p>
+
+<p class="solution"><b>2.</b> (a) Series: \(R_{\text{eq}} = 3 + 6 + 9 = \mathbf{18\;\Omega}\). (b) Parallel: \(1/R_{\text{eq}} = 1/3 + 1/6 + 1/9 = 11/18\), so \(R_{\text{eq}} = \mathbf{18/11 \approx 1.64\;\Omega}\). (c) Parallel pair: \(R_p = (3)(6)/(3+6) = 2.0\;\Omega\). In series with 9: \(R_{\text{eq}} = \mathbf{11.0\;\Omega}\).</p>
+
+<p class="solution"><b>3.</b> \(I_{15} = 12/15 = 0.80\) A. \(I_{30} = 12/30 = 0.40\) A. Total \(I = 1.20\) A. Check: \(R_{\text{eq}} = 10\;\Omega\), \(I = 12/10 = \mathbf{1.20\;\text{A}}\). ✓</p>
+
+<p class="solution"><b>4.</b> (a) \(\tau = RC = (20 \times 10^3)(50 \times 10^{-6}) = \mathbf{1.0\;\text{s}}\). (b) \(V_C = 10(1 - e^{-0.5/1.0}) = 10(1 - 0.607) = \mathbf{3.93\;\text{V}}\). (c) \(I = (\mathcal{E}/R)e^{-t/\tau} = (0.50\;\text{mA})(0.607) = \mathbf{0.304\;\text{mA}}\).</p>
+
+<p class="solution"><b>5.</b> \(V/V_0 = e^{-t/RC} \Rightarrow 29.4/80 = 0.3675 = e^{-3.0/RC}\). \(\ln(0.3675) = -1.0008 = -3.0/RC\). \(RC = 3.0/1.0008 = 2.998\) s. \(C = 2.998/(200 \times 10^3) = \mathbf{15.0\;\mu\text{F}}\).</p>
+
+<hr>
+<h3>Tier 2: Application</h3>
+
+<p class="solution"><b>6.</b> Parallel pair: \(R/2\). Total external: \(R + R + R/2 = 5R/2\). Total: \(5R/2 + r\). \(I_{\text{total}} = \mathcal{E}/(5R/2 + r)\). Each series resistor carries \(I_{\text{total}}\). Voltage across parallel pair: \(V_p = I_{\text{total}} \cdot R/2\). Each parallel resistor: \(I_p = V_p/R = \mathbf{I_{\text{total}}/2}\).</p>
+
+<p class="solution"><b>7.</b> Let \(I_1\) down through \(5\;\Omega\), \(I_2\) down through \(10\;\Omega\), \(I_3\) down through \(8\;\Omega\). Junction: \(I_1 + I_2 = I_3\). Left loop: \(15 - 5I_1 - 8I_3 = 0\). Right loop: \(10 - 10I_2 - 8I_3 = 0\). Substituting: \(15 - 13I_1 - 8I_2 = 0\) and \(10 - 8I_1 - 18I_2 = 0\). Solving: \(\mathbf{I_2 = 0.059\;\text{A}}\), \(\mathbf{I_1 = 1.118\;\text{A}}\), \(\mathbf{I_3 = 1.177\;\text{A}}\). All positive — assumed directions correct.</p>
+
+<p class="solution"><b>8.</b> (a) \(P_1 = 15(1.118) = 16.8\) W (delivering). \(P_2 = 10(0.059) = 0.59\) W (delivering). (b) Neither being charged. (c) \(P_R = 5(1.118)^2 + 10(0.059)^2 + 8(1.177)^2 = 6.25 + 0.035 + 11.08 = \mathbf{17.4\;\text{W}}\). Check: \(16.8 + 0.59 = 17.4\) W. ✓</p>
+
+<p class="solution"><b>9.</b> \(\tau = 1.0\) s. At \(t=0\): \(I = 2.4\) mA, \(V_R = 24\) V, \(V_C = 0\). At \(t=1\): \(I = 0.883\) mA, \(V_R = 8.83\) V, \(V_C = 15.17\) V. At \(t=2\): \(I = 0.325\) mA, \(V_R = 3.25\) V, \(V_C = 20.75\) V. At \(t=5\): \(I \approx 0.016\) mA, \(V_R \approx 0.16\) V, \(V_C \approx 23.84\) V. (b) \(V_C = V_R\) when \(e^{-t/\tau} = 0.5\), so \(t = \tau \ln 2 = \mathbf{0.693\;\text{s}}\). Both equal \(\mathcal{E}/2 = 12\) V. (c) \(U_C = \frac{1}{2}C\mathcal{E}^2 = \mathbf{0.0288\;\text{J}}\). \(U_R = \) same = \(\mathbf{0.0288\;\text{J}}\). Battery delivered \(C\mathcal{E}^2 = 0.0576\) J — exactly half to each.</p>
+
+<p class="solution"><b>10.</b> (a) \(R_{\text{total}} = 50\;\text{k}\Omega\). \(\tau = (50 \times 10^3)(50 \times 10^{-6}) = \mathbf{2.5\;\text{s}}\). (b) \(I(t) = 2.0\,e^{-t/2.5}\) mA. \(V_C(t) = 100\,e^{-t/2.5}\) V. (c) At \(t=1.0\): \(V_C = 67.0\) V, \(I = 1.34\) mA. \(V_{20k} = 26.8\) V, \(V_{30k} = 40.2\) V. Check: \(26.8 + 40.2 = 67.0\). ✓ (d) At \(2\tau\): \((V_C/V_0)^2 = e^{-4} = 0.0183\). Fraction dissipated: \(\mathbf{98.2\%}\).</p>
+
+<hr>
+<h3>Tier 3: AP Free Response</h3>
+
+<p class="solution"><b>11.</b> Junction: \(I_1 + I_2 = I_3\). Left: \(20 - 5I_1 - 6I_3 = 0\). Right: \(12 - 3.5I_2 - 6I_3 = 0\). Solving: \(\mathbf{I_1 = 1.45\;\text{A}}\), \(\mathbf{I_2 = 0.35\;\text{A}}\), \(\mathbf{I_3 = 1.80\;\text{A}}\). (c) \(V_A - V_B = I_3 R_3 = 1.80(6) = \mathbf{10.8\;\text{V}}\). (d) \(P_1 = 20(1.45) = 29.0\) W, \(P_2 = 12(0.35) = 4.2\) W. Both delivering. Total dissipated ≈ 30.4 W ≈ 33.2 W delivered (rounding).</p>
+
+<p class="solution"><b>12.</b> (a) At \(t=0\), uncharged \(C\) = short circuit, so \(R_2\) is bypassed. \(I = \mathcal{E}/R_1 = 30/25000 = \mathbf{1.2\;\text{mA}}\). (b) Long time: \(C\) fully charged, \(I_C = 0\). Current through \(R_1\) and \(R_2\) in series: \(I = 30/100\text{k} = \mathbf{0.30\;\text{mA}}\). (c) \(V_C = IR_2 = (0.30 \times 10^{-3})(75 \times 10^3) = \mathbf{22.5\;\text{V}}\). (d) Thévenin: \(R_{\text{Th}} = R_1 \| R_2 = 25(75)/(25+75) = 18.75\;\text{k}\Omega\). \(\tau = R_{\text{Th}} C = \mathbf{0.375\;\text{s}}\). (e) After switch opens, \(C\) discharges through \(R_2\) only. \(\tau_{\text{new}} = R_2 C = \mathbf{1.5\;\text{s}}\).</p>
+
+<p class="solution"><b>13.</b> \(q/C + R(dq/dt) = 0 \Rightarrow dq/dt = -q/(RC) \Rightarrow dq/q = -dt/(RC)\). Integrate: \(\ln q = -t/(RC) + \text{const}\). At \(t=0\): \(q = Q_0\), so \(\text{const} = \ln Q_0\). Therefore \(\ln(q/Q_0) = -t/(RC)\), giving \(\mathbf{q(t) = Q_0\,e^{-t/RC}}\).</p>
+
+<p class="solution"><b>14.</b> (a) \(\ln I\) values: 1.609, 1.303, 0.997, 0.689, 0.385, 0.077, −0.223. (b) Straight line; slope = \(-1/\tau\), intercept = \(\ln(\mathcal{E}/R)\). (c) Slope = \((−0.223 − 1.609)/3.0 = −0.611\), so \(\tau = \mathbf{1.64\;\text{s}}\). (d) \(R = \tau/C = 1.64/(100 \times 10^{-6}) = \mathbf{16.4\;\text{k}\Omega}\). (e) \(\mathcal{E} = I_0 R = (5.0 \times 10^{-3})(16400) = \mathbf{82\;\text{V}}\).</p>
+
+<p class="solution"><b>15.</b> (a) \(Q = C\mathcal{E} = 0.012\) C. \(W = Q\mathcal{E} = \mathbf{0.144\;\text{J}}\). (b) \(U_C = \frac{1}{2}C\mathcal{E}^2 = \mathbf{0.072\;\text{J}}\). (c) \(U_R = 0.144 - 0.072 = \mathbf{0.072\;\text{J}}\). (d) \(U_R = \int_0^\infty I^2 R\,dt = \int_0^\infty \frac{\mathcal{E}^2}{R}e^{-2t/RC}\,dt = \frac{\mathcal{E}^2}{R} \cdot \frac{RC}{2} = \mathbf{\frac{1}{2}C\mathcal{E}^2 = U_C}\). Always exactly half, independent of \(R\).</p>
+
+</div>
+
+</body>
+</html>

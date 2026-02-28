@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VikramPlan — Dashboard</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #F5F0EB; --card: #FFFFFF; --border: #E8E4DF;
+    --text: #2D2D2D; --muted: #8C8680; --faint: #A8A29E; --accent: #D4714E;
+    --red: #EF4444; --yellow: #F59E0B; --green: #10B981; --blue: #3B82F6;
+  }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg); color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+
+  /* ─── Header ─── */
+  .header {
+    text-align: center; padding: 32px 20px 0;
+  }
+  .header h1 { font-size: 1.4rem; font-weight: 700; color: #1A1A1A; letter-spacing: -0.5px; }
+  .header .subtitle { color: var(--muted); font-size: 0.8rem; margin-top: 4px; }
+
+  /* ─── Tabs ─── */
+  .tabs {
+    display: flex; justify-content: center; gap: 4px;
+    padding: 16px 20px 0;
+    position: sticky; top: 0; z-index: 100;
+    background: var(--bg);
+    padding-bottom: 12px;
+  }
+  .tab {
+    padding: 8px 20px; border-radius: 8px; border: none;
+    font-family: inherit; font-size: 0.8rem; font-weight: 600;
+    cursor: pointer; background: transparent; color: var(--muted);
+    transition: all 0.15s ease;
+  }
+  .tab:hover { background: rgba(212,113,78,0.08); color: var(--accent); }
+  .tab.active { background: var(--accent); color: white; }
+
+  /* ─── Container ─── */
+  .container { max-width: 900px; margin: 0 auto; padding: 0 16px 60px; }
+
+  /* ─── Cards ─── */
+  .card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 16px 20px; margin-bottom: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+  }
+
+  /* ─── Capacity Meter ─── */
+  .meter-bar {
+    position: relative; height: 10px; background: var(--bg);
+    border-radius: 5px; overflow: hidden; margin: 10px 0;
+  }
+  .meter-fill-committed {
+    position: absolute; top: 0; left: 0; height: 100%;
+    background: var(--border); border-radius: 5px;
+  }
+  .meter-fill-done {
+    position: absolute; top: 0; left: 0; height: 100%;
+    border-radius: 5px; transition: width 0.4s ease;
+  }
+
+  /* ─── Day Card ─── */
+  .day-card { cursor: default; }
+  .day-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 4px;
+  }
+  .day-title { font-weight: 700; font-size: 0.95rem; }
+  .day-label { font-size: 0.75rem; color: var(--accent); font-weight: 600; }
+  .day-deadlines {
+    font-size: 0.75rem; color: var(--red); font-weight: 600;
+    margin-bottom: 8px; padding: 4px 0;
+  }
+  .block-row {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 8px 0; border-top: 1px solid #F5F0EB;
+  }
+  .block-check {
+    width: 18px; height: 18px; border-radius: 5px;
+    border: 2px solid var(--border); cursor: pointer;
+    flex-shrink: 0; margin-top: 1px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; color: white; transition: all 0.15s;
+  }
+  .block-check.done { background: var(--green); border-color: var(--green); }
+  .block-time { font-size: 0.7rem; color: var(--faint); font-weight: 500; min-width: 80px; margin-top: 2px; }
+  .block-task { font-size: 0.82rem; color: var(--text); line-height: 1.4; flex: 1; }
+  .block-task.done-text { text-decoration: line-through; color: var(--faint); }
+  .course-pill {
+    display: inline-block; font-size: 0.6rem; font-weight: 600;
+    padding: 2px 7px; border-radius: 4px; margin-left: 6px;
+    vertical-align: middle;
+  }
+  .priority-dot {
+    display: inline-block; width: 6px; height: 6px; border-radius: 50%;
+    margin-right: 4px; vertical-align: middle;
+  }
+
+  /* ─── Upcoming ─── */
+  .upcoming-item {
+    display: flex; align-items: center; gap: 8px;
+    padding: 6px 0; font-size: 0.8rem;
+  }
+  .upcoming-date { font-weight: 600; min-width: 55px; font-size: 0.72rem; color: var(--faint); }
+  .upcoming-label { flex: 1; }
+  .days-badge {
+    font-size: 0.65rem; font-weight: 700; padding: 2px 8px;
+    border-radius: 10px; white-space: nowrap;
+  }
+
+  /* ─── Grades ─── */
+  .grade-card {
+    display: grid; grid-template-columns: 1fr; gap: 2px;
+  }
+  @media (min-width: 600px) {
+    .grade-card { grid-template-columns: 1fr 1fr; }
+  }
+  .grade-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 16px; background: var(--card); border-radius: 10px;
+    border: 1px solid var(--border); margin-bottom: 6px;
+  }
+  .grade-course { font-weight: 600; font-size: 0.85rem; }
+  .grade-numbers { display: flex; gap: 16px; align-items: center; }
+  .grade-num { text-align: center; }
+  .grade-num .label { font-size: 0.6rem; color: var(--faint); text-transform: uppercase; letter-spacing: 0.5px; }
+  .grade-num .value { font-size: 0.95rem; font-weight: 700; }
+  .status-badge {
+    font-size: 0.6rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.5px; padding: 3px 8px; border-radius: 6px;
+  }
+  .status-strong { background: #ECFDF5; color: #059669; }
+  .status-ok { background: #EFF6FF; color: #3B82F6; }
+  .status-watch { background: #FFFBEB; color: #D97706; }
+  .status-emergency { background: #FEF2F2; color: #DC2626; }
+  .grade-detail { font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
+  .grade-delta-up { color: var(--green); font-weight: 600; }
+  .grade-delta-down { color: var(--red); font-weight: 600; }
+  .strategic-note {
+    font-size: 0.75rem; color: var(--muted); padding: 8px 12px;
+    background: #FAFAF8; border-radius: 8px; margin-top: 4px;
+    line-height: 1.5; border-left: 3px solid var(--accent);
+  }
+
+  /* ─── Calendar ─── */
+  .cal-nav {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 12px;
+  }
+  .cal-nav h3 { font-size: 1rem; font-weight: 700; }
+  .cal-nav button {
+    background: none; border: 1px solid var(--border); border-radius: 8px;
+    padding: 4px 12px; font-family: inherit; font-size: 0.8rem;
+    cursor: pointer; color: var(--muted);
+  }
+  .cal-grid {
+    display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px;
+  }
+  .cal-dow {
+    text-align: center; font-size: 0.65rem; font-weight: 600;
+    color: var(--faint); text-transform: uppercase; padding: 4px 0;
+  }
+  .cal-cell {
+    min-height: 80px; background: var(--card); border-radius: 8px;
+    border: 1px solid var(--border); padding: 6px;
+    font-size: 0.7rem; cursor: pointer; transition: all 0.15s;
+    position: relative; overflow: hidden;
+  }
+  .cal-cell:hover { border-color: var(--accent); }
+  .cal-cell.today { border-color: var(--accent); border-width: 2px; }
+  .cal-cell.empty { background: transparent; border-color: transparent; cursor: default; }
+  .cal-cell.empty:hover { border-color: transparent; }
+  .cal-date { font-weight: 700; font-size: 0.75rem; color: var(--text); margin-bottom: 4px; }
+  .cal-date.today-date { color: var(--accent); }
+  .cal-event {
+    font-size: 0.6rem; padding: 1px 4px; border-radius: 3px;
+    margin-bottom: 2px; white-space: nowrap; overflow: hidden;
+    text-overflow: ellipsis; line-height: 1.6;
+  }
+  .cal-blocks { font-size: 0.6rem; color: var(--muted); margin-top: 2px; }
+
+  /* ─── Calendar Detail Panel ─── */
+  .cal-detail {
+    margin-top: 12px; padding: 16px; background: var(--card);
+    border: 1px solid var(--border); border-radius: 12px;
+  }
+  .cal-detail h4 { font-size: 0.9rem; margin-bottom: 8px; }
+
+  /* ─── Section Label ─── */
+  .section-label {
+    font-size: 0.7rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 1.2px; color: var(--faint); margin: 20px 0 8px;
+  }
+
+  /* ─── Footer ─── */
+  footer { text-align: center; padding: 24px; color: #C4BFB9; font-size: 0.7rem; }
+
+  /* ─── Responsive ─── */
+  @media (max-width: 600px) {
+    .cal-cell { min-height: 60px; padding: 4px; }
+    .cal-event { font-size: 0.55rem; }
+    .grade-numbers { gap: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>VikramPlan</h1>
+  <div class="subtitle" id="generated-date">Loading...</div>
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="showTab('planner')">Planner</button>
+  <button class="tab" onclick="showTab('grades')">Grades</button>
+  <button class="tab" onclick="showTab('calendar')">Calendar</button>
+</div>
+
+<div class="container">
+  <div id="planner-tab"></div>
+  <div id="grades-tab" style="display:none"></div>
+  <div id="calendar-tab" style="display:none"></div>
+</div>
+
+<footer>VikramPlan — Built with Claude &amp; Prashanth, Feb 2026</footer>
+
+<script>
+// ─── Course Colors ───
+const COURSE_COLORS = {
+  "AP Chemistry":   { bg: "#FEF2F2", text: "#991B1B", pill: "#FECACA" },
+  "AP Physics C":   { bg: "#FFF7ED", text: "#9A3412", pill: "#FED7AA" },
+  "AP Calc BC":     { bg: "#EFF6FF", text: "#1E40AF", pill: "#DBEAFE" },
+  "AP Comp Sci A":  { bg: "#F5F3FF", text: "#5B21B6", pill: "#EDE9FE" },
+  "IB World Lit":   { bg: "#ECFDF5", text: "#065F46", pill: "#D1FAE5" },
+  "IB History":     { bg: "#EEF2FF", text: "#3730A3", pill: "#E0E7FF" },
+  "IB Espanol":     { bg: "#FDF2F8", text: "#9D174D", pill: "#FCE7F3" },
+  "Intro Sys Prog": { bg: "#F0FDFA", text: "#115E59", pill: "#CCFBF1" },
+  "Health Online":  { bg: "#FEF2F2", text: "#DC2626", pill: "#FECACA" },
+};
+
+const PRIORITY_COLORS = { red: "#EF4444", yellow: "#F59E0B", green: "#10B981" };
+const MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+const DAYS = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+
+let DATA = null;
+let calMonth = 1; // Feb = 1 (0-indexed)
+let calYear = 2026;
+let selectedCalDate = null;
+
+// ─── Tab Switching ───
+function showTab(tab) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.container > div').forEach(d => d.style.display = 'none');
+  event.target.classList.add('active');
+  document.getElementById(tab + '-tab').style.display = 'block';
+}
+
+// ─── Utility ───
+function parseDate(s) { return new Date(s + 'T12:00:00'); }
+function formatShortDate(s) {
+  const d = parseDate(s);
+  return `${MONTHS[d.getMonth()].slice(0,3)} ${d.getDate()}`;
+}
+function daysUntil(dateStr) {
+  const now = new Date(); now.setHours(0,0,0,0);
+  const target = new Date(dateStr + 'T00:00:00');
+  return Math.ceil((target - now) / (86400000));
+}
+function todayStr() {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+
+function coursePill(course) {
+  if (!course) return '';
+  const c = COURSE_COLORS[course] || { bg: '#F5F0EB', text: '#8C8680', pill: '#E8E4DF' };
+  return `<span class="course-pill" style="background:${c.pill};color:${c.text}">${course}</span>`;
+}
+
+function statusClass(status) {
+  return 'status-' + status;
+}
+
+// ─── Render Planner ───
+function renderPlanner() {
+  const el = document.getElementById('planner-tab');
+  const cap = DATA.capacity;
+  const today = todayStr();
+
+  let html = '';
+
+  // Capacity meter
+  const commitPct = Math.max(2, (cap.committed_blocks / cap.total_blocks) * 100);
+  const bufferPct = Math.round(cap.buffer_blocks / cap.total_blocks * 100);
+  html += `
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <span style="font-weight:600;font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px">Capacity</span>
+        <span style="font-size:0.72rem;color:var(--faint)">${cap.committed_blocks} committed / ${cap.total_blocks} total</span>
+      </div>
+      <div class="meter-bar">
+        <div class="meter-fill-committed" style="width:${commitPct}%"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:0.72rem">
+        <span style="color:var(--green);font-weight:500">${cap.buffer_blocks} blocks buffer (${bufferPct}%)</span>
+        <span style="color:var(--faint)">${bufferPct < 15 ? 'No room for error.' : bufferPct < 30 ? 'Getting tight.' : 'On track.'}</span>
+      </div>
+    </div>`;
+
+  // Upcoming deadlines
+  const upcoming = DATA.deadlines.filter(d => daysUntil(d.due) >= 0).slice(0, 8);
+  if (upcoming.length) {
+    html += `<div class="section-label">Upcoming Deadlines</div><div class="card">`;
+    for (const dl of upcoming) {
+      const du = daysUntil(dl.due);
+      let badgeColor, badgeBg;
+      if (du <= 1) { badgeColor = '#DC2626'; badgeBg = '#FEF2F2'; }
+      else if (du <= 3) { badgeColor = '#D97706'; badgeBg = '#FFFBEB'; }
+      else { badgeColor = '#059669'; badgeBg = '#ECFDF5'; }
+      const pColor = PRIORITY_COLORS[dl.priority] || '#10B981';
+      html += `
+        <div class="upcoming-item">
+          <span class="priority-dot" style="background:${pColor}"></span>
+          <span class="upcoming-date">${formatShortDate(dl.due)}${dl.due_time && dl.due_time !== 'in-class' ? ' ' + dl.due_time : ''}</span>
+          <span class="upcoming-label">${dl.label}${dl.due_time === 'in-class' ? ' <span style="font-size:0.65rem;color:var(--muted);font-style:italic">(in-class)</span>' : ''} ${coursePill(dl.course)}</span>
+          <span class="days-badge" style="color:${badgeColor};background:${badgeBg}">${du === 0 ? 'TODAY' : du === 1 ? 'TOMORROW' : du + 'd'}</span>
+        </div>`;
+    }
+    html += `</div>`;
+  }
+
+  // Day-by-day blocks
+  html += `<div class="section-label">Daily Plan</div>`;
+  for (const day of DATA.days) {
+    const isToday = day.date === today;
+    const isPast = parseDate(day.date) < new Date(today + 'T12:00:00');
+    const borderStyle = isToday ? 'border-left: 3px solid var(--accent)' : '';
+
+    html += `<div class="card day-card" style="${borderStyle};${isPast ? 'opacity:0.5' : ''}">`;
+    html += `<div class="day-header">
+      <span class="day-title">${isToday ? '→ ' : ''}${day.day} ${formatShortDate(day.date)}</span>
+      <span style="font-size:0.7rem;color:var(--faint)">${day.available_blocks} blocks</span>
+    </div>`;
+    if (day.label) html += `<div class="day-label">${day.label}</div>`;
+    if (day.day_deadlines && day.day_deadlines.length) {
+      html += `<div class="day-deadlines">🎯 Due today: ${day.day_deadlines.join(' · ')}</div>`;
+    }
+
+    for (const block of day.blocks) {
+      const done = block.done;
+      html += `
+        <div class="block-row">
+          <div class="block-check ${done ? 'done' : ''}" onclick="toggleBlock('${day.date}',${block.slot})">${done ? '✓' : ''}</div>
+          <span class="block-time">${block.time}</span>
+          <span class="block-task ${done ? 'done-text' : ''}">${block.task}${block.course ? ' ' + coursePill(block.course) : ''}</span>
+        </div>`;
+    }
+    html += `</div>`;
+  }
+
+  el.innerHTML = html;
+}
+
+// ─── Toggle Block ───
+function toggleBlock(dateStr, slot) {
+  for (const day of DATA.days) {
+    if (day.date === dateStr) {
+      for (const block of day.blocks) {
+        if (block.slot === slot) {
+          block.done = !block.done;
+          break;
+        }
+      }
+      break;
+    }
+  }
+  renderPlanner();
+}
+
+// ─── Render Grades ───
+function renderGrades() {
+  const el = document.getElementById('grades-tab');
+  const grades = DATA.grades.courses;
+  const notes = DATA.strategic_notes || {};
+
+  let html = `<div class="section-label">Grade Tracker — T2 in Progress</div>`;
+
+  for (const g of grades) {
+    const c = COURSE_COLORS[g.course] || { bg: '#F5F0EB', text: '#2D2D2D' };
+    const deltaHtml = g.delta === '—' ? '' :
+      g.delta.startsWith('+') ? `<span class="grade-delta-up">↑ ${g.delta}</span>` :
+      `<span class="grade-delta-down">↓ ${g.delta}</span>`;
+
+    const targetDiff = g.t2 - g.target;
+    const targetColor = targetDiff >= 0 ? 'var(--green)' : 'var(--red)';
+    const targetLabel = targetDiff >= 0 ? `+${targetDiff.toFixed(1)} above target` : `${targetDiff.toFixed(1)} below target`;
+
+    html += `
+      <div class="card" style="border-left: 3px solid ${c.text}">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+          <a href="course.html?c=${encodeURIComponent(g.course)}" class="grade-course" style="color:inherit;text-decoration:none;border-bottom:1px dashed var(--border)">${g.course}</a>
+          <span class="status-badge ${statusClass(g.status)}">${g.status}</span>
+        </div>
+        <div style="display:flex;gap:24px;align-items:baseline;margin-bottom:4px">
+          <div class="grade-num">
+            <div class="label">T1</div>
+            <div class="value" style="color:var(--faint)">${g.t1}</div>
+          </div>
+          <div class="grade-num">
+            <div class="label">T2</div>
+            <div class="value" style="color:${c.text};font-size:1.2rem">${g.t2}</div>
+          </div>
+          <div class="grade-num">
+            <div class="label">Y1</div>
+            <div class="value">${g.y1}</div>
+          </div>
+          <div class="grade-num">
+            <div class="label">Target</div>
+            <div class="value" style="color:var(--muted)">${g.target}</div>
+          </div>
+          <div style="flex:1;text-align:right">
+            ${deltaHtml}
+            <div style="font-size:0.68rem;color:${targetColor};margin-top:2px">${targetLabel}</div>
+          </div>
+        </div>
+        ${notes[g.course] ? `<div class="strategic-note">${notes[g.course]}</div>` : ''}
+      </div>`;
+  }
+
+  // Summary stats
+  const watchCount = grades.filter(g => g.status === 'watch').length;
+  const emergencyCount = grades.filter(g => g.status === 'emergency').length;
+  const strongCount = grades.filter(g => g.status === 'strong').length;
+
+  html += `
+    <div class="card" style="margin-top:16px;text-align:center">
+      <div style="display:flex;justify-content:center;gap:24px;font-size:0.8rem">
+        <div><span style="font-size:1.4rem;font-weight:800;color:var(--green)">${strongCount}</span><br><span style="color:var(--muted)">Strong</span></div>
+        <div><span style="font-size:1.4rem;font-weight:800;color:var(--blue)">${grades.filter(g=>g.status==='ok').length}</span><br><span style="color:var(--muted)">OK</span></div>
+        <div><span style="font-size:1.4rem;font-weight:800;color:var(--yellow)">${watchCount}</span><br><span style="color:var(--muted)">Watch</span></div>
+        <div><span style="font-size:1.4rem;font-weight:800;color:var(--red)">${emergencyCount}</span><br><span style="color:var(--muted)">Emergency</span></div>
+      </div>
+    </div>`;
+
+  el.innerHTML = html;
+}
+
+// ─── Render Calendar ───
+function renderCalendar() {
+  const el = document.getElementById('calendar-tab');
+  const today = todayStr();
+
+  // Build event map from schedule data
+  const eventsByDate = {};
+  for (const day of DATA.days) {
+    eventsByDate[day.date] = {
+      blocks: day.blocks,
+      label: day.label,
+      deadlines: day.day_deadlines || [],
+      type: day.type,
+      blockCount: day.available_blocks,
+    };
+  }
+  // Also add deadlines
+  for (const dl of DATA.deadlines) {
+    if (!eventsByDate[dl.due]) eventsByDate[dl.due] = { blocks: [], label: '', deadlines: [], type: 'school', blockCount: 0 };
+    if (!eventsByDate[dl.due].deadlines.includes(dl.label)) {
+      eventsByDate[dl.due].deadlines.push(dl.label);
+    }
+    if (!eventsByDate[dl.due]._dlObjects) eventsByDate[dl.due]._dlObjects = [];
+    eventsByDate[dl.due]._dlObjects.push(dl);
+  }
+
+  const firstDay = new Date(calYear, calMonth, 1).getDay();
+  const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+
+  let html = `
+    <div class="card">
+      <div class="cal-nav">
+        <button onclick="changeMonth(-1)">&larr;</button>
+        <h3>${MONTHS[calMonth]} ${calYear}</h3>
+        <button onclick="changeMonth(1)">&rarr;</button>
+      </div>
+      <div class="cal-grid">`;
+
+  // Day of week headers
+  for (const d of DAYS) html += `<div class="cal-dow">${d}</div>`;
+
+  // Empty cells before first day
+  for (let i = 0; i < firstDay; i++) html += `<div class="cal-cell empty"></div>`;
+
+  // Day cells
+  for (let d = 1; d <= daysInMonth; d++) {
+    const dateStr = `${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const isToday = dateStr === today;
+    const isSelected = dateStr === selectedCalDate;
+    const dayData = eventsByDate[dateStr];
+
+    let cellClass = 'cal-cell';
+    if (isToday) cellClass += ' today';
+
+    let cellStyle = '';
+    if (isSelected) cellStyle = 'background:#FDF2EC;border-color:var(--accent)';
+
+    html += `<div class="${cellClass}" style="${cellStyle}" onclick="selectCalDate('${dateStr}')">`;
+    html += `<div class="cal-date ${isToday ? 'today-date' : ''}">${d}</div>`;
+
+    if (dayData) {
+      // Show deadlines as colored tags
+      const deadlines = dayData._dlObjects || [];
+      for (const dl of deadlines.slice(0, 3)) {
+        const pColor = PRIORITY_COLORS[dl.priority] || '#10B981';
+        const c = COURSE_COLORS[dl.course] || { bg: '#F5F0EB', text: '#8C8680' };
+        html += `<div class="cal-event" style="background:${c.bg};color:${c.text}">
+          <span class="priority-dot" style="background:${pColor}"></span>${dl.label.slice(0, 20)}${dl.label.length > 20 ? '…' : ''}
+        </div>`;
+      }
+      if (deadlines.length > 3) {
+        html += `<div class="cal-event" style="color:var(--muted)">+${deadlines.length - 3} more</div>`;
+      }
+      // Show block count
+      if (dayData.blockCount) {
+        html += `<div class="cal-blocks">${dayData.blockCount} blocks</div>`;
+      }
+    }
+
+    html += `</div>`;
+  }
+
+  html += `</div></div>`;
+
+  // Detail panel for selected date
+  if (selectedCalDate && eventsByDate[selectedCalDate]) {
+    const sd = eventsByDate[selectedCalDate];
+    const selDay = DATA.days.find(d => d.date === selectedCalDate);
+    html += `<div class="cal-detail">`;
+    html += `<h4>${formatShortDate(selectedCalDate)}${sd.label ? ' — ' + sd.label : ''}</h4>`;
+
+    if (sd._dlObjects && sd._dlObjects.length) {
+      html += `<div style="margin-bottom:8px">`;
+      for (const dlObj of sd._dlObjects) {
+        const timeStr = dlObj.due_time && dlObj.due_time !== 'in-class' ? ` @ ${dlObj.due_time}` : (dlObj.due_time === 'in-class' ? ' (in-class)' : '');
+        html += `<div style="font-size:0.78rem;color:var(--red);font-weight:600;margin-bottom:2px">🎯 ${dlObj.label}${timeStr}</div>`;
+      }
+      html += `</div>`;
+    }
+
+    if (selDay && selDay.blocks.length) {
+      for (const block of selDay.blocks) {
+        html += `
+          <div class="block-row">
+            <span class="block-time">${block.time}</span>
+            <span class="block-task">${block.task}${block.course ? ' ' + coursePill(block.course) : ''}</span>
+          </div>`;
+      }
+    } else {
+      html += `<div style="font-size:0.8rem;color:var(--muted);padding:8px 0">No study blocks scheduled</div>`;
+    }
+    html += `</div>`;
+  }
+
+  el.innerHTML = html;
+}
+
+function selectCalDate(dateStr) {
+  selectedCalDate = selectedCalDate === dateStr ? null : dateStr;
+  renderCalendar();
+}
+
+function changeMonth(delta) {
+  calMonth += delta;
+  if (calMonth > 11) { calMonth = 0; calYear++; }
+  if (calMonth < 0) { calMonth = 11; calYear--; }
+  selectedCalDate = null;
+  renderCalendar();
+}
+
+// ─── Load Data ───
+fetch('schedule.json')
+  .then(r => r.json())
+  .then(data => {
+    DATA = data;
+    document.getElementById('generated-date').textContent =
+      `Generated ${new Date(data.generated).toLocaleDateString()} · ${data.planning_window.start} → ${data.planning_window.end}`;
+    renderPlanner();
+    renderGrades();
+    renderCalendar();
+  })
+  .catch(err => {
+    // Fallback: try inline
+    document.getElementById('generated-date').textContent = 'Error loading schedule.json: ' + err.message;
+  });
+</script>
+</body>
+</html>

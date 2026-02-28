@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vikram — The Full Picture</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #0f0f23;
+    color: #e0e0e0;
+    min-height: 100vh;
+  }
+  .container { max-width: 820px; margin: 0 auto; padding: 20px; }
+
+  /* Progress bar */
+  .progress-bar {
+    position: fixed; top: 0; left: 0; right: 0;
+    height: 4px; background: #1a1a2e; z-index: 100;
+  }
+  .progress-fill {
+    height: 100%; background: linear-gradient(90deg, #00d2ff, #7b2ff7);
+    width: 0%; transition: width 0.3s;
+  }
+
+  /* Navigation */
+  .nav {
+    position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 10px; z-index: 100;
+    background: rgba(15, 15, 35, 0.95); padding: 12px 20px; border-radius: 25px;
+    border: 1px solid #333; backdrop-filter: blur(10px);
+  }
+  .nav button {
+    background: #1a1a3e; color: #fff; border: 1px solid #444;
+    padding: 8px 20px; border-radius: 20px; cursor: pointer;
+    font-size: 14px; transition: all 0.2s;
+  }
+  .nav button:hover { background: #2a2a5e; border-color: #7b2ff7; }
+  .nav button:disabled { opacity: 0.3; cursor: not-allowed; }
+  .nav .page-num { color: #888; font-size: 13px; display: flex; align-items: center; }
+
+  /* Sections */
+  .section {
+    display: none; min-height: 80vh;
+    animation: fadeIn 0.4s ease;
+    padding-bottom: 80px;
+  }
+  .section.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+  h1 { font-size: 28px; margin-bottom: 8px; }
+  h2 { font-size: 22px; margin: 24px 0 12px; color: #7b2ff7; }
+  h3 { font-size: 17px; margin: 16px 0 8px; color: #00d2ff; }
+  p { line-height: 1.7; margin-bottom: 12px; color: #ccc; }
+
+  .subtitle { color: #888; font-size: 14px; margin-bottom: 30px; }
+  .highlight { color: #ffd700; font-weight: 600; }
+  .good { color: #4ade80; }
+  .watch { color: #fbbf24; }
+  .alert { color: #f87171; }
+  .purple-text { color: #a78bfa; }
+
+  /* Cards */
+  .card {
+    background: #1a1a2e; border-radius: 12px; padding: 20px;
+    margin: 16px 0; border-left: 3px solid #333;
+  }
+  .card.green { border-left-color: #4ade80; }
+  .card.yellow { border-left-color: #fbbf24; }
+  .card.red { border-left-color: #f87171; }
+  .card.purple { border-left-color: #7b2ff7; }
+  .card.blue { border-left-color: #60a5fa; }
+
+  .card-title { font-weight: 600; margin-bottom: 8px; font-size: 15px; }
+
+  /* Grade table */
+  .grade-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+  .grade-table th { text-align: left; padding: 8px 12px; background: #1a1a2e; color: #888; font-weight: 500; border-bottom: 1px solid #333; }
+  .grade-table td { padding: 8px 12px; border-bottom: 1px solid #1a1a2e; }
+  .grade-table tr:hover { background: rgba(123, 47, 247, 0.05); }
+
+  /* Policy table */
+  .policy-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 13px; }
+  .policy-table th { text-align: left; padding: 6px 10px; background: #1a1a2e; color: #888; font-weight: 500; border-bottom: 1px solid #333; }
+  .policy-table td { padding: 6px 10px; border-bottom: 1px solid #1a1a2e; font-size: 13px; }
+
+  /* Stat blocks */
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 16px 0; }
+  .stat {
+    background: #1a1a2e; padding: 16px; border-radius: 10px; text-align: center;
+  }
+  .stat-value { font-size: 28px; font-weight: 700; }
+  .stat-label { font-size: 12px; color: #888; margin-top: 4px; }
+
+  /* Pattern block */
+  .pattern {
+    background: linear-gradient(135deg, #1a1a2e, #1a1a3e);
+    border-radius: 12px; padding: 20px; margin: 16px 0;
+    border: 1px solid #2a2a4e;
+  }
+  .pattern-title { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+
+  /* Teacher card */
+  .teacher-card {
+    background: #1a1a2e; border-radius: 12px; padding: 16px 20px;
+    margin: 12px 0; border: 1px solid #2a2a4e;
+  }
+  .teacher-name { font-weight: 600; font-size: 15px; color: #e0e0e0; }
+  .teacher-course { color: #888; font-size: 13px; margin-bottom: 8px; }
+  .teacher-detail { font-size: 13px; color: #aaa; line-height: 1.5; margin-bottom: 4px; }
+  .teacher-tip {
+    background: rgba(123, 47, 247, 0.1); border-radius: 8px; padding: 10px 14px;
+    margin-top: 10px; font-size: 13px; color: #c4b5fd; border-left: 2px solid #7b2ff7;
+  }
+
+  /* Risk meter */
+  .risk-bar {
+    height: 8px; border-radius: 4px; background: #1a1a2e; margin: 6px 0 12px;
+    overflow: hidden;
+  }
+  .risk-fill { height: 100%; border-radius: 4px; transition: width 0.5s; }
+  .risk-low { background: #4ade80; }
+  .risk-med { background: #fbbf24; }
+  .risk-high { background: #f87171; }
+
+  /* Questions */
+  .question {
+    background: #1a1a2e; border-radius: 12px; padding: 20px; margin: 12px 0;
+    border: 1px solid #333;
+  }
+  .question-num { color: #7b2ff7; font-weight: 700; font-size: 13px; margin-bottom: 6px; }
+  .question-text { font-size: 16px; line-height: 1.5; }
+  textarea {
+    width: 100%; margin-top: 10px; padding: 10px;
+    background: #0f0f23; color: #e0e0e0; border: 1px solid #333;
+    border-radius: 8px; font-family: inherit; font-size: 14px;
+    resize: vertical; min-height: 60px;
+  }
+  textarea:focus { outline: none; border-color: #7b2ff7; }
+
+  /* Deadline list */
+  .deadline {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 14px; margin: 6px 0; border-radius: 8px;
+    background: #1a1a2e; font-size: 14px;
+  }
+  .deadline-date { color: #888; font-size: 12px; min-width: 80px; }
+  .deadline-name { flex: 1; margin: 0 12px; }
+  .deadline-course { color: #888; font-size: 12px; }
+  .deadline.urgent { border-left: 3px solid #f87171; }
+  .deadline.high { border-left: 3px solid #fbbf24; }
+  .deadline.normal { border-left: 3px solid #4ade80; }
+
+  /* Copy button */
+  .copy-btn {
+    background: #7b2ff7; color: #fff; border: none; padding: 12px 24px;
+    border-radius: 10px; cursor: pointer; font-size: 15px;
+    margin-top: 20px; width: 100%; font-weight: 600; transition: all 0.2s;
+  }
+  .copy-btn:hover { background: #6b1fe7; transform: translateY(-1px); }
+
+  /* Cheat code badge */
+  .badge {
+    display: inline-block; padding: 2px 8px; border-radius: 10px;
+    font-size: 11px; font-weight: 600; margin-left: 6px; vertical-align: middle;
+  }
+  .badge-green { background: rgba(74, 222, 128, 0.15); color: #4ade80; }
+  .badge-yellow { background: rgba(251, 191, 36, 0.15); color: #fbbf24; }
+  .badge-red { background: rgba(248, 113, 113, 0.15); color: #f87171; }
+
+  /* Collapsible */
+  .collapsible-header {
+    cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+  }
+  .collapsible-header::after { content: '+'; color: #666; font-size: 18px; }
+  .collapsible-header.open::after { content: '−'; }
+  .collapsible-body { display: none; margin-top: 10px; }
+  .collapsible-body.open { display: block; }
+
+  .small { font-size: 13px; color: #888; }
+  .divider { border-top: 1px solid #222; margin: 20px 0; }
+</style>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+<div class="container">
+
+  <!-- PAGE 1: INTRO -->
+  <div class="section active" id="page1">
+    <h1>Hey Vikram</h1>
+    <p class="subtitle">We went deep on Schoology and PowerSchool today — grades, assignments, every teacher's management plan and syllabus. Here's the full picture.</p>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-value good">6</div>
+        <div class="stat-label">Courses at A (93+)</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value watch">2</div>
+        <div class="stat-label">A- Watch List</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value alert">1</div>
+        <div class="stat-label">Needs Fix (Health)</div>
+      </div>
+    </div>
+
+    <p>Short version: <span class="highlight">you're mostly an A student</span> — 6 of 8 core courses at 93+. Calc BC and Physics C are both hovering around 90 (A-). Health Online needs a simple system to stop dropping zeros.</p>
+
+    <p>But the grades aren't the whole story. We also read every teacher's management plan and syllabus. That's where the real cheat codes are — retake policies, late work rules, what each teacher actually cares about. Let me walk you through it.</p>
+  </div>
+
+  <!-- PAGE 2: GRADE MAP -->
+  <div class="section" id="page2">
+    <h2>Your Grade Map</h2>
+    <p>Where everything stands right now (year grade from PowerSchool):</p>
+
+    <table class="grade-table">
+      <tr><th>Course</th><th>Grade</th><th>Status</th></tr>
+      <tr><td>IB History of Americas HL</td><td><span class="good">A (96.7%)</span></td><td>Crushing it</td></tr>
+      <tr><td>IB Espanol IV SL</td><td><span class="good">A (96.2%)</span></td><td>Crushing it</td></tr>
+      <tr><td>AP Chemistry</td><td><span class="good">A (94.9%)</span></td><td>Strong</td></tr>
+      <tr><td>Intro Sys Programming</td><td><span class="good">A (94.9%)</span></td><td>Strong</td></tr>
+      <tr><td>AP Comp Sci A</td><td><span class="good">A (94.3%)</span></td><td>Strong</td></tr>
+      <tr><td>IB World Lit I HL</td><td><span class="good">A (93.9%)</span></td><td>Solid</td></tr>
+      <tr><td>AP Calculus BC</td><td><span class="watch">A- (90.8%)</span></td><td>Watch list</td></tr>
+      <tr><td>AP Physics C</td><td><span class="watch">A- (90.1%)</span></td><td>Watch list</td></tr>
+      <tr><td>Health/First Aid Online</td><td><span class="alert">B (85.7%)</span></td><td>Fixable</td></tr>
+      <tr><td>Guitar & Mandolin</td><td><span class="good">A (100%)</span></td><td>Perfect</td></tr>
+    </table>
+
+    <div class="card purple">
+      <p><strong>Guitar is 100%. Every. Single. Assignment.</strong> That's the benchmark — something about that class clicks perfectly. If we can figure out what makes Guitar different from Health Online, we'll have the key to everything.</p>
+    </div>
+  </div>
+
+  <!-- PAGE 3: THE TEST PATTERN -->
+  <div class="section" id="page3">
+    <h2>The Pattern We Found</h2>
+    <p>This is the most important thing in your data:</p>
+
+    <h3>AP Physics C</h3>
+    <div class="card yellow">
+      <p>Quizzes: <span class="good">80-100%</span> &nbsp; Labs: <span class="good">90-100%</span> &nbsp; Tests: <span class="alert">83% and 85%</span></p>
+    </div>
+
+    <h3>AP Calculus BC</h3>
+    <div class="card yellow">
+      <p>Quizzes: <span class="good">100% (perfect)</span> &nbsp; Test #4: <span class="watch">88% (B+)</span></p>
+    </div>
+
+    <h3>Intro Sys Programming</h3>
+    <div class="card yellow">
+      <p>Labs/HW: <span class="good">100%</span> &nbsp; Test: <span class="watch">84% (B)</span></p>
+    </div>
+
+    <div class="pattern">
+      <div class="pattern-title">What this means</div>
+      <p>You <em>know</em> the material — quizzes prove it chapter by chapter. The drop happens when you have to pull it all together for a big test. This isn't a knowledge problem. It's a <strong>test prep and consolidation</strong> problem.</p>
+      <p style="margin-top:10px;">That's good news — the fix is about <em>how</em> you study for tests, not whether you understand the content.</p>
+    </div>
+
+    <div class="card blue" style="margin-top: 20px;">
+      <p class="card-title">Why this matters more than you'd think</p>
+      <p class="small">In Physics, tests are the dominant grade component. In Calc, tests are 300/425 points per trimester (70%). In Sys Prog, tests are the highest-weighted category. The test gap is hitting you hardest in exactly the courses where tests matter most.</p>
+    </div>
+  </div>
+
+  <!-- PAGE 4: KNOW YOUR TEACHERS — THE CHEAT CODES -->
+  <div class="section" id="page4">
+    <h2>Know Your Teachers</h2>
+    <p>We read every management plan and syllabus. Here are the actual rules of each game you're playing — stuff most students never bother to learn.</p>
+
+    <div class="teacher-card">
+      <div class="collapsible-header" onclick="toggle(this)">
+        <div>
+          <span class="teacher-name">Mr. Russo</span>
+          <span class="badge badge-red">NO RETAKES</span>
+        </div>
+      </div>
+      <div class="teacher-course">AP Physics C &nbsp;|&nbsp; chrrus@bergen.org</div>
+      <div class="collapsible-body">
+        <div class="teacher-detail"><strong>Textbook:</strong> Halliday, Resnick, Walker — Fundamentals of Physics (7th ed)</div>
+        <div class="teacher-detail"><strong>How grading works:</strong> Tests dominate. Labs = 20%. Quizzes = 10%. Quizzes are based on the previous night's HW (which isn't collected — the quiz IS the check).</div>
+        <div class="teacher-detail"><strong>Retakes:</strong> None. "College-level course."</div>
+        <div class="teacher-detail"><strong>His philosophy:</strong> An A means you'd get a 5 on the AP exam. He's not grading on a curve — he's measuring against AP exam readiness.</div>
+        <div class="teacher-tip">Cheat code: His tests simulate the AP exam (MC + FRQ). So every test IS AP prep. Also — quizzes are only 10%, so a bad quiz day barely hurts. But skip the HW and you eat it on the quiz.</div>
+      </div>
+    </div>
+
+    <div class="teacher-card">
+      <div class="collapsible-header" onclick="toggle(this)">
+        <div>
+          <span class="teacher-name">Dr. Abramson</span>
+          <span class="badge badge-yellow">DROP LOWEST QUIZ</span>
+        </div>
+      </div>
+      <div class="teacher-course">AP Calculus BC &nbsp;|&nbsp; micabra@bergen.org</div>
+      <div class="collapsible-body">
+        <div class="teacher-detail"><strong>Textbook:</strong> Briggs, Cochran, Gillett — Calculus for Scientists and Engineers</div>
+        <div class="teacher-detail"><strong>How grading works:</strong> 6 quizzes (25 pts) + 3 tests (100 pts) per trimester. Best 5 of 6 quizzes. Total points = your grade. No HW collected. At all.</div>
+        <div class="teacher-detail"><strong>Retakes:</strong> None.</div>
+        <div class="teacher-detail"><strong>Math:</strong> Max per trimester = 125 (quizzes) + 300 (tests) = 425 pts. Each test = ~23.5% of your trimester.</div>
+        <div class="teacher-tip">Cheat code: One bad quiz vanishes (dropped). But there's zero homework buffer — your grade is ONLY tests and quizzes. This means every single assessment matters, and nobody's padding your grade with completion points.</div>
+      </div>
+    </div>
+
+    <div class="teacher-card">
+      <div class="collapsible-header" onclick="toggle(this)">
+        <div>
+          <span class="teacher-name">Dr. Crane (team of 3)</span>
+          <span class="badge badge-yellow">4-PT TEST BUFFER</span>
+        </div>
+      </div>
+      <div class="teacher-course">AP Chemistry &nbsp;|&nbsp; todcra@bergen.org</div>
+      <div class="collapsible-body">
+        <div class="teacher-detail"><strong>Textbook:</strong> Zumdahl — Chemistry (10th ed)</div>
+        <div class="teacher-detail"><strong>How grading works:</strong> Total points. Quizzes (15-20 min) start of class, 6-7 per tri, lowest dropped. Tests = 100 pts per unit but graded out of ~104 (free 4 points!).</div>
+        <div class="teacher-detail"><strong>Retakes:</strong> None. No rounding.</div>
+        <div class="teacher-detail"><strong>AI Policy:</strong> Explicit ban — "ChatGPT and other generative AI tools not permitted for any graded assignment."</div>
+        <div class="teacher-detail"><strong>AP Exam:</strong> Tuesday, May 5, 2026. 60 MC (50%) + 7 FRQ (50%).</div>
+        <div class="teacher-tip">Cheat code: The ~4 extra points on every test are free margin. On a 100-pt test, that's the difference between B+ and A-. Also — practice materials + answer keys are posted before every test. USE THEM. And don't miss a quiz — the first miss IS your drop.</div>
+      </div>
+    </div>
+
+    <div class="teacher-card">
+      <div class="collapsible-header" onclick="toggle(this)">
+        <div>
+          <span class="teacher-name">AP CS Teacher</span>
+          <span class="badge badge-green">RETAKES TO 70%</span>
+        </div>
+      </div>
+      <div class="teacher-course">AP Comp Sci A</div>
+      <div class="collapsible-body">
+        <div class="teacher-detail"><strong>How grading works:</strong> Summative 65% (tests) + Learning Assignments 35% (labs/HW).</div>
+        <div class="teacher-detail"><strong>Retakes:</strong> YES — within 2 weeks, capped at 70%, replaces original.</div>
+        <div class="teacher-detail"><strong>Late labs:</strong> &lt;1 wk = -10%, &lt;2 wk = -20%, &lt;3 wk = -30%. Even super late = 60% at discretion.</div>
+        <div class="teacher-detail"><strong>Help policy:</strong> "You will not lose any credit for having received help" — just cite it in your code comments.</div>
+        <div class="teacher-tip">Cheat code: You can REQUEST to shift a test to another day if you have multiple assessments — 24hr advance notice required. This is huge for overloaded weeks. And always cite help — there's literally no penalty for getting help.</div>
+      </div>
+    </div>
+
+    <div class="teacher-card">
+      <div class="collapsible-header" onclick="toggle(this)">
+        <div>
+          <span class="teacher-name">Profe. Torres-Perez</span>
+          <span class="badge badge-red">NO RETAKES</span>
+        </div>
+      </div>
+      <div class="teacher-course">IB Espanol IV SL &nbsp;|&nbsp; aymtor@bergen.org</div>
+      <div class="collapsible-body">
+        <div class="teacher-detail"><strong>Textbook:</strong> Nuevo Diverso 2 (Alonso et al.)</div>
+        <div class="teacher-detail"><strong>How grading works:</strong> Productive (Writing+Speaking) 40% + Receptive (Reading+Listening) 40% + Skills Practice 20%.</div>
+        <div class="teacher-detail"><strong>Platforms:</strong> Schoology + inThinking + Blinklearning (CL11312239) + Spanishdict + Quizlet. That's 5 platforms.</div>
+        <div class="teacher-detail"><strong>T2 focus:</strong> Preterite vs. imperfect + conditional + si clauses.</div>
+        <div class="teacher-detail"><strong>Style:</strong> Flipped classroom — you prep BEFORE class, class time is for practice.</div>
+        <div class="teacher-tip">Cheat code: Speaking is 20% of your total grade (half of Productive). You can't hide behind written work. Also — the 5-platform sprawl is an exec-functioning trap. Know which platform has what.</div>
+      </div>
+    </div>
+
+    <div class="teacher-card" style="border: 1px solid #f87171;">
+      <div class="collapsible-header" onclick="toggle(this)">
+        <div>
+          <span class="teacher-name">Mr. Madden</span>
+          <span class="badge badge-red">HIGHEST RISK</span>
+        </div>
+      </div>
+      <div class="teacher-course">IB History of Americas I HL &nbsp;|&nbsp; wilmad@bergen.org</div>
+      <div class="collapsible-body">
+        <div class="teacher-detail"><strong>Textbooks:</strong> 5 different books (Berliner, Cayton, Findley, Jordan, Kennedy)</div>
+        <div class="teacher-detail"><strong>How grading works:</strong> Flat points — T1 ~350, T2 ~450, T3 ~500. Final = all three combined (T3 is worth the most). NO ROUNDING — 89.9999% = B+.</div>
+        <div class="teacher-detail"><strong>The big rules:</strong></div>
+        <div class="teacher-detail" style="padding-left: 16px;">
+          ALL submissions <strong style="color: #f87171;">HANDWRITTEN</strong>. No typed work accepted.<br>
+          <strong style="color: #f87171;">NO devices</strong> — laptops, tablets, phones, smart watches. Unless explicitly told otherwise.<br>
+          <strong style="color: #f87171;">NO AI</strong> — not permitted as a routine tool.<br>
+          Late = <strong>-10% per weekday</strong>, up to 50% max penalty.
+        </div>
+        <div class="teacher-detail"><strong>Tardiness:</strong> Directly affects participation grade. Late on test day = could get a ZERO.</div>
+        <div class="teacher-detail"><strong>Participation rubric:</strong> Graded on attendance, verbal participation, note-taking, engagement, group work, and — yes — "sleeping in class."</div>
+        <div class="teacher-detail"><strong>Long game:</strong> 2-year IB Historical Investigation starts this year.</div>
+        <div class="teacher-tip">Cheat code: T3 is worth ~38% of your final grade (500/1300 pts). A strong finish matters WAY more than a strong start. Also — you're at 96.7% right now. Madden's system is harsh but you're playing it perfectly. Don't let tardiness change that.</div>
+      </div>
+    </div>
+
+    <div class="teacher-card">
+      <div class="collapsible-header" onclick="toggle(this)">
+        <div>
+          <span class="teacher-name">Sys Prog Teacher</span>
+          <span class="badge badge-green">RETAKES TO 65%</span>
+        </div>
+      </div>
+      <div class="teacher-course">Intro to Systems Programming</div>
+      <div class="collapsible-body">
+        <div class="teacher-detail"><strong>How grading works:</strong> Weighted average — Tests (5-15 pts), Labs/Quizzes (3-5 pts), HW (1-2 pts).</div>
+        <div class="teacher-detail"><strong>Retakes:</strong> Yes — within 2 weeks, capped at 65%. Same department as AP CS.</div>
+        <div class="teacher-detail"><strong>Same policies as AP CS:</strong> Delayed assessment requests (24hr notice), help citation, tiered late lab penalties.</div>
+        <div class="teacher-tip">Cheat code: Same playbook as AP CS. Use the delayed assessment option when you're overloaded. Retake cap is lower (65% vs 70%), so preventing bad scores is more important here.</div>
+      </div>
+    </div>
+
+    <p class="small" style="margin-top: 16px;">Click each teacher name to expand. IB World Lit management doc was behind a Google login wall — we couldn't access it yet. Health Online has no management doc (fully async).</p>
+  </div>
+
+  <!-- PAGE 5: THE RISK MAP -->
+  <div class="section" id="page5">
+    <h2>Your Risk Map</h2>
+    <p>Not all courses are created equal for exec functioning. Here's where the danger zones are — and where you have breathing room.</p>
+
+    <h3 class="alert">High Risk</h3>
+
+    <div class="card red">
+      <div class="card-title">Health Online — The Invisible Threat</div>
+      <p class="small">No teacher in the room. No one checking. Assignments appear silently in Schoology. You went from 100% to two zeros and back to 100% — proving the content isn't hard, you just… forgot it existed.</p>
+      <div class="risk-bar"><div class="risk-fill risk-high" style="width: 90%"></div></div>
+      <p class="small">Fix: One weekly alarm. That's it. We'll set this up on your Apple Watch.</p>
+    </div>
+
+    <div class="card red">
+      <div class="card-title">IB History (Madden) — The Analog Fortress</div>
+      <p class="small">Handwritten everything, no devices, tardiness graded, no rounding. Your tardiness pattern (7 in Period 1) and his "late on test day = possible zero" rule are a dangerous combination. You're at 96.7% NOW — but this is the class where exec functioning failures cost the most.</p>
+      <div class="risk-bar"><div class="risk-fill risk-high" style="width: 75%"></div></div>
+      <p class="small">Good news: You're crushing History's actual content. The risk is all logistical.</p>
+    </div>
+
+    <h3 class="watch">Medium Risk</h3>
+
+    <div class="card yellow">
+      <div class="card-title">IB Espanol IV — Platform Sprawl</div>
+      <p class="small">5 platforms (Schoology, inThinking, Blinklearning, Spanishdict, Quizlet). Flipped classroom = must prep before every class. No retakes. The "where is my stuff" problem is real.</p>
+      <div class="risk-bar"><div class="risk-fill risk-med" style="width: 55%"></div></div>
+    </div>
+
+    <div class="card yellow">
+      <div class="card-title">AP Calc BC — The Self-Discipline Test</div>
+      <p class="small">No HW collected. No accountability. Grade = 9 assessments and nothing else. Great for a disciplined student, risky for anyone who needs external nudges to practice.</p>
+      <div class="risk-bar"><div class="risk-fill risk-med" style="width: 50%"></div></div>
+    </div>
+
+    <h3 class="good">Lower Risk (Built-in Safety Nets)</h3>
+
+    <div class="card green">
+      <div class="card-title">AP CS + Sys Prog — Most Forgiving Systems</div>
+      <p class="small">Retakes available. Can shift test dates with 24hr notice. Help citation = no penalty for getting help. Late labs still get partial credit. These are the courses designed for imperfect humans.</p>
+      <div class="risk-bar"><div class="risk-fill risk-low" style="width: 25%"></div></div>
+    </div>
+
+    <div class="card green">
+      <div class="card-title">AP Chemistry — Buffers Built In</div>
+      <p class="small">Dropped lowest quiz + 4-point test buffer. Practice materials posted before every test. You're at 94.9% and the system is actually helping you.</p>
+      <div class="risk-bar"><div class="risk-fill risk-low" style="width: 20%"></div></div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="pattern">
+      <div class="pattern-title">The Retake Reality Check</div>
+      <p>Only <strong>2 of 9 courses</strong> let you retake tests — and both cap at C+ or below (70% and 65%). In 7 courses, every test is final. The margin for error across your schedule is thin.</p>
+    </div>
+  </div>
+
+  <!-- PAGE 6: THIS WEEK -->
+  <div class="section" id="page6">
+    <h2>This Week (Feb 17–19)</h2>
+    <p>Monday is off (Presidents Day). Short week but packed:</p>
+
+    <div class="deadline urgent"><span class="deadline-date">Tue 17</span><span class="deadline-name">Lab: Non-Ohmic Resistor</span><span class="deadline-course">Physics C</span></div>
+    <div class="deadline urgent"><span class="deadline-date">Tue 17</span><span class="deadline-name">AP CS Project Presentations begin</span><span class="deadline-course">Comp Sci A</span></div>
+    <div class="deadline urgent"><span class="deadline-date">Wed 18</span><span class="deadline-name">HL Essay Draft — Peer Review (turnitin)</span><span class="deadline-course">World Lit</span></div>
+    <div class="deadline high"><span class="deadline-date">Wed 18</span><span class="deadline-name">Reading: Latin America nationalism overview</span><span class="deadline-course">History</span></div>
+    <div class="deadline high"><span class="deadline-date">Wed 18</span><span class="deadline-name">Assessment 4.5 (by 2:00 PM!)</span><span class="deadline-course">Health</span></div>
+    <div class="deadline urgent"><span class="deadline-date">Thu 19</span><span class="deadline-name">Quiz 2.5 — Thermo Sections 7-10</span><span class="deadline-course">Chemistry</span></div>
+    <div class="deadline high"><span class="deadline-date">Thu 19</span><span class="deadline-name">Lab 4: Basic Rectangles w/ Malloc</span><span class="deadline-course">Sys Prog</span></div>
+    <div class="deadline normal"><span class="deadline-date">Sun 22</span><span class="deadline-name">Write-up: Project Contribution</span><span class="deadline-course">Comp Sci A</span></div>
+
+    <div class="card red" style="margin-top: 20px;">
+      <p class="card-title">Coming up fast</p>
+      <p class="small"><strong>AP Chem Test 2.3 (Thermodynamics)</strong> — likely next week (around Feb 24). Crane's practice materials + answer keys should be posted. Use them.<br><br>
+      <strong>AP Physics C Test (Capacitors & Circuits)</strong> — around March 2. This is your "test gap" subject — start review early, not the night before.</p>
+    </div>
+
+    <div class="card yellow">
+      <p class="card-title">Health — Don't forget</p>
+      <p class="small">Assessment 4.5 is due <strong>Wednesday at 2 PM</strong>. This is exactly the kind of thing that got you the two zeros before. 30 minutes of work. Just do it Tuesday night.</p>
+    </div>
+
+    <div class="card blue">
+      <p class="card-title">Schoology also shows 15 overdue items</p>
+      <p class="small">Most are old Physics C HW chapters (110-124 days overdue). Russo doesn't collect HW — he quizzes it — so these aren't grade emergencies. But worth checking if anything else slipped through.</p>
+    </div>
+  </div>
+
+  <!-- PAGE 7: THE BIGGER PICTURE -->
+  <div class="section" id="page7">
+    <h2>The Bigger Picture (3 Years)</h2>
+    <p>We pulled your data back to freshman year:</p>
+
+    <div class="pattern">
+      <div class="pattern-title">The T2 Dip</div>
+      <p>Every year, your grades dip in Trimester 2. Freshman year: Math B+ → B-, Spanish A → B-, Chemistry A → B+. It's less pronounced now but you're in T2 right now.</p>
+      <p style="margin-top: 8px;">T1 = fresh start energy. T2 = the grind. T3 = finish line push. <strong>Knowing this pattern exists is half the battle.</strong></p>
+    </div>
+
+    <div class="pattern">
+      <div class="pattern-title">The Two Games</div>
+      <p>Every AP and IB course is actually two games at once: <strong>Game 1</strong> is the teacher's grading system (get the report card grade). <strong>Game 2</strong> is the AP/IB exam in May (get the score for college credit).</p>
+      <p style="margin-top: 8px;">Good news: in most of your courses, these games overlap heavily. Russo's tests simulate the AP exam. Crane's units map to AP content. The main exception is IB History and IB Spanish, where the IB exam format needs some separate prep.</p>
+    </div>
+
+    <div class="pattern">
+      <div class="pattern-title">AI: Where You Can and Can't Use It</div>
+      <p>Three teachers explicitly ban AI for graded work: <span class="alert">Chemistry (Crane)</span>, <span class="alert">Spanish (Torres-Perez)</span>, <span class="alert">History (Madden)</span>.</p>
+      <p style="margin-top: 8px;">CS courses allow help if cited. Physics and Calc don't address it.</p>
+      <p style="margin-top: 8px;">Practical rule: Use AI freely for <strong>studying and practice</strong>. Never for graded submissions in Chem, Spanish, or History.</p>
+    </div>
+
+    <div class="pattern">
+      <div class="pattern-title">Overall Trajectory</div>
+      <p>Freshman year had more B's (Math, Spanish, Entrepreneurship). Sophomore year mostly A's. Junior year maintaining A's with only Calc and Physics as watch items. <span class="good">You're on an upward trend.</span></p>
+    </div>
+  </div>
+
+  <!-- PAGE 8: QUESTIONS FOR VIKRAM -->
+  <div class="section" id="page8">
+    <h2>Questions for You</h2>
+    <p>We're building this system <em>with</em> you. These are things only you can tell us:</p>
+
+    <div class="question">
+      <div class="question-num">1 — THE TEST GAP</div>
+      <div class="question-text">When you sit down for a big test vs. a chapter quiz, what feels different? Is it not enough review time? Trouble connecting concepts across chapters? Anxiety? The format?</div>
+      <textarea placeholder="Your thoughts..."></textarea>
+    </div>
+
+    <div class="question">
+      <div class="question-num">2 — THE GUITAR QUESTION</div>
+      <div class="question-text">Guitar is 100% — every assignment, every session. What makes it different? Is it the subject? The structure? The social element? Something else?</div>
+      <textarea placeholder="Your thoughts..."></textarea>
+    </div>
+
+    <div class="question">
+      <div class="question-num">3 — MORNINGS</div>
+      <div class="question-text">7 tardies to Period 1 (World Lit at 8am). What's the deal? Late nights? Hard to wake up? Morning routine takes too long? Something about that specific class?</div>
+      <textarea placeholder="Your thoughts..."></textarea>
+    </div>
+
+    <div class="question">
+      <div class="question-num">4 — STUDY ROUTINE</div>
+      <div class="question-text">Walk me through what you actually do (not should do) in the days before a Physics or Calc test. When do you start? Where do you study? How long? What resources do you use?</div>
+      <textarea placeholder="Your thoughts..."></textarea>
+    </div>
+
+    <div class="question">
+      <div class="question-num">5 — DISTRACTIONS</div>
+      <div class="question-text">When you procrastinate, what's the trigger? "This is overwhelming" vs. "this is boring" vs. "I'll do it later" — which one is it usually? And what do you escape to?</div>
+      <textarea placeholder="Your thoughts..."></textarea>
+    </div>
+
+    <div class="question">
+      <div class="question-num">6 — TEACHER MODELS</div>
+      <div class="question-text">Now that you've seen how each teacher's system works — does anything surprise you? Any "cheat code" you didn't know about? Any teacher whose system feels especially hard to work with?</div>
+      <textarea placeholder="Your thoughts..."></textarea>
+    </div>
+
+    <div class="question">
+      <div class="question-num">7 — PRIORITY</div>
+      <div class="question-text">If you could fix ONE thing about how your school week goes, what would it be? Not what you think we want to hear — what actually bugs you the most?</div>
+      <textarea placeholder="Your thoughts..."></textarea>
+    </div>
+
+    <div class="question">
+      <div class="question-num">8 — RIGHT NOW</div>
+      <div class="question-text">Where are you on the stuff due this week? HL Essay draft (Wed), CS presentation (Tue), Chem quiz prep (Thu), Health assessment (Wed 2pm). What needs help?</div>
+      <textarea placeholder="Your thoughts..."></textarea>
+    </div>
+
+    <button class="copy-btn" onclick="copyResponses()">Copy My Responses (to paste into Claude)</button>
+    <p id="copyStatus" style="text-align:center; margin-top:10px; color:#4ade80; display:none;">Copied! Paste into the Claude chat.</p>
+  </div>
+
+</div>
+
+<!-- Navigation -->
+<div class="nav">
+  <button id="prevBtn" onclick="navigate(-1)" disabled>&larr; Back</button>
+  <span class="page-num" id="pageNum">1 / 8</span>
+  <button id="nextBtn" onclick="navigate(1)">Next &rarr;</button>
+</div>
+
+<script>
+let currentPage = 1;
+const totalPages = 8;
+
+function navigate(dir) {
+  currentPage += dir;
+  currentPage = Math.max(1, Math.min(totalPages, currentPage));
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById('page' + currentPage).classList.add('active');
+  document.getElementById('prevBtn').disabled = currentPage === 1;
+  document.getElementById('nextBtn').disabled = currentPage === totalPages;
+  document.getElementById('pageNum').textContent = currentPage + ' / ' + totalPages;
+  document.getElementById('progressFill').style.width = ((currentPage / totalPages) * 100) + '%';
+  window.scrollTo(0, 0);
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.target.tagName === 'TEXTAREA') return;
+  if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); navigate(1); }
+  if (e.key === 'ArrowLeft') { e.preventDefault(); navigate(-1); }
+});
+
+function toggle(el) {
+  el.classList.toggle('open');
+  const body = el.parentElement.querySelector('.collapsible-body') || el.closest('.teacher-card').querySelector('.collapsible-body');
+  if (body) body.classList.toggle('open');
+}
+
+function copyResponses() {
+  const questions = [
+    "Test gap — what feels different?",
+    "Guitar at 100% — why?",
+    "Morning tardies — what's happening?",
+    "Actual study routine before tests?",
+    "Procrastination triggers?",
+    "Teacher models — anything surprising?",
+    "One thing to fix about school week?",
+    "Status on this week's deadlines?"
+  ];
+  const textareas = document.querySelectorAll('textarea');
+  let output = "# Vikram's Responses — Data Review v2\n\n";
+  textareas.forEach((ta, i) => {
+    if (ta.value.trim()) {
+      output += `**Q${i+1}: ${questions[i]}**\n${ta.value.trim()}\n\n`;
+    }
+  });
+  if (output === "# Vikram's Responses — Data Review v2\n\n") {
+    output += "(No responses filled in yet)";
+  }
+  navigator.clipboard.writeText(output).then(() => {
+    document.getElementById('copyStatus').style.display = 'block';
+    setTimeout(() => { document.getElementById('copyStatus').style.display = 'none'; }, 3000);
+  });
+}
+
+// Init
+document.getElementById('progressFill').style.width = ((1 / totalPages) * 100) + '%';
+
+// Auto-expand all teacher cards on page 4 for easier reading
+// (user can collapse them if they want)
+</script>
+
+</body>
+</html>

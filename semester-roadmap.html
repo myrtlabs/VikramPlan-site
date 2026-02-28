@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vikram's Semester Roadmap — Feb–Jun 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #333;
+      padding: 2rem 1rem;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      overflow: hidden;
+    }
+
+    header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+    header h1 { font-size: 2.2rem; margin-bottom: 0.5rem; }
+    header p { font-size: 1rem; opacity: 0.95; }
+
+    .content { padding: 2rem; }
+
+    /* Alert Box */
+    .conflict-alert {
+      background: #fff3cd;
+      border-left: 5px solid #ff9800;
+      padding: 1rem 1.5rem;
+      margin-bottom: 2rem;
+      border-radius: 4px;
+      font-weight: 500;
+      color: #333;
+    }
+    .conflict-alert strong { color: #d84315; }
+
+    /* Timeline Section */
+    .timeline-section { margin-bottom: 2rem; }
+    .timeline-section h2 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      color: #667eea;
+      border-bottom: 3px solid #667eea;
+      padding-bottom: 0.5rem;
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .month-col {
+      background: #f5f7fa;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 1rem;
+    }
+    .month-col h3 {
+      font-size: 1.1rem;
+      color: #667eea;
+      margin-bottom: 0.8rem;
+      text-align: center;
+      border-bottom: 2px solid #667eea;
+      padding-bottom: 0.5rem;
+    }
+
+    .event {
+      font-size: 0.85rem;
+      padding: 0.6rem;
+      margin-bottom: 0.5rem;
+      border-radius: 4px;
+      font-weight: 500;
+      border-left: 4px solid;
+    }
+
+    .ap-exam { background: #ffebee; border-left-color: #d32f2f; color: #b71c1c; }
+    .ib-exam { background: #e3f2fd; border-left-color: #1976d2; color: #1565c0; }
+    .deadline { background: #fffde7; border-left-color: #fbc02d; color: #f57f17; }
+    .prep { background: #e8f5e9; border-left-color: #388e3c; color: #2e7d32; }
+    .admin { background: #f3e5f5; border-left-color: #7b1fa2; color: #6a1b9a; }
+
+    .event.ib-warn::after { content: " ⚠️"; font-size: 0.9rem; }
+
+    /* Grade Tracker */
+    .grade-section {
+      background: #f9f9f9;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+    }
+    .grade-section h2 {
+      font-size: 1.4rem;
+      color: #667eea;
+      margin-bottom: 1rem;
+      border-bottom: 3px solid #667eea;
+      padding-bottom: 0.5rem;
+    }
+
+    .grade-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .grade-card {
+      background: white;
+      padding: 1rem;
+      border-radius: 8px;
+      border-left: 5px solid #667eea;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .grade-card.critical { border-left-color: #d32f2f; }
+    .grade-card.watch { border-left-color: #ff9800; }
+
+    .grade-card h4 {
+      font-size: 0.95rem;
+      color: #333;
+      margin-bottom: 0.5rem;
+    }
+    .grade-card .current {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #667eea;
+      margin-bottom: 0.3rem;
+    }
+    .grade-card .current.critical { color: #d32f2f; }
+    .grade-card .current.watch { color: #ff9800; }
+
+    .grade-card .target {
+      font-size: 0.85rem;
+      color: #666;
+      margin-top: 0.5rem;
+      padding-top: 0.5rem;
+      border-top: 1px solid #eee;
+    }
+
+    /* Countdown */
+    .countdown-section {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+    }
+    .countdown-section h2 {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid rgba(255,255,255,0.3);
+      padding-bottom: 0.5rem;
+    }
+
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem;
+    }
+
+    .countdown-item {
+      background: rgba(255,255,255,0.1);
+      padding: 1rem;
+      border-radius: 8px;
+      text-align: center;
+      border: 2px solid rgba(255,255,255,0.2);
+    }
+    .countdown-item .days {
+      font-size: 2rem;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+    .countdown-item .label {
+      font-size: 0.85rem;
+      opacity: 0.9;
+    }
+
+    /* Monthly Detail */
+    .monthly-section {
+      background: #f9f9f9;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      border-radius: 8px;
+      border-left: 6px solid #667eea;
+    }
+    .monthly-section h3 {
+      font-size: 1.2rem;
+      color: #667eea;
+      margin-bottom: 0.8rem;
+    }
+    .monthly-section ul {
+      list-style: none;
+      margin-left: 0;
+    }
+    .monthly-section li {
+      padding: 0.4rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+      color: #555;
+    }
+    .monthly-section li::before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      color: #667eea;
+      font-weight: bold;
+    }
+
+    /* Print Styles */
+    @media print {
+      body { background: white; padding: 0; }
+      .container { box-shadow: none; }
+      .content { padding: 1rem; }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header h1 { font-size: 1.6rem; }
+      .timeline {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .grade-grid {
+        grid-template-columns: 1fr;
+      }
+      .countdown-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <h1>📅 Vikram's Semester Roadmap</h1>
+      <p>February 15 — June 2026 | AP + IB Exam Prep Timeline</p>
+    </header>
+
+    <!-- Main Content -->
+    <div class="content">
+
+      <!-- Conflict Alert -->
+      <div class="conflict-alert">
+        ⚠️ <strong>EXAM CONFLICTS DETECTED:</strong>
+        <ul style="margin-top: 0.5rem; margin-left: 1.5rem;">
+          <li><strong>May 5 (Tuesday):</strong> AP Chemistry (8 AM) + IB History P3</li>
+          <li><strong>May 13 (Wednesday):</strong> AP Physics C: Mechanics (8 AM) + IB Spanish B P1+P2</li>
+          <li><strong>May 14 (Thursday):</strong> AP Physics C: E&M (12 PM) + IB Spanish B Listening</li>
+        </ul>
+      </div>
+
+      <!-- Visual Timeline -->
+      <div class="timeline-section">
+        <h2>📊 Semester Timeline</h2>
+        <div class="timeline">
+          <!-- February -->
+          <div class="month-col">
+            <h3>February</h3>
+            <div class="event deadline">Feb 18: IB World Lit Essay Draft</div>
+          </div>
+
+          <!-- March -->
+          <div class="month-col">
+            <h3>March</h3>
+            <div class="event deadline">Mar 2: AP Physics C Test (Ch 25-27)</div>
+            <div class="event deadline">Mar 3: IB World Lit Final</div>
+            <div class="event admin">Mar 13: AP Late Registration</div>
+            <div class="event prep">T2 Ends (approx)</div>
+          </div>
+
+          <!-- April -->
+          <div class="month-col">
+            <h3>April</h3>
+            <div class="event prep">AP Prep Ramp-Up Begins</div>
+            <div class="event prep">Dedicated Review Period</div>
+            <div class="event admin">T3 Begins (approx)</div>
+            <div class="event prep">5 weeks to AP Exams</div>
+          </div>
+
+          <!-- May -->
+          <div class="month-col">
+            <h3>May</h3>
+            <div class="event ib-exam">May 4: IB History HL P1+P2</div>
+            <div class="event ib-exam ap-exam">May 5: AP Chem + IB History P3 ⚠️</div>
+            <div class="event ib-exam">May 7: IB Lit HL P1</div>
+            <div class="event ib-exam">May 8: IB Lit HL P2</div>
+            <div class="event ap-exam ib-exam">May 13: AP Physics M + IB Span P1+P2 ⚠️</div>
+            <div class="event ap-exam ib-exam">May 14: AP Physics EM + IB Span Listen ⚠️</div>
+            <div class="event ap-exam">May 15: AP Comp Sci A</div>
+          </div>
+
+          <!-- June -->
+          <div class="month-col">
+            <h3>June</h3>
+            <div class="event prep">Exam Results & Debrief</div>
+            <div class="event admin">School Year Ends (mid-Jun)</div>
+            <div class="event prep">Summer Prep Begins</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grade Tracker -->
+      <div class="grade-section">
+        <h2>📈 Course Grade Tracking</h2>
+        <div class="grade-grid">
+          <div class="grade-card critical">
+            <h4>AP Physics C</h4>
+            <div class="current critical">86.7%</div>
+            <div>Term 2 Status: <strong>B</strong></div>
+            <div class="target">🎯 Target: B+ (88%+)<br>Focus: Test performance (+5%)</div>
+          </div>
+
+          <div class="grade-card critical">
+            <h4>Health Online</h4>
+            <div class="current critical">71.4%</div>
+            <div>Term 2 Status: <strong>C−</strong></div>
+            <div class="target">🎯 Target: B (83%+)<br>Focus: Complete missed assessments</div>
+          </div>
+
+          <div class="grade-card">
+            <h4>AP Calculus BC</h4>
+            <div class="current">92.0%</div>
+            <div>Term 2 Status: <strong>A−</strong></div>
+            <div class="target">📈 Improving (+2.4% from T1)</div>
+          </div>
+
+          <div class="grade-card">
+            <h4>AP Chemistry</h4>
+            <div class="current">96.3%</div>
+            <div>Term 2 Status: <strong>A</strong></div>
+            <div class="target">📈 Strong growth (+2.9% from T1)</div>
+          </div>
+
+          <div class="grade-card">
+            <h4>AP Comp Sci A</h4>
+            <div class="current">94.2%</div>
+            <div>Term 2 Status: <strong>A</strong></div>
+            <div class="target">✅ Maintain high performance</div>
+          </div>
+
+          <div class="grade-card">
+            <h4>IB World Lit HL</h4>
+            <div class="current">93.3%</div>
+            <div>Term 2 Status: <strong>A</strong></div>
+            <div class="target">✅ Essay finalized (Mar 3)</div>
+          </div>
+
+          <div class="grade-card">
+            <h4>IB History HL</h4>
+            <div class="current">95.8%</div>
+            <div>Term 2 Status: <strong>A</strong></div>
+            <div class="target">✅ Prepare for exams (May 4-5)</div>
+          </div>
+
+          <div class="grade-card">
+            <h4>IB Español IV SL</h4>
+            <div class="current">97.7%</div>
+            <div>Term 2 Status: <strong>A</strong></div>
+            <div class="target">✅ Excellent; maintain focus</div>
+          </div>
+
+          <div class="grade-card">
+            <h4>Intro Sys Prog</h4>
+            <div class="current">93.1%</div>
+            <div>Term 2 Status: <strong>A</strong></div>
+            <div class="target">✅ Strong performance</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Countdown Section -->
+      <div class="countdown-section">
+        <h2>⏱️ Days Until Key Exams</h2>
+        <div class="countdown-grid">
+          <div class="countdown-item">
+            <span class="days" id="ap-chem-days">0</span>
+            <span class="label">AP Chemistry<br>May 5</span>
+          </div>
+          <div class="countdown-item">
+            <span class="days" id="ap-calc-days">0</span>
+            <span class="label">AP Calc BC<br>May 11</span>
+          </div>
+          <div class="countdown-item">
+            <span class="days" id="ap-physics-days">0</span>
+            <span class="label">AP Physics C<br>May 13-14</span>
+          </div>
+          <div class="countdown-item">
+            <span class="days" id="ap-cs-days">0</span>
+            <span class="label">AP Comp Sci A<br>May 15</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Monthly Details -->
+      <div class="timeline-section">
+        <h2>📝 Monthly Focus Areas</h2>
+
+        <div class="monthly-section" style="border-left-color: #2196f3;">
+          <h3>February: Current & Immediate</h3>
+          <ul>
+            <li><strong>Feb 18 (Wed):</strong> IB World Lit essay draft due (Turnitin)</li>
+            <li>Current focus: Finish T2 strong across all courses</li>
+            <li>Physics C: Work toward B+ (test prep for Mar 2)</li>
+            <li>Health Online: Catch up on missed weekly assessments</li>
+            <li>iCal setup: Sync Schoology calendar to Apple Calendar + Watch</li>
+          </ul>
+        </div>
+
+        <div class="monthly-section" style="border-left-color: #ff9800;">
+          <h3>March: T2 Wrap-Up & Transition</h3>
+          <ul>
+            <li><strong>Mar 2 (Mon):</strong> AP Physics C test (Ch 25-27: Capacitors & Circuits) — paper-based prep</li>
+            <li><strong>Mar 3 (Tue):</strong> IB World Lit final essay due</li>
+            <li><strong>Mar 13 (Fri):</strong> AP late registration deadline</li>
+            <li>Goal: Finish T2 with Physics C ≥88% and Health Online ≥75%</li>
+            <li>Debrief: Review what worked in T2 for AP prep strategy</li>
+          </ul>
+        </div>
+
+        <div class="monthly-section" style="border-left-color: #4caf50;">
+          <h3>April: AP Prep Ramp-Up</h3>
+          <ul>
+            <li>T3 begins (~Apr 1)</li>
+            <li>Dedicated AP review period: 5 weeks to first exam (May 5)</li>
+            <li><strong>AP Chemistry:</strong> Full practice test review, equation balancing, stoichiometry</li>
+            <li><strong>AP Calculus BC:</strong> Series convergence, integration by parts, applications</li>
+            <li><strong>AP Physics C:</strong> Consolidate mechanics topics, review circuits (if E&M included)</li>
+            <li><strong>AP Comp Sci A:</strong> Quick review of arrays, recursion, polymorphism</li>
+            <li><strong>Paper-based study:</strong> All practice tests, FRQs written by hand</li>
+          </ul>
+        </div>
+
+        <div class="monthly-section" style="border-left-color: #d32f2f;">
+          <h3>May: EXAM MONTH ⚠️ CONFLICTS AHEAD</h3>
+          <ul>
+            <li><strong>May 4:</strong> IB History HL P1 + P2</li>
+            <li><strong>May 5:</strong> AP Chemistry (8 AM) + IB History P3 — <strong>SAME DAY CONFLICT</strong></li>
+            <li><strong>May 7:</strong> IB Literature HL P1</li>
+            <li><strong>May 8:</strong> IB Literature HL P2</li>
+            <li><strong>May 13:</strong> AP Physics C: Mechanics (8 AM) + IB Spanish B P1+P2 — <strong>SAME DAY CONFLICT</strong></li>
+            <li><strong>May 14:</strong> AP Physics C: E&M (12 PM) + IB Spanish B Listening — <strong>SAME DAY CONFLICT</strong></li>
+            <li><strong>May 15:</strong> AP Computer Science A (12 PM)</li>
+            <li><strong>Strategy:</strong> Prioritize morning exams (AP exams at 8 AM), brief afternoon review for evening exams</li>
+          </ul>
+        </div>
+
+        <div class="monthly-section" style="border-left-color: #9c27b0;">
+          <h3>June: Wind Down & Summer</h3>
+          <ul>
+            <li>School year ends mid-June</li>
+            <li>AP and IB exam results expected mid-July</li>
+            <li>Debrief: What worked? What to improve for senior year?</li>
+            <li>Summer prep: Beaver Works program, independent research, summer application deadlines</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div style="text-align: center; margin-top: 2rem; padding-top: 1.5rem; border-top: 2px solid #eee; color: #999; font-size: 0.9rem;">
+        <p>Last updated: Feb 15, 2026 | Print-friendly • Verify IB exam dates with BCA</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Countdown Script -->
+  <script>
+    function calculateDays(targetDate) {
+      const today = new Date(2026, 1, 15); // Feb 15, 2026
+      const target = new Date(targetDate);
+      const diff = target - today;
+      return Math.ceil(diff / (1000 * 60 * 60 * 24));
+    }
+
+    document.getElementById('ap-chem-days').textContent = calculateDays('2026-05-05');
+    document.getElementById('ap-calc-days').textContent = calculateDays('2026-05-11');
+    document.getElementById('ap-physics-days').textContent = calculateDays('2026-05-13');
+    document.getElementById('ap-cs-days').textContent = calculateDays('2026-05-15');
+  </script>
+</body>
+</html>

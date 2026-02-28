@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VikramPlan</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #F5F0EB;
+    color: #2D2D2D;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+  .hero {
+    text-align: center;
+    padding: 56px 24px 40px;
+  }
+  .hero .logo {
+    width: 48px; height: 48px;
+    border-radius: 14px;
+    background: #D4714E;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    font-size: 22px;
+    color: white;
+    font-weight: 700;
+  }
+  .hero h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #1A1A1A;
+    letter-spacing: -0.5px;
+  }
+  .hero p {
+    color: #8C8680;
+    margin-top: 6px;
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+  .grid {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 0 20px 60px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  @media (min-width: 600px) {
+    .grid { grid-template-columns: 1fr 1fr; }
+  }
+  .section-label {
+    grid-column: 1 / -1;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: #A8A29E;
+    margin-top: 20px;
+    padding-bottom: 0;
+  }
+  .card {
+    display: block;
+    background: #FFFFFF;
+    border: 1px solid #E8E4DF;
+    border-radius: 14px;
+    padding: 20px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+  }
+  .card:hover {
+    border-color: #D4714E;
+    box-shadow: 0 4px 16px rgba(212, 113, 78, 0.1);
+    transform: translateY(-1px);
+  }
+  .card .icon {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+  }
+  .card h3 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #1A1A1A;
+    margin-bottom: 4px;
+  }
+  .card p {
+    font-size: 0.8rem;
+    color: #8C8680;
+    line-height: 1.5;
+  }
+  .card .tag {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 3px 8px;
+    border-radius: 6px;
+    margin-top: 10px;
+  }
+  .tag.core { background: #FDF2EC; color: #D4714E; }
+  .tag.study { background: #ECFDF5; color: #059669; }
+  .tag.archive { background: #F5F0EB; color: #A8A29E; }
+  footer {
+    text-align: center;
+    padding: 24px;
+    color: #C4BFB9;
+    font-size: 0.75rem;
+  }
+</style>
+</head>
+<body>
+  <div class="hero">
+    <div class="logo">V</div>
+    <h1>VikramPlan</h1>
+    <p>Academic planning & study system — Bergen Academies 2025-26</p>
+  </div>
+
+  <div class="grid">
+
+    <div class="section-label">Dashboard</div>
+
+    <a class="card" href="dashboard.html" style="grid-column: 1 / -1; border-left: 3px solid #D4714E;">
+      <div class="icon" style="background: #FDF2EC;">🎯</div>
+      <h3>Dashboard — Planner, Grades, Calendar</h3>
+      <p>The main hub. Daily study blocks, grade tracker with strategic notes, and month calendar view. Reads live from schedule.json.</p>
+      <span class="tag core">Live</span>
+    </a>
+
+    <a class="card" href="course.html?c=AP+Physics+C" style="border-left: 3px solid #F97316;">
+      <div class="icon" style="background: #FFF7ED;">📚</div>
+      <h3>Course Detail Pages</h3>
+      <p>Per-course deep dives: grades, grading weights, assignments with scores, upcoming deadlines, study blocks, and resources.</p>
+      <span class="tag core">Live</span>
+    </a>
+
+    <div class="section-label">Physics Study Packets</div>
+
+    <a class="card" href="ch25-capacitance-study-packet.html">
+      <div class="icon" style="background: #ECFDF5;">⚡</div>
+      <h3>Ch 25 — Capacitance</h3>
+      <p>Halliday/Resnick problems, worked solutions, and concept summaries.</p>
+      <span class="tag study">Study</span>
+    </a>
+
+    <a class="card" href="ch26-current-resistance-study-packet.html">
+      <div class="icon" style="background: #ECFDF5;">⚡</div>
+      <h3>Ch 26 — Current & Resistance</h3>
+      <p>Halliday/Resnick problems and worked solutions.</p>
+      <span class="tag study">Study</span>
+    </a>
+
+    <a class="card" href="ch27-circuits-study-packet.html">
+      <div class="icon" style="background: #ECFDF5;">⚡</div>
+      <h3>Ch 27 — Circuits</h3>
+      <p>SVG circuit diagrams, node voltage method, and full P19 worked solution.</p>
+      <span class="tag study">Study</span>
+    </a>
+
+    <a class="card" href="unit-review-capacitors-circuits.html">
+      <div class="icon" style="background: #ECFDF5;">📝</div>
+      <h3>Unit Review — Capacitors & Circuits</h3>
+      <p>Practice exam in Russo format covering Ch 25–27.</p>
+      <span class="tag study">Study</span>
+    </a>
+
+    <div class="section-label"></div>
+
+    <a class="card" href="archive.html" style="grid-column: 1 / -1; opacity: 0.7;">
+      <div class="icon" style="background: #F5F0EB;">📦</div>
+      <h3>Archive</h3>
+      <p>Earlier versions and reference documents — v1 planner, deliverable timeline, semester roadmap, briefings, data review.</p>
+      <span class="tag archive">6 pages</span>
+    </a>
+
+  </div>
+
+  <footer>
+    VikramPlan — Built with Claude & Prashanth, Feb 2026
+  </footer>
+</body>
+</html>

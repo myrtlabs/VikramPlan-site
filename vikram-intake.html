@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vikram's System Setup</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: #0f0f13;
+    color: #e0e0e0;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 40px 24px 120px;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #6C63FF, #00D2FF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+  }
+  .header p {
+    color: #888;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  /* Progress */
+  .progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #6C63FF, #00D2FF);
+    transition: width 0.5s ease;
+    z-index: 100;
+  }
+
+  .progress-text {
+    text-align: center;
+    color: #555;
+    font-size: 13px;
+    margin-bottom: 32px;
+  }
+
+  /* Question cards */
+  .question-card {
+    background: #1a1a24;
+    border: 1px solid #2a2a3a;
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 24px;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  .question-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .question-card.completed {
+    border-color: #2d4a3e;
+    background: #161622;
+  }
+
+  .q-number {
+    font-size: 12px;
+    font-weight: 600;
+    color: #6C63FF;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+  }
+  .q-label {
+    font-size: 12px;
+    color: #555;
+    margin-bottom: 4px;
+  }
+  .q-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+  .q-subtitle {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+
+  /* Inputs */
+  textarea, input[type="text"] {
+    width: 100%;
+    background: #12121a;
+    border: 1px solid #2a2a3a;
+    border-radius: 10px;
+    padding: 14px 16px;
+    color: #e0e0e0;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    resize: vertical;
+    transition: border-color 0.2s;
+    line-height: 1.5;
+  }
+  textarea:focus, input[type="text"]:focus {
+    outline: none;
+    border-color: #6C63FF;
+  }
+  textarea { min-height: 100px; }
+
+  /* Chips (multi-select) */
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .chip {
+    padding: 10px 18px;
+    background: #12121a;
+    border: 1px solid #2a2a3a;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+  }
+  .chip:hover { border-color: #6C63FF; background: #1e1e2e; }
+  .chip.selected {
+    background: #2a2553;
+    border-color: #6C63FF;
+    color: #fff;
+  }
+
+  /* Slider */
+  .slider-container {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 8px;
+  }
+  .slider-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #555;
+    margin-bottom: 4px;
+  }
+  input[type="range"] {
+    -webkit-appearance: none;
+    flex: 1;
+    height: 6px;
+    background: #2a2a3a;
+    border-radius: 3px;
+    outline: none;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #6C63FF;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(108, 99, 255, 0.4);
+  }
+  .slider-value {
+    font-size: 24px;
+    font-weight: 700;
+    color: #6C63FF;
+    min-width: 40px;
+    text-align: center;
+  }
+
+  /* Time picker row */
+  .time-row {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .time-group { flex: 1; min-width: 140px; }
+  .time-group label {
+    display: block;
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 6px;
+  }
+  input[type="time"] {
+    width: 100%;
+    background: #12121a;
+    border: 1px solid #2a2a3a;
+    border-radius: 10px;
+    padding: 12px 16px;
+    color: #e0e0e0;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+  }
+  input[type="time"]:focus { outline: none; border-color: #6C63FF; }
+
+  /* Buttons */
+  .btn-export {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, #6C63FF, #00D2FF);
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    margin-top: 32px;
+    transition: opacity 0.2s, transform 0.1s;
+  }
+  .btn-export:hover { opacity: 0.9; }
+  .btn-export:active { transform: scale(0.98); }
+
+  /* Export modal */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+  }
+  .modal-overlay.active { display: flex; }
+  .modal {
+    background: #1a1a24;
+    border: 1px solid #2a2a3a;
+    border-radius: 16px;
+    padding: 32px;
+    max-width: 560px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+  .modal h2 {
+    font-size: 20px;
+    color: #fff;
+    margin-bottom: 16px;
+  }
+  .modal pre {
+    background: #12121a;
+    border: 1px solid #2a2a3a;
+    border-radius: 10px;
+    padding: 16px;
+    font-size: 13px;
+    line-height: 1.6;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    color: #ccc;
+    max-height: 50vh;
+  }
+  .modal-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .btn-copy, .btn-close {
+    flex: 1;
+    padding: 12px;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+  }
+  .btn-copy {
+    background: #6C63FF;
+    color: #fff;
+  }
+  .btn-close {
+    background: #2a2a3a;
+    color: #ccc;
+  }
+
+  .emoji { font-size: 20px; margin-right: 4px; }
+
+  /* Fun animation */
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(108, 99, 255, 0.2); }
+    50% { box-shadow: 0 0 0 8px rgba(108, 99, 255, 0); }
+  }
+  .question-card:not(.completed):first-of-type:not(:only-of-type) {
+    animation: pulse 2s infinite;
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<div class="container">
+  <div class="header">
+    <h1>Hey Vikram — Let's Set This Up</h1>
+    <p>This takes ~10 min. Be real — the more honest you are, the better this system works for you. No wrong answers.</p>
+  </div>
+
+  <div class="progress-text" id="progressText">0 of 12 answered</div>
+
+  <div id="questions"></div>
+
+  <button class="btn-export" id="exportBtn" onclick="exportAnswers()">
+    Generate My Profile — Copy & Paste to Claude
+  </button>
+</div>
+
+<!-- Export Modal -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <h2>Your Profile</h2>
+    <p style="color:#888; font-size:14px; margin-bottom:16px;">Copy this and paste it into your conversation with Claude.</p>
+    <pre id="exportText"></pre>
+    <div class="modal-actions">
+      <button class="btn-copy" onclick="copyExport()">Copy to Clipboard</button>
+      <button class="btn-close" onclick="document.getElementById('modal').classList.remove('active')">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const questions = [
+  {
+    id: "energy",
+    section: "Your Day",
+    title: "When do you feel most locked in?",
+    subtitle: "Like, when does your brain actually cooperate — morning, afternoon, late night? When do you do your best deep work?",
+    type: "chips",
+    options: ["Early morning (before school)", "Morning (at school)", "Afternoon", "Evening (6-9pm)", "Late night (after 10pm)"],
+    multi: true
+  },
+  {
+    id: "sleep",
+    section: "Your Day",
+    title: "What does your sleep actually look like?",
+    subtitle: "Not what you wish it was — what it really is on a school night vs. weekend.",
+    type: "sleep"
+  },
+  {
+    id: "routine_morning",
+    section: "Your Day",
+    title: "Walk me through a typical school morning.",
+    subtitle: "From alarm to first class. What happens? Where does time get lost?",
+    type: "textarea",
+    placeholder: "e.g. Alarm at 6:30, snooze till 6:50, rush to get ready, usually skip breakfast, drive to school..."
+  },
+  {
+    id: "biggest_struggle",
+    section: "Real Talk",
+    title: "What's the #1 thing that gets in the way?",
+    subtitle: "If you could snap your fingers and fix one thing about how you work, what would it be?",
+    type: "textarea",
+    placeholder: "Be specific — is it starting tasks? Switching between subjects? Losing track of deadlines? Procrastinating on things that feel boring?"
+  },
+  {
+    id: "tried_before",
+    section: "Real Talk",
+    title: "What have you already tried?",
+    subtitle: "Planners, apps, systems, accountability methods — what's been tried and what happened?",
+    type: "textarea",
+    placeholder: "e.g. Tried Notion for a week, worked at first then stopped. Google Calendar reminders — I just dismiss them..."
+  },
+  {
+    id: "distractions",
+    section: "Real Talk",
+    title: "Distraction patterns — when and what?",
+    subtitle: "Reddit, LitRPG, games, YouTube, whatever. When does the pull hit hardest? What triggers it?",
+    type: "textarea",
+    placeholder: "e.g. Usually hit Reddit when I'm stuck on homework or bored between tasks. LitRPG is more of a nighttime thing. Games mostly on weekends..."
+  },
+  {
+    id: "screen_time",
+    section: "Real Talk",
+    title: "Honest estimate — daily screen time on non-school stuff?",
+    subtitle: "Phone + laptop. Not judging, just calibrating.",
+    type: "slider",
+    min: 0, max: 8, step: 0.5, default: 3,
+    unit: "hrs",
+    labels: ["0 hrs", "4 hrs", "8+ hrs"]
+  },
+  {
+    id: "subjects",
+    section: "Academics",
+    title: "How are you feeling about each subject?",
+    subtitle: "Which ones feel solid, which ones need help, which ones are soul-crushing?",
+    type: "textarea",
+    placeholder: "e.g. Math AP — solid but tests are tricky. Chem AP — falling behind on problem sets. IB Lit — actually like it but essays take forever. History IB — boring but manageable..."
+  },
+  {
+    id: "homework_style",
+    section: "Academics",
+    title: "How do you usually do homework?",
+    subtitle: "Where, when, how long, with what open on your screen...",
+    type: "textarea",
+    placeholder: "e.g. Usually at my desk after dinner, with music. Takes way longer than it should because I keep switching tabs..."
+  },
+  {
+    id: "fitness_baseline",
+    section: "Health & Fitness",
+    title: "Where are you at with fitness right now?",
+    subtitle: "What have you done before? Current activity level? What's the CrossFit plan?",
+    type: "textarea",
+    placeholder: "e.g. Used to do CrossFit 3x/week sophomore year, stopped during COVID. Have a home gym with barbells and a pull-up bar. Want to get back to 4-5x/week..."
+  },
+  {
+    id: "food",
+    section: "Health & Fitness",
+    title: "Food situation — gluten-free + acid reflux.",
+    subtitle: "How's the gluten-free transition going? What do you usually eat? What triggers reflux? Do you cook at all?",
+    type: "textarea",
+    placeholder: "e.g. Just started gluten-free last week. Mom cooks most meals but I need to figure out lunches. Reflux is worst at night, spicy food and bread are triggers..."
+  },
+  {
+    id: "ideal_system",
+    section: "The System",
+    title: "If this system worked perfectly, what would be different in 3 months?",
+    subtitle: "Paint the picture. What does a good week look like for future-Vikram?",
+    type: "textarea",
+    placeholder: "e.g. I'd actually finish homework before 11pm. I'd be working out regularly. My grades would be all A's. I'd have started my quantum paper. I'd spend less time on my phone..."
+  }
+];
+
+const container = document.getElementById('questions');
+let answers = {};
+
+function renderQuestions() {
+  let currentSection = '';
+  questions.forEach((q, i) => {
+    let sectionHeader = '';
+    if (q.section !== currentSection) {
+      currentSection = q.section;
+      const icons = { "Your Day": "🌅", "Real Talk": "💬", "Academics": "📚", "Health & Fitness": "💪", "The System": "🚀" };
+      sectionHeader = `<div style="margin-top:${i===0?0:40}px; margin-bottom:16px; font-size:13px; font-weight:600; color:#6C63FF; letter-spacing:1px; text-transform:uppercase;"><span class="emoji">${icons[currentSection]||''}</span> ${currentSection}</div>`;
+    }
+
+    let inputHTML = '';
+    switch(q.type) {
+      case 'textarea':
+        inputHTML = `<textarea id="input_${q.id}" placeholder="${q.placeholder||''}" oninput="handleInput('${q.id}')"></textarea>`;
+        break;
+      case 'chips':
+        inputHTML = `<div class="chips" id="input_${q.id}">` +
+          q.options.map(o => `<div class="chip" onclick="toggleChip(this, '${q.id}')">${o}</div>`).join('') +
+          `</div>`;
+        break;
+      case 'slider':
+        inputHTML = `
+          <div class="slider-labels"><span>${q.labels[0]}</span><span>${q.labels[1]}</span><span>${q.labels[2]}</span></div>
+          <div class="slider-container">
+            <input type="range" id="input_${q.id}" min="${q.min}" max="${q.max}" step="${q.step}" value="${q.default}" oninput="handleSlider('${q.id}', this.value)">
+            <div class="slider-value" id="val_${q.id}">${q.default}</div>
+          </div>`;
+        answers[q.id] = q.default + ' ' + q.unit;
+        break;
+      case 'sleep':
+        inputHTML = `
+          <div class="time-row">
+            <div class="time-group">
+              <label>School night — bed time</label>
+              <input type="time" id="input_${q.id}_bed" value="23:30" onchange="handleSleep('${q.id}')">
+            </div>
+            <div class="time-group">
+              <label>School night — wake up</label>
+              <input type="time" id="input_${q.id}_wake" value="06:30" onchange="handleSleep('${q.id}')">
+            </div>
+          </div>
+          <div style="height:12px"></div>
+          <div class="time-row">
+            <div class="time-group">
+              <label>Weekend — bed time</label>
+              <input type="time" id="input_${q.id}_wbed" value="01:00" onchange="handleSleep('${q.id}')">
+            </div>
+            <div class="time-group">
+              <label>Weekend — wake up</label>
+              <input type="time" id="input_${q.id}_wwake" value="10:00" onchange="handleSleep('${q.id}')">
+            </div>
+          </div>
+          <div style="height:12px"></div>
+          <textarea id="input_${q.id}_notes" placeholder="Any notes on sleep quality? Trouble falling asleep? Wake up during the night?" oninput="handleSleep('${q.id}')" style="min-height:60px"></textarea>`;
+        answers[q.id] = "School: 11:30pm–6:30am | Weekend: 1:00am–10:00am";
+        break;
+    }
+
+    container.innerHTML += `${sectionHeader}<div class="question-card" id="card_${q.id}">
+      <div class="q-number">Q${i+1}</div>
+      <div class="q-title">${q.title}</div>
+      <div class="q-subtitle">${q.subtitle}</div>
+      ${inputHTML}
+    </div>`;
+  });
+
+  // Animate cards in
+  setTimeout(() => {
+    document.querySelectorAll('.question-card').forEach((card, i) => {
+      setTimeout(() => card.classList.add('visible'), i * 80);
+    });
+  }, 100);
+}
+
+function handleInput(id) {
+  const val = document.getElementById('input_' + id).value.trim();
+  answers[id] = val;
+  markIfDone(id, val.length > 0);
+  updateProgress();
+}
+
+function toggleChip(el, id) {
+  el.classList.toggle('selected');
+  const selected = [...el.parentElement.querySelectorAll('.chip.selected')].map(c => c.textContent);
+  answers[id] = selected.join(', ');
+  markIfDone(id, selected.length > 0);
+  updateProgress();
+}
+
+function handleSlider(id, val) {
+  const q = questions.find(q => q.id === id);
+  document.getElementById('val_' + id).textContent = val;
+  answers[id] = val + ' ' + q.unit;
+  markIfDone(id, true);
+  updateProgress();
+}
+
+function handleSleep(id) {
+  const bed = document.getElementById('input_' + id + '_bed').value;
+  const wake = document.getElementById('input_' + id + '_wake').value;
+  const wbed = document.getElementById('input_' + id + '_wbed').value;
+  const wwake = document.getElementById('input_' + id + '_wwake').value;
+  const notes = document.getElementById('input_' + id + '_notes').value.trim();
+  answers[id] = `School: ${formatTime(bed)}–${formatTime(wake)} | Weekend: ${formatTime(wbed)}–${formatTime(wwake)}` + (notes ? ` | Notes: ${notes}` : '');
+  markIfDone(id, true);
+  updateProgress();
+}
+
+function formatTime(t) {
+  if (!t) return '??';
+  const [h, m] = t.split(':').map(Number);
+  const ampm = h >= 12 ? 'pm' : 'am';
+  return `${h % 12 || 12}:${m.toString().padStart(2,'0')}${ampm}`;
+}
+
+function markIfDone(id, done) {
+  const card = document.getElementById('card_' + id);
+  if (done) card.classList.add('completed');
+  else card.classList.remove('completed');
+}
+
+function updateProgress() {
+  const answered = questions.filter(q => {
+    const a = answers[q.id];
+    return a && a.trim && a.trim().length > 0;
+  }).length;
+  // slider and sleep always count
+  const total = questions.length;
+  document.getElementById('progressText').textContent = `${answered} of ${total} answered`;
+  document.getElementById('progressBar').style.width = `${(answered / total) * 100}%`;
+}
+
+function exportAnswers() {
+  let out = `# Vikram's Intake Profile\n`;
+  out += `Generated: ${new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}\n\n`;
+
+  let currentSection = '';
+  questions.forEach(q => {
+    if (q.section !== currentSection) {
+      currentSection = q.section;
+      out += `## ${currentSection}\n\n`;
+    }
+    const a = answers[q.id] || '(skipped)';
+    out += `**${q.title}**\n${a}\n\n`;
+  });
+
+  document.getElementById('exportText').textContent = out;
+  document.getElementById('modal').classList.add('active');
+}
+
+function copyExport() {
+  const text = document.getElementById('exportText').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector('.btn-copy');
+    btn.textContent = 'Copied!';
+    setTimeout(() => btn.textContent = 'Copy to Clipboard', 2000);
+  });
+}
+
+renderQuestions();
+updateProgress();
+</script>
+
+</body>
+</html>

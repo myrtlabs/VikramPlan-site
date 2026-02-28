@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ch 25: Capacitance — Study Packet</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+<style>
+  @media print {
+    .no-print { display: none; }
+    .page-break { page-break-before: always; }
+    body { font-size: 11pt; }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Georgia', serif; max-width: 8.5in; margin: 0 auto; padding: 0.75in; line-height: 1.6; color: #1a1a1a; background: #fff; }
+  h1 { font-size: 1.8em; color: #1a1a2e; margin-bottom: 0.2em; }
+  h2 { font-size: 1.35em; color: #16213e; margin-top: 1.5em; margin-bottom: 0.5em; border-bottom: 2px solid #16213e; padding-bottom: 0.2em; }
+  h3 { font-size: 1.1em; color: #0f3460; margin-top: 1.2em; margin-bottom: 0.4em; }
+  p { margin: 0.4em 0; }
+  .cover { text-align: left; margin-bottom: 2em; }
+  .cover-subtitle { font-size: 1.2em; color: #16213e; margin-bottom: 1em; }
+  .cover-info { margin: 0.3em 0; font-size: 0.95em; }
+  .cover-info b { color: #333; }
+  .hw-box { background: #f5f5f5; font-family: 'Courier New', monospace; padding: 8px 14px; margin: 0.5em 0; border-left: 4px solid #16213e; font-size: 0.9em; }
+  .warning { color: #8B0000; font-weight: bold; font-style: italic; margin: 1em 0; }
+  .formula-box { background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 4px; padding: 10px 16px; margin: 0.6em 0; font-size: 1.05em; }
+  .key-point { border-left: 4px solid #0f3460; padding: 8px 14px; margin: 0.6em 0; background: #f0f4ff; }
+  .problem { margin: 1em 0 0.3em 0; }
+  .problem-num { font-weight: bold; }
+  .workspace { height: 120px; border: 1px dashed #ccc; margin: 0.5em 0; border-radius: 4px; position: relative; }
+  .workspace-tall { height: 200px; }
+  .workspace-xtall { height: 280px; }
+  .workspace::after { content: "Work space"; position: absolute; top: 8px; right: 12px; font-size: 0.7em; color: #bbb; font-style: italic; }
+  .hint { font-size: 0.85em; color: #666; font-style: italic; margin-left: 1em; margin-top: 0.2em; }
+  .tier-label { display: inline-block; background: #16213e; color: white; padding: 2px 10px; border-radius: 3px; font-size: 0.85em; margin-bottom: 0.3em; }
+  .tier-label.t2 { background: #0f3460; }
+  .tier-label.t3 { background: #8B0000; }
+  hr { border: none; border-top: 1px solid #ddd; margin: 1.2em 0; }
+  .formula-table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: 0.9em; }
+  .formula-table th { background: #16213e; color: white; padding: 6px 10px; text-align: left; }
+  .formula-table td { padding: 6px 10px; border-bottom: 1px solid #eee; }
+  .formula-table tr:nth-child(even) { background: #f8f8f8; }
+  .answer-section { border-top: 3px solid #8B0000; margin-top: 2em; padding-top: 1em; }
+  .answer-section h2 { color: #8B0000; border-bottom-color: #8B0000; }
+  .solution { margin: 0.4em 0 0.4em 1em; font-size: 0.92em; }
+  .solution b { color: #0f3460; }
+  .data-table { border-collapse: collapse; margin: 0.5em auto; font-family: 'Courier New', monospace; font-size: 0.9em; }
+  .data-table td, .data-table th { border: 1px solid #999; padding: 4px 12px; text-align: center; }
+  .data-table th { background: #eee; }
+  .common-mistakes li { margin: 0.4em 0; }
+  .circuit-diagram { margin: 0.8em auto; display: block; max-width: 100%; }
+  .circuit-diagram text { font-family: 'Georgia', serif; }
+  .fig-ref { background: #fff3cd; border: 1px solid #ffc107; border-radius: 4px; padding: 4px 10px; font-size: 0.88em; margin: 0.4em 0; display: inline-block; }
+</style>
+</head>
+
+<body>
+
+<!-- ============= COVER PAGE ============= -->
+<div class="cover">
+  <h1>Chapter 25: Capacitance</h1>
+  <p class="cover-subtitle">Study Packet — Key Concepts, Formulas & Practice</p>
+
+  <div class="cover-info">
+    <p><b>Course:</b> AP Physics C — Russo, Period 4</p>
+    <p><b>Textbook:</b> Halliday, Resnick, Walker — 7th Edition — Chapter 25</p>
+    <p><b>Quiz Prep for:</b> Ch 25 Quiz (completed — scored 80%, REVIEW NEEDED)</p>
+    <p><b>Test Prep for:</b> March 2 — Capacitors & Circuits (Ch 25–27)</p>
+  </div>
+
+  <div class="hw-box">
+    <b>Russo's Assigned Problems:</b><br>
+    Questions: Q# 1, 5, 9, 11<br>
+    Problems: P# 1, 3, 9, 13, 21, 27, 31, 35, 41, 43 (7th ed.)
+  </div>
+
+  <div class="warning">
+    ⚠ You scored 80% on the Ch 25 quiz — your weakest E&M score. This chapter needs the MOST review before the March 2 test.
+  </div>
+</div>
+
+<hr>
+
+<!-- ============= KEY CONCEPTS ============= -->
+<h2>1. Key Concepts</h2>
+
+<h3>Capacitance — The Basics</h3>
+<p>A capacitor stores charge by having two conductors separated by an insulator (dielectric). The fundamental definition is:</p>
+<div class="formula-box">
+  \(C = \frac{q}{V}\)
+</div>
+<p>where \(q\) is the magnitude of charge on either plate and \(V\) is the potential difference between them. Units: Farads (F), where \(1 \text{ F} = 1 \text{ C/V}\).</p>
+<div class="key-point">
+  <b>Key Point:</b> Capacitance \(C\) depends ONLY on the geometry (plate area, separation, shape) and the dielectric material between the plates. It does NOT depend on \(q\) or \(V\). Capacitance is always positive.
+</div>
+
+<h3>Calculating Capacitance (Three Geometries)</h3>
+<p>Capacitance formulas are derived using Gauss's Law to find the electric field, then integrating to find the potential difference.</p>
+
+<div class="formula-box">
+  <b>Parallel-Plate Capacitor:</b> \(C = \frac{\varepsilon_0 A}{d}\)<br>
+  where \(A\) = plate area, \(d\) = plate separation
+</div>
+
+<div class="formula-box">
+  <b>Cylindrical Capacitor:</b> \(C = \frac{2\pi\varepsilon_0 L}{\ln(b/a)}\)<br>
+  where \(a\) = inner radius, \(b\) = outer radius, \(L\) = length
+</div>
+
+<div class="formula-box">
+  <b>Spherical Capacitor:</b> \(C = \frac{4\pi\varepsilon_0 ab}{b - a}\)<br>
+  where \(a\) = inner radius, \(b\) = outer radius
+</div>
+
+<div class="formula-box">
+  <b>Isolated Sphere:</b> \(C = 4\pi\varepsilon_0 R\)<br>
+  (sphere of radius \(R\) in free space, as \(b \to \infty\))
+</div>
+
+<div class="key-point">
+  <b>Key Point:</b> These formulas are derived from first principles using Gauss's law. You should be able to re-derive at least the parallel-plate case from scratch on the AP exam.
+</div>
+
+<h3>Capacitors in Parallel and Series</h3>
+
+<svg class="circuit-diagram" viewBox="0 0 500 160" xmlns="http://www.w3.org/2000/svg">
+  <!-- Title for parallel -->
+  <text x="80" y="20" font-size="14" font-weight="bold">Parallel Connection</text>
+  <!-- Top wire -->
+  <line x1="20" y1="40" x2="150" y2="40" stroke="black" stroke-width="2"/>
+  <!-- Bottom wire -->
+  <line x1="20" y1="120" x2="150" y2="120" stroke="black" stroke-width="2"/>
+  <!-- Three capacitors (parallel plates) -->
+  <line x1="50" y1="60" x2="50" y2="100" stroke="black" stroke-width="3"/>
+  <line x1="60" y1="60" x2="60" y2="100" stroke="black" stroke-width="3"/>
+  <text x="45" y="115" font-size="12">C₁</text>
+
+  <line x1="85" y1="60" x2="85" y2="100" stroke="black" stroke-width="3"/>
+  <line x1="95" y1="60" x2="95" y2="100" stroke="black" stroke-width="3"/>
+  <text x="80" y="115" font-size="12">C₂</text>
+
+  <line x1="120" y1="60" x2="120" y2="100" stroke="black" stroke-width="3"/>
+  <line x1="130" y1="60" x2="130" y2="100" stroke="black" stroke-width="3"/>
+  <text x="115" y="115" font-size="12">C₃</text>
+
+  <!-- Connecting wires -->
+  <line x1="20" y1="40" x2="50" y2="40" stroke="black" stroke-width="2"/>
+  <line x1="60" y1="40" x2="85" y2="40" stroke="black" stroke-width="2"/>
+  <line x1="95" y1="40" x2="120" y2="40" stroke="black" stroke-width="2"/>
+  <line x1="130" y1="40" x2="150" y2="40" stroke="black" stroke-width="2"/>
+
+  <line x1="20" y1="120" x2="50" y2="120" stroke="black" stroke-width="2"/>
+  <line x1="60" y1="120" x2="85" y2="120" stroke="black" stroke-width="2"/>
+  <line x1="95" y1="120" x2="120" y2="120" stroke="black" stroke-width="2"/>
+  <line x1="130" y1="120" x2="150" y2="120" stroke="black" stroke-width="2"/>
+
+  <!-- Title for series -->
+  <text x="280" y="20" font-size="14" font-weight="bold">Series Connection</text>
+  <!-- Capacitors in series -->
+  <line x1="220" y1="60" x2="220" y2="100" stroke="black" stroke-width="3"/>
+  <line x1="230" y1="60" x2="230" y2="100" stroke="black" stroke-width="3"/>
+  <text x="215" y="115" font-size="12">C₁</text>
+
+  <line x1="270" y1="60" x2="270" y2="100" stroke="black" stroke-width="3"/>
+  <line x1="280" y1="60" x2="280" y2="100" stroke="black" stroke-width="3"/>
+  <text x="265" y="115" font-size="12">C₂</text>
+
+  <line x1="320" y1="60" x2="320" y2="100" stroke="black" stroke-width="3"/>
+  <line x1="330" y1="60" x2="330" y2="100" stroke="black" stroke-width="3"/>
+  <text x="315" y="115" font-size="12">C₃</text>
+
+  <!-- Connecting wires in series -->
+  <line x1="200" y1="80" x2="220" y2="80" stroke="black" stroke-width="2"/>
+  <line x1="230" y1="80" x2="270" y2="80" stroke="black" stroke-width="2"/>
+  <line x1="280" y1="80" x2="320" y2="80" stroke="black" stroke-width="2"/>
+  <line x1="330" y1="80" x2="350" y2="80" stroke="black" stroke-width="2"/>
+
+  <!-- Parallel: voltage label -->
+  <text x="170" y="70" font-size="11" font-style="italic">V</text>
+  <!-- Series: charge label -->
+  <text x="360" y="70" font-size="11" font-style="italic">q</text>
+</svg>
+
+<p><b>Parallel Connection:</b> Both capacitors connected across the same two nodes → same voltage \(V\) across each. Charges add.</p>
+<div class="formula-box">
+  \(C_{\text{eq}} = C_1 + C_2 + C_3 + \cdots\)
+</div>
+
+<p><b>Series Connection:</b> Capacitors connected one after the other in a single loop → same charge \(q\) on each. Voltages add.</p>
+<div class="formula-box">
+  \(\frac{1}{C_{\text{eq}}} = \frac{1}{C_1} + \frac{1}{C_2} + \frac{1}{C_3} + \cdots\)
+</div>
+
+<p>For two capacitors in series:</p>
+<div class="formula-box">
+  \(C_{\text{eq}} = \frac{C_1 C_2}{C_1 + C_2}\)
+</div>
+
+<div class="key-point">
+  <b>TRAP ALERT:</b> Capacitors behave OPPOSITE to resistors. Capacitors in parallel → MORE capacitance. Capacitors in series → LESS capacitance. Don't confuse them!
+</div>
+
+<h3>Energy Stored in a Capacitor</h3>
+<p>A capacitor stores electrical energy in the electric field between its plates. There are three equivalent forms:</p>
+
+<div class="formula-box">
+  \(U = \frac{1}{2}CV^2 = \frac{1}{2}\frac{q^2}{C} = \frac{1}{2}qV\)
+</div>
+
+<p>The energy density (energy per unit volume) in the field is:</p>
+<div class="formula-box">
+  \(u = \frac{1}{2}\varepsilon_0 E^2\)
+</div>
+
+<div class="key-point">
+  <b>Critical Distinction:</b> When a capacitor is <b>disconnected</b> from the battery (charge fixed), inserting a dielectric DECREASES stored energy — the electric field does positive work pulling the dielectric in. When the battery stays <b>connected</b> (voltage fixed), inserting a dielectric INCREASES stored energy — the battery does work pushing more charge onto the plates.
+</div>
+
+<h3>Dielectrics</h3>
+
+<svg class="circuit-diagram" viewBox="0 0 350 180" xmlns="http://www.w3.org/2000/svg">
+  <!-- Positive plate -->
+  <rect x="50" y="50" width="80" height="8" fill="red" opacity="0.7"/>
+  <text x="55" y="45" font-size="12" font-weight="bold">+ Plate</text>
+
+  <!-- Dielectric slab -->
+  <rect x="55" y="70" width="70" height="50" fill="#cce5ff" opacity="0.6" stroke="#0066cc" stroke-width="2" stroke-dasharray="5,5"/>
+  <text x="70" y="100" font-size="11" text-anchor="middle">κ</text>
+
+  <!-- Negative plate -->
+  <rect x="50" y="130" width="80" height="8" fill="blue" opacity="0.7"/>
+  <text x="50" y="150" font-size="12" font-weight="bold">− Plate</text>
+
+  <!-- Dimension arrows and labels -->
+  <text x="140" y="75" font-size="12">A</text>
+  <text x="140" y="110" font-size="12">(area)</text>
+
+  <!-- Distance label -->
+  <line x1="175" y1="60" x2="175" y2="125" stroke="black" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="180" y="95" font-size="12">d</text>
+
+  <!-- Note -->
+  <text x="30" y="175" font-size="11" font-style="italic">Dielectric polarizes, reducing E field</text>
+</svg>
+
+<p>A dielectric material between the plates increases the capacitance by a factor called the dielectric constant, \(\kappa\) (kappa):</p>
+
+<div class="formula-box">
+  \(C = \kappa C_{\text{air}}\)
+</div>
+
+<p>For a parallel-plate capacitor with dielectric:</p>
+<div class="formula-box">
+  \(C = \frac{\kappa\varepsilon_0 A}{d}\)
+</div>
+
+<p>The dielectric material weakens the internal electric field by its polarization:</p>
+<div class="formula-box">
+  \(E = \frac{E_0}{\kappa}\)
+</div>
+
+<p>where \(E_0\) is the field in vacuum.</p>
+
+<div class="key-point">
+  <b>Why Dielectrics Help:</b> (1) They increase \(C\), allowing more charge storage at the same voltage. (2) They increase the <b>dielectric strength</b> (max field before breakdown), so you can apply higher voltages without arcing.
+</div>
+
+<h3>Common Mistakes on Tests</h3>
+<ul class="common-mistakes">
+  <li>Forgetting that \(C_{\text{series}} <\) smallest individual \(C\) — the opposite of resistors.</li>
+  <li>Confusing "battery connected" vs "battery disconnected" scenarios. Connected → \(V\) is fixed, \(q\) changes. Disconnected → \(q\) is fixed, \(V\) changes.</li>
+  <li>Not using energy density \(u = \frac{1}{2}\varepsilon_0 E^2\) when asked about field energy or when finding total energy from \(U = u \times \text{volume}\).</li>
+  <li>Sign/direction errors with multiple dielectrics or partial dielectrics (e.g., one filling half the gap).</li>
+  <li>Unit conversion mistakes: μF, pF, mm, cm, m. Always convert to SI before calculating.</li>
+  <li>Forgetting that the capacitance of a sphere is not \(4\pi\varepsilon_0 R\) unless it's isolated (infinite outer radius).</li>
+</ul>
+
+<div class="page-break"></div>
+
+<!-- ============= FORMULA REFERENCE ============= -->
+<h2>2. Formula Reference Table</h2>
+
+<table class="formula-table">
+  <tr>
+    <th>Quantity</th>
+    <th>Formula</th>
+  </tr>
+  <tr>
+    <td>Capacitance (definition)</td>
+    <td>\(C = q/V\)</td>
+  </tr>
+  <tr>
+    <td>Parallel-plate capacitor</td>
+    <td>\(C = \varepsilon_0 A/d\)</td>
+  </tr>
+  <tr>
+    <td>Cylindrical capacitor</td>
+    <td>\(C = 2\pi\varepsilon_0 L/\ln(b/a)\)</td>
+  </tr>
+  <tr>
+    <td>Spherical capacitor</td>
+    <td>\(C = 4\pi\varepsilon_0 ab/(b-a)\)</td>
+  </tr>
+  <tr>
+    <td>Isolated sphere</td>
+    <td>\(C = 4\pi\varepsilon_0 R\)</td>
+  </tr>
+  <tr>
+    <td>Capacitors in parallel</td>
+    <td>\(C_{\text{eq}} = C_1 + C_2 + \cdots\)</td>
+  </tr>
+  <tr>
+    <td>Capacitors in series</td>
+    <td>\(1/C_{\text{eq}} = 1/C_1 + 1/C_2 + \cdots\)</td>
+  </tr>
+  <tr>
+    <td>Two capacitors in series</td>
+    <td>\(C_{\text{eq}} = C_1 C_2/(C_1+C_2)\)</td>
+  </tr>
+  <tr>
+    <td>Energy stored (3 forms)</td>
+    <td>\(U = \frac{1}{2}CV^2 = \frac{1}{2}q^2/C = \frac{1}{2}qV\)</td>
+  </tr>
+  <tr>
+    <td>Energy density in field</td>
+    <td>\(u = \frac{1}{2}\varepsilon_0 E^2\)</td>
+  </tr>
+  <tr>
+    <td>With dielectric</td>
+    <td>\(C = \kappa\varepsilon_0 A/d\)</td>
+  </tr>
+  <tr>
+    <td>Electric field with dielectric</td>
+    <td>\(E = E_0/\kappa\)</td>
+  </tr>
+  <tr>
+    <td>Permittivity of free space</td>
+    <td>\(\varepsilon_0 = 8.854 \times 10^{-12}\;\text{F/m}\)</td>
+  </tr>
+</table>
+
+<hr>
+<p><b>Key Relationships:</b></p>
+<ul>
+  <li><b>Parallel:</b> Same \(V\), charges add \(\Rightarrow C_{\text{eq}} = C_1 + C_2 + \cdots\)</li>
+  <li><b>Series:</b> Same \(q\), voltages add \(\Rightarrow 1/C_{\text{eq}} = 1/C_1 + 1/C_2 + \cdots\)</li>
+  <li><b>Opposite of resistors:</b> More \(C\) in parallel, less \(C\) in series.</li>
+</ul>
+
+<div class="page-break"></div>
+
+<!-- ============= HOMEWORK PROBLEMS ============= -->
+<h2>3. Homework Problems</h2>
+
+<p><i>These are the problems assigned by Russo from the 7th edition. Work all of them on separate paper.</i></p>
+
+<hr>
+
+<h3>Questions</h3>
+
+<div class="problem">
+  <span class="problem-num">Q1.</span> Figure 25-19 shows plots of charge versus potential difference for three parallel-plate capacitors that have the plate areas and separations given in the table. Which plot goes with which capacitor?
+  <p class="fig-ref">📖 See <b>Fig. 25-19</b> and table in Halliday Ch 25</p>
+  <div class="hint">Hint: \(C = \varepsilon_0 A/d\). Larger \(C\) means steeper slope on \(q\) vs \(V\) plot.</div>
+  <div class="workspace"></div>
+</div>
+
+<hr>
+
+<div class="problem">
+  <span class="problem-num">Q5.</span> (a) In Fig. 25-22a, are capacitors 1 and 3 in series? (b) In the same figure, are capacitors 1 and 2 in parallel? (c) Rank the equivalent capacitances of the four circuits shown in Fig. 25-22, greatest first.
+  <p class="fig-ref">📖 See <b>Fig. 25-22</b> in Halliday Ch 25</p>
+  <div class="hint">Hint: Series = same charge, one path. Parallel = same voltage, same two nodes.</div>
+  <div class="workspace"></div>
+</div>
+
+<hr>
+
+<div class="problem">
+  <span class="problem-num">Q9.</span> Figure 25-23 shows three circuits, each consisting of a switch and two capacitors, initially charged as indicated (top plate positive). After the switches are closed, in which circuit (if any) will the charge on the left-hand capacitor (a) increase, (b) decrease, (c) remain the same?
+  <p class="fig-ref">📖 See <b>Fig. 25-23</b> in Halliday Ch 25</p>
+  <div class="hint">Hint: When switches close, charge redistributes until voltages equalize. Compare initial voltages \((q/C)\) on each capacitor.</div>
+  <div class="workspace"></div>
+</div>
+
+<hr>
+
+<div class="problem">
+  <span class="problem-num">Q11.</span> When a dielectric slab is inserted between the plates of one of two identical capacitors in Fig. 25-24, do the following properties of that capacitor increase, decrease, or remain the same: (a) capacitance, (b) charge, (c) potential difference, and (d) potential energy? (e) How about the same properties of the other capacitor?
+  <p class="fig-ref">📖 See <b>Fig. 25-24</b> in Halliday Ch 25</p>
+  <div class="hint">Hint: The answer depends on whether the capacitors are in series or parallel with a battery, or isolated. Examine the figure carefully.</div>
+  <div class="workspace-tall"></div>
+</div>
+
+<hr>
+
+<h3>Problems</h3>
+
+<div class="problem">
+  <span class="problem-num">P1.</span> The capacitor in Fig. 25-25 has a capacitance of 25 μF and is initially uncharged. The battery provides a potential difference of 120 V. After switch S is closed, how much charge will pass through it?
+  <p class="fig-ref">📖 See <b>Fig. 25-25</b> in Halliday Ch 25</p>
+  <div class="hint">Hint: \(q = CV\).</div>
+  <div class="workspace"></div>
+</div>
+
+<hr>
+
+<div class="problem">
+  <span class="problem-num">P3.</span> A parallel-plate capacitor has circular plates of 8.20 cm radius and 1.30 mm separation. (a) Calculate the capacitance. (b) What charge will appear on the plates if a potential difference of 120 V is applied?
+  <div class="hint">Hint: \(A = \pi r^2\). \(C = \varepsilon_0 A/d\). Then \(q = CV\). Watch unit conversions.</div>
+  <div class="workspace-tall"></div>
+</div>
+
+<hr>
+
+<div class="problem">
+  <span class="problem-num">P9.</span> In Fig. 25-28, find the equivalent capacitance of the combination. Assume that \(C_1 = 10.0\) μF, \(C_2 = 5.00\) μF, and \(C_3 = 4.00\) μF.
+  <p class="fig-ref">📖 See <b>Fig. 25-28</b> in Halliday Ch 25</p>
+  <div class="hint">Hint: Identify series and parallel groups. Simplify inside-out.</div>
+  <div class="workspace"></div>
+</div>
+
+<hr>
+
+<div class="problem">
+  <span class="problem-num">P13.</span> A 100 pF capacitor is charged to a potential difference of 50 V, and the charging battery is disconnected. The capacitor is then connected in parallel with a second (initially uncharged) capacitor. If the potential difference across the first capacitor drops to 35 V, what is the capacitance of the second capacitor?
+  <div class="hint">Hint: Charge is conserved: \(q_{\text{total}} = C_1 V_1\) (initial) = \((C_1 + C_2)V_{\text{final}}\). Solve for \(C_2\).</div>
+  <div class="workspace-tall"></div>
+</div>
+
+<hr>
+
+<div class="problem">
+  <span class="problem-num">P21.</span> Figure 25-37 displays a 12.0 V battery and three uncharged capacitors of capacitances \(C_1 = 4.00\) μF, \(C_2 = 6.00\) μF, and \(C_3 = 3.00\) μF. The switch is thrown to the left side until capacitor 1 is fully charged. Then the switch is thrown to the right. What is the final charge on (a) capacitor 1, (b) capacitor 2, and (c) capacitor 3?
+  <p class="fig-ref">📖 See <b>Fig. 25-37</b> in Halliday Ch 25</p>
+  <div class="hint">Hint: First: \(q_1 = C_1(12.0)\). Then \(C_1\) connects to \(C_2\) and \(C_3\) in series. Total charge is conserved.</div>
+  <div class="workspace-xtall"></div>
+</div>
+
+<hr>
+
+<div class="problem">
+  <span class="problem-num">P27.</span> A 2.0 μF capacitor and a 4.0 μF capacitor are connected in parallel across a 300 V potential difference. Calculate the total energy stored in the capacitors.
+  <div class="hint">Hint: Parallel means same \(V\). \(U = \frac{1}{2}CV^2\) for each. Total energy = sum.</div>
+  <div class="workspace-tall"></div>
+</div>
+
+<hr>
+
+<div class="problem">
+  <span class="problem-num">P31.</span> The parallel plates in a capacitor, with a plate area of 8.50 cm² and an air-filled separation of 3.00 mm, are charged by a 6.00 V battery. They are then disconnected from the battery and pulled apart (without discharge) to a separation of 8.00 mm. Neglecting fringing, find (a) the potential difference between the plates, (b) the initial stored energy, (c) the final stored energy, and (d) the work required to separate the plates.
+
+  <svg class="circuit-diagram" viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
+    <!-- Initial state -->
+    <text x="70" y="20" font-size="13" font-weight="bold">Initial State</text>
+    <rect x="40" y="40" width="60" height="8" fill="red" opacity="0.7"/>
+    <rect x="40" y="90" width="60" height="8" fill="blue" opacity="0.7"/>
+    <line x1="55" y1="50" x2="55" y2="85" stroke="black" stroke-width="1" stroke-dasharray="2,2"/>
+    <text x="48" y="70" font-size="10">d₀</text>
+    <text x="50" y="110" font-size="11" font-weight="bold">Charged</text>
+
+    <!-- Arrow showing pulling -->
+    <path d="M 140 50 L 180 50" stroke="black" stroke-width="2" marker-end="url(#arrowhead)" fill="none"/>
+    <text x="145" y="30" font-size="12">Pull apart</text>
+
+    <!-- Final state -->
+    <text x="240" y="20" font-size="13" font-weight="bold">Final State</text>
+    <rect x="210" y="30" width="60" height="8" fill="red" opacity="0.7"/>
+    <rect x="210" y="110" width="60" height="8" fill="blue" opacity="0.7"/>
+    <line x1="225" y1="40" x2="225" y2="105" stroke="black" stroke-width="1" stroke-dasharray="2,2"/>
+    <text x="220" y="75" font-size="10">d_new</text>
+    <text x="210" y="130" font-size="11" font-weight="bold">Disconnected</text>
+    <text x="200" y="145" font-size="10" font-style="italic">q = constant</text>
+
+    <!-- Arrow definition -->
+    <defs>
+      <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+        <polygon points="0 0, 10 3, 0 6" fill="black"/>
+      </marker>
+    </defs>
+  </svg>
+
+  <div class="hint">Hint: Battery disconnected → \(q\) is FIXED. \(C\) changes (\(C = \varepsilon_0 A/d\)). \(V = q/C\) changes. \(U = q^2/(2C)\). Work done = \(\Delta U\).</div>
+  <div class="workspace-xtall"></div>
+</div>
+
+<hr>
+
+<div class="problem">
+  <span class="problem-num">P35.</span> Given a 7.4 pF air-filled capacitor, you are asked to convert it to a capacitor that can store up to 7.4 μJ with a maximum potential difference of 652 V. Which dielectric in Table 25-1 should you use to fill the gap in the capacitor if you do not allow for a margin of error?
+  <div class="hint">Hint: Need \(C = 2U/V^2\) and then \(\kappa = C_{\text{needed}}/C_{\text{air}}\). Look up in Table 25-1.</div>
+  <div class="workspace-tall"></div>
+</div>
+
+<hr>
+
+<div class="problem">
+  <span class="problem-num">P41.</span> A certain parallel-plate capacitor is filled with a dielectric for which \(\kappa = 5.5\). The area of each plate is 0.034 m², and the plates are separated by 2.0 mm. The capacitor will fail (short out and burn up) if the electric field between the plates exceeds 200 kN/C. What is the maximum energy that can be stored in the capacitor?
+  <div class="hint">Hint: \(E_{\text{max}} = V_{\text{max}}/d \Rightarrow V_{\text{max}}\). \(C = \kappa\varepsilon_0 A/d\). \(U_{\text{max}} = \frac{1}{2}CV^2_{\text{max}}\).</div>
+  <div class="workspace-tall"></div>
+</div>
+
+<hr>
+
+<div class="problem">
+  <span class="problem-num">P43.</span> Figure 25-43 shows a parallel-plate capacitor with a plate area A = 7.89 cm² and plate separation d = 4.62 mm. The top half of the gap is filled with material of dielectric constant \(\kappa_1 = 11.0\); the bottom half is filled with material of dielectric constant \(\kappa_2 = 12.0\). What is the capacitance?
+  <p class="fig-ref">📖 See <b>Fig. 25-43</b> in Halliday Ch 25</p>
+  <div class="hint">Hint: Two dielectrics stacked = two capacitors in series, each with thickness \(d/2\).</div>
+  <div class="workspace-xtall"></div>
+</div>
+
+<div class="page-break"></div>
+
+<!-- ============= PRACTICE PROBLEMS ============= -->
+<h2>4. Practice Problems (15 Problems in 3 Tiers)</h2>
+
+<h3>Tier 1: Foundations (Quiz-level) — 5 Problems</h3>
+<p><span class="tier-label">TIER 1</span></p>
+
+<div class="problem">
+  <span class="problem-num">1.</span> <b>Parallel-Plate Capacitor Basics</b><br>
+  A parallel-plate capacitor has plates of area 0.040 m² separated by 2.0 mm. (a) Find the capacitance. (b) If connected to a 9.0 V battery, find the charge and energy stored.
+  <div class="workspace-tall"></div>
+</div>
+
+<hr>
+
+<div class="problem">
+  <span class="problem-num">2.</span> <b>Series and Parallel Combinations</b><br>
+  Three capacitors \(C_1 = 2\) μF, \(C_2 = 4\) μF, \(C_3 = 6\) μF. Find \(C_{\text{eq}}\) if: (a) all in parallel, (b) all in series, (c) \(C_1\) and \(C_2\) in series, that combination in parallel with \(C_3\).
+  <div class="workspace-tall"></div>
+</div>
+
+<hr>
+
+<div class="problem">
+  <span class="problem-num">3.</span> <b>Charge Redistribution and Energy</b><br>
+  A 10 μF capacitor is charged to 100 V and then disconnected. It's connected to an uncharged 15 μF capacitor. Find: (a) final voltage, (b) final charge on each, (c) initial and final total energy. Where did the "lost" energy go?
+  <div class="workspace-xtall"></div>
+</div>
+
+<hr>
+
+<div class="problem">
+  <span class="problem-num">4.</span> <b>Dielectric Insertion with Battery Connected</b><br>
+  A parallel-plate capacitor with \(C = 50\) pF is connected to a 200 V battery. A dielectric with \(\kappa = 4.0\) is inserted (battery stays connected). Find the new: (a) capacitance, (b) charge, (c) energy. Compare each to the value without the dielectric.
+  <div class="workspace-xtall"></div>
+</div>
+
+<hr>
+
+<div class="problem">
+  <span class="problem-num">5.</span> <b>Isolated Sphere Capacitance</b><br>
+  An isolated sphere of radius 10 cm is in air. (a) Find its capacitance. (b) What charge is needed to raise it to 500 V? (c) What is the energy stored?
+  <div class="workspace-tall"></div>
+</div>
+
+<hr>
+
+<h3>Tier 2: Application (Test-level) — 5 Problems</h3>
+<p><span class="tier-label tier-label.t2">TIER 2</span></p>
+
+<div class="problem">
+  <span class="problem-num">6.</span> <b>Dielectric Insertion with Disconnected Battery</b><br>
+  A parallel-plate capacitor (\(A = 0.10\) m², \(d = 5.0\) mm) is charged to 500 V, then disconnected from the battery. A dielectric (\(\kappa = 3.0\)) is then inserted. Find: (a) \(C\) before and after, (b) \(q\) before and after, (c) \(V\) before and after, (d) \(U\) before and after, (e) the work done by the electric field in pulling in the dielectric.
+  <div class="workspace-xtall"></div>
+</div>
+
+<hr>
+
+<div class="problem">
+  <span class="problem-num">7.</span> <b>Complex Network with Mixed Series/Parallel</b><br>
+  In a circuit variant: \(C_1 = 8\) μF, \(C_2 = 6\) μF are in series. That combination is in parallel with \(C_3 = 12\) μF. The whole thing is in series with \(C_4 = 4\) μF. Connected to 100 V. Find: (a) \(C_{\text{eq}}\), (b) charge and voltage on each capacitor.
+  <div class="workspace-xtall"></div>
+</div>
+
+<hr>
+
+<div class="problem">
+  <span class="problem-num">8.</span> <b>Two Dielectrics Side-by-Side</b><br>
+  A capacitor with plates of area \(A\) and separation \(d\) is filled with two dielectric slabs side-by-side (each covering half the plate area, but full thickness \(d\)). \(\kappa_1 = 2.0\), \(\kappa_2 = 5.0\). Find \(C\) in terms of \(\varepsilon_0\), \(A\), \(d\). (Parallel configuration vs. the series configuration in P43.)
+  <div class="workspace-tall"></div>
+</div>
+
+<hr>
+
+<div class="problem">
+  <span class="problem-num">9.</span> <b>Parallel Connection of Pre-Charged Capacitors</b><br>
+  Two capacitors \(C_1 = 4.0\) μF (charged to 100 V) and \(C_2 = 8.0\) μF (charged to 50 V) are disconnected from their batteries and connected positive-to-positive. Find: (a) final voltage, (b) final charge on each, (c) energy lost.
+  <div class="workspace-xtall"></div>
+</div>
+
+<hr>
+
+<div class="problem">
+  <span class="problem-num">10.</span> <b>Spherical Capacitor with Dielectric</b><br>
+  A spherical capacitor (inner radius \(a = 5.0\) cm, outer radius \(b = 8.0\) cm) is filled with dielectric \(\kappa = 6.0\). (a) Find \(C\). (b) If charged to 400 V, find the charge. (c) Find the energy stored.
+  <div class="workspace-xtall"></div>
+</div>
+
+<hr>
+
+<h3>Tier 3: AP Free Response (Exam-level) — 5 Problems</h3>
+<p><span class="tier-label tier-label.t3">TIER 3</span></p>
+
+<div class="problem">
+  <span class="problem-num">11.</span> <b>Derivation: Cylindrical Capacitor</b><br>
+  Starting from Gauss's law, derive the capacitance of a cylindrical capacitor with inner radius \(a\), outer radius \(b\), and length \(L\). Show every step: Gaussian surface, \(E\) field, integration for \(V\), and \(C = q/V\).
+  <div class="workspace-xtall"></div>
+</div>
+
+<hr>
+
+<div class="problem">
+  <span class="problem-num">12.</span> <b>Energy Density and Total Energy</b><br>
+  A parallel-plate capacitor (\(A = 0.020\) m², \(d = 1.0\) mm) is charged to 200 V. (a) Find \(E\) between plates. (b) Find energy density \(u\). (c) Find total energy from \(U = u \times \text{volume}\). (d) Verify using \(U = \frac{1}{2}CV^2\).
+  <div class="workspace-xtall"></div>
+</div>
+
+<hr>
+
+<div class="problem">
+  <span class="problem-num">13.</span> <b>Disconnected Capacitor with Changing Geometry and Dielectric</b><br>
+  A parallel-plate cap (\(A = 0.050\) m², \(d = 2.0\) mm) is charged to 500 V and disconnected. (a) Find \(q\), \(C\), \(U\). (b) Plates are pulled to \(d = 5.0\) mm. Find new \(C\), \(V\), \(U\). (c) Where did the extra energy come from? (d) Now a dielectric \(\kappa = 2.5\) is inserted (still disconnected). Find new \(C\), \(V\), \(U\). (e) Explain physically why \(V\) decreased in (d).
+  <div class="workspace-xtall"></div>
+</div>
+
+<hr>
+
+<div class="problem">
+  <span class="problem-num">14.</span> <b>Multi-Step Circuit with Battery and Shorting</b><br>
+  Three capacitors \(C_1 = 10\) μF, \(C_2 = 20\) μF, \(C_3 = 30\) μF are connected in series to a 90 V battery. (a) Find charge and voltage on each. (b) The battery is disconnected, then \(C_3\) is removed and its plates shorted (discharged). \(C_3\) is reconnected to \(C_1\) and \(C_2\) (which remain in series). Find the new voltage across each capacitor and the energy lost in the shorting process.
+  <div class="workspace-xtall"></div>
+</div>
+
+<hr>
+
+<div class="problem">
+  <span class="problem-num">15.</span> <b>Gauss's Law with Partial Dielectric Filling</b><br>
+  A parallel-plate capacitor (\(A\), \(d\)) has a dielectric slab (\(\kappa\), thickness \(t < d\)) inserted between the plates. The capacitor is connected to battery \(V_0\). (a) Find the \(E\) field in the air gap and in the dielectric. (b) Find the surface charge density on the plates. (c) Find the induced surface charge density on the dielectric. (d) Find the total capacitance. (e) Show that your answer reduces to \(C = \varepsilon_0 A/d\) when \(t = 0\) and \(C = \kappa\varepsilon_0 A/d\) when \(t = d\).
+  <div class="workspace-xtall"></div>
+</div>
+
+<div class="page-break"></div>
+
+<!-- ============= ANSWER KEY ============= -->
+<div class="answer-section">
+  <h2>5. Answer Key</h2>
+
+  <h3>Homework Answers</h3>
+
+  <div class="problem">
+    <b>Q1.</b> Which plot (in Fig. 25-19) goes with which capacitor (in the table)?
+    <div class="solution">
+      Since \(C = \varepsilon_0 A/d\), larger \(C\) corresponds to larger \(A\) or smaller \(d\). On a \(q\) vs \(V\) plot, since \(q = CV\), the slope equals \(C\).<br>
+      Match each capacitor's capacitance value to the plot with the corresponding slope. The capacitor with the largest \(A/d\) ratio has the steepest plot; the smallest \(A/d\) has the shallowest plot.
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="problem">
+    <b>Q5.</b> (a) Are \(C_1\) and \(C_3\) in series in Fig. 25-22a? (b) Are \(C_1\) and \(C_2\) in parallel? (c) Rank the equivalent capacitances.
+    <div class="solution">
+      (a) Series means a single path: all charge must flow through both. Check if they're on the same branch without intermediate nodes. Examine Fig. 25-22a carefully.<br>
+      (b) Parallel means both are connected to the same two nodes, ensuring the same voltage across each. Check if \(C_1\) and \(C_2\) share both nodes.<br>
+      (c) Ranking depends on the specific circuit topology shown in Fig 25-22. Identify series/parallel groups in all four circuits and calculate or compare \(C_{\text{eq}}\) for each.
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="problem">
+    <b>Q9.</b> In Fig. 25-23, after switches close, in which circuit (if any) will the charge on the left-hand capacitor (a) increase, (b) decrease, (c) remain the same?
+    <div class="solution">
+      When a charged capacitor is connected to uncharged capacitor(s), charge redistributes according to: \(q_{\text{total}} = q_{\text{initial}}\) (charge conservation).<br>
+      The voltage on each capacitor after connection is \(V = q/C\). Compare the initial voltage on the left capacitor to the final voltage to determine if its charge increased or decreased.<br>
+      Examine Fig. 25-23 for all three circuits and identify which, if any, fit each category (increase, decrease, or no change).
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="problem">
+    <b>Q11.</b> When a dielectric is inserted into one of two identical capacitors in Fig. 25-24, what happens to (a) capacitance, (b) charge, (c) potential difference, (d) potential energy of that capacitor, and (e) the same properties of the other capacitor?
+    <div class="solution">
+      The answer depends on whether the capacitors are in series or parallel with a battery, or isolated. Examine Fig. 25-24 carefully.<br>
+      If in series with a battery (battery connected): voltage is fixed across the series combination. Dielectric increases one \(C\). Since \(V_{\text{total}}\) is fixed and this cap's \(C\) increases, more charge flows onto it and its \(V\) decreases. The other cap must then have increased \(V\) and possibly changed charge.<br>
+      If isolated: total charge is fixed. Dielectric increases one \(C\). Since \(q\) is conserved and \(C\) increases, that cap's voltage decreases. Charge redistributes between them.<br>
+      If in parallel: voltage across both is same. Dielectric increases one \(C\), allowing more charge on it while the other stays at same voltage.
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="problem">
+    <b>P1.</b> \(C = 25\) μF, \(V = 120\) V. How much charge passes through switch S?
+    <div class="solution">
+      \(q = CV = (25 \times 10^{-6})(120) = 3.0 \times 10^{-3} \text{ C} = \mathbf{3.0 \text{ mC}}\)
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="problem">
+    <b>P3.</b> Circular plates, \(r = 8.20\) cm, \(d = 1.30\) mm, \(V = 120\) V. Find (a) capacitance, (b) charge.
+    <div class="solution">
+      (a) Area: \(A = \pi r^2 = \pi(0.0820)^2 = 2.112 \times 10^{-2}\) m²<br>
+      \(C = \frac{\varepsilon_0 A}{d} = \frac{(8.854 \times 10^{-12})(2.112 \times 10^{-2})}{1.30 \times 10^{-3}} = \mathbf{1.44 \times 10^{-10} \text{ F} = 144 \text{ pF}}\)<br>
+      (b) \(q = CV = (1.44 \times 10^{-10})(120) = \mathbf{1.73 \times 10^{-8} \text{ C} = 17.3 \text{ nC}}\)
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="problem">
+    <b>P9.</b> In Fig. 25-28, find \(C_{\text{eq}}\) for network with \(C_1 = 10.0\) μF, \(C_2 = 5.00\) μF, \(C_3 = 4.00\) μF.
+    <div class="solution">
+      <b>Answer: \(C_{\text{eq}} = 3.16 \text{ μF}\)</b><br>
+      <b>General approach:</b> Identify which capacitors are in series and which are in parallel. Simplify from the inside out:<br>
+      — Combine all series groups using \(1/C_{\text{series}} = 1/C_a + 1/C_b + \cdots\)<br>
+      — Combine all parallel groups using \(C_{\text{parallel}} = C_a + C_b + \cdots\)<br>
+      Repeat until a single \(C_{\text{eq}}\) remains. (Figure-dependent; identify topology in Fig. 25-28 and apply rules above.)
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="problem">
+    <b>P13.</b> \(C_1 = 100\) pF charged to 50 V. Connected to uncharged \(C_2\). Final \(V = 35\) V. Find \(C_2\).
+    <div class="solution">
+      Charge conservation: \(q_{\text{total}} = C_1 V_1 = (100 \times 10^{-12})(50) = 5.0 \times 10^{-9}\) C<br>
+      After connection (parallel): \((C_1 + C_2)V_f = q_{\text{total}}\)<br>
+      \((100 + C_2)(35) = 5.0 \times 10^{-9}\) (in pF and V)<br>
+      \(100 + C_2 = \frac{5.0 \times 10^{-9}}{35} \times 10^{12} = 142.86\) pF<br>
+      \(\mathbf{C_2 = 43 \text{ pF}}\)
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="problem">
+    <b>P21.</b> 12.0 V battery charges \(C_1 = 4.00\) μF to full charge. Then switch thrown right: \(C_1\) parallel with \(C_2 = 6.00\) μF and \(C_3 = 3.00\) μF (in series). Find final charge on (a) \(C_1\), (b) \(C_2\), (c) \(C_3\).
+    <div class="solution">
+      Step 1: \(C_1\) charges alone from battery.<br>
+      \(q_1 = C_1(12.0) = (4.00 \times 10^{-6})(12.0) = 48.0 \times 10^{-6}\) C = 48.0 μC<br>
+      Step 2: \(C_2\) and \(C_3\) in series.<br>
+      \(C_{23} = \frac{C_2 C_3}{C_2 + C_3} = \frac{(6.00)(3.00)}{9.00} = 2.00\) μF<br>
+      Step 3: \(C_1\) (charged to 48.0 μC) connects in parallel to \(C_{23}\) (uncharged).<br>
+      Total charge: \(q_{\text{total}} = 48.0\) μC (conserved)<br>
+      \(V_f = \frac{q_{\text{total}}}{C_1 + C_{23}} = \frac{48.0 \times 10^{-6}}{4.00 + 2.00} = 8.0\) V<br>
+      (a) \(q_{1,f} = C_1 V_f = (4.00)(8.0) = \mathbf{32.0 \text{ μC}}\)<br>
+      (b) \(q_{23} = C_{23} V_f = (2.00)(8.0) = 16.0\) μC<br>
+      (c) Since \(C_2\) and \(C_3\) are in series, same charge on both:<br>
+      \(\mathbf{q_2 = q_3 = 16.0 \text{ μC}}\)
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="problem">
+    <b>P27.</b> \(C_1 = 2.0\) μF and \(C_2 = 4.0\) μF in parallel across \(V = 300\) V. Calculate total energy stored.
+    <div class="solution">
+      Parallel → same \(V\) across each.<br>
+      Total \(C = C_1 + C_2 = 2.0 + 4.0 = 6.0\) μF<br>
+      \(U_{\text{total}} = \frac{1}{2}C_{\text{total}}V^2 = \frac{1}{2}(6.0 \times 10^{-6})(300)^2 = \frac{1}{2}(6.0 \times 10^{-6})(9.0 \times 10^4) = \mathbf{0.27 \text{ J}}\)
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="problem">
+    <b>P31.</b> \(A = 8.50\) cm², \(d_0 = 3.00\) mm, \(V_0 = 6.00\) V. Battery disconnects. Plates pulled to \(d_f = 8.00\) mm. Find (a) final \(V\), (b) initial \(U\), (c) final \(U\), (d) work required.
+    <div class="solution">
+      Initial capacitance: \(C_0 = \frac{\varepsilon_0 A}{d_0} = \frac{(8.854 \times 10^{-12})(8.50 \times 10^{-4})}{3.00 \times 10^{-3}} = 2.508\) pF<br>
+      Charge (fixed, battery disconnected): \(q = C_0 V_0 = (2.508 \times 10^{-12})(6.00) = 15.05 \times 10^{-12}\) C<br>
+      Final capacitance: \(C_f = \frac{\varepsilon_0 A}{d_f} = \frac{(8.854 \times 10^{-12})(8.50 \times 10^{-4})}{8.00 \times 10^{-3}} = 0.9407\) pF<br>
+      (a) Final voltage: \(V_f = \frac{q}{C_f} = \frac{15.05 \times 10^{-12}}{0.9407 \times 10^{-12}} = \mathbf{16.0 \text{ V}}\)<br>
+      (b) Initial energy: \(U_0 = \frac{1}{2}q V_0 = \frac{1}{2}(15.05 \times 10^{-12})(6.00) = \mathbf{45.1 \text{ pJ}}\)<br>
+      (c) Final energy: \(U_f = \frac{1}{2}q V_f = \frac{1}{2}(15.05 \times 10^{-12})(16.0) = \mathbf{120 \text{ pJ}}\)<br>
+      (d) Work done (external agent): \(W = U_f - U_0 = 120 - 45.1 = \mathbf{75.2 \text{ pJ}}\)<br>
+      (You did work pulling the plates apart against the attractive electric force.)
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="problem">
+    <b>P35.</b> \(C_{\text{air}} = 7.4\) pF. Must store \(U = 7.4\) μJ at \(V_{\text{max}} = 652\) V (no margin). Which dielectric from Table 25-1?
+    <div class="solution">
+      Required capacitance: \(C_{\text{needed}} = \frac{2U}{V^2} = \frac{2(7.4 \times 10^{-6})}{(652)^2} = \frac{14.8 \times 10^{-6}}{425104} = 3.48 \times 10^{-11}\) F = 34.8 pF<br>
+      Dielectric constant: \(\kappa = \frac{C_{\text{needed}}}{C_{\text{air}}} = \frac{34.8}{7.4} = 4.7\)<br>
+      <b>From Table 25-1, select the dielectric with \(\kappa \approx 4.7\) (e.g., pyrex glass).</b>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="problem">
+    <b>P41.</b> \(\kappa = 5.5\), \(A = 0.034\) m², \(d = 2.0\) mm. Dielectric breakdown at \(E_{\text{max}} = 200\) kN/C. Find \(U_{\text{max}}\).
+    <div class="solution">
+      Maximum voltage: \(V_{\text{max}} = E_{\text{max}} \cdot d = (200 \times 10^3)(2.0 \times 10^{-3}) = 400\) V<br>
+      Capacitance: \(C = \frac{\kappa \varepsilon_0 A}{d} = \frac{5.5(8.854 \times 10^{-12})(0.034)}{2.0 \times 10^{-3}} = 8.27 \times 10^{-10}\) F<br>
+      Maximum energy: \(U_{\text{max}} = \frac{1}{2}CV_{\text{max}}^2 = \frac{1}{2}(8.27 \times 10^{-10})(400)^2 = \mathbf{66 \text{ μJ}}\)
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="problem">
+    <b>P43.</b> Parallel-plate capacitor, \(A = 7.89\) cm², \(d = 4.62\) mm. Top half (thickness \(d/2\)): \(\kappa_1 = 11.0\). Bottom half: \(\kappa_2 = 12.0\). Find \(C\).
+    <div class="solution">
+      Each dielectric occupies thickness \(d/2 = 2.31\) mm. They are in series.<br>
+      \(C_1 = \frac{\kappa_1 \varepsilon_0 A}{d/2} = \frac{2\kappa_1 \varepsilon_0 A}{d}\)<br>
+      \(C_2 = \frac{2\kappa_2 \varepsilon_0 A}{d}\)<br>
+      Series: \(\frac{1}{C} = \frac{1}{C_1} + \frac{1}{C_2} = \frac{d}{2\kappa_1 \varepsilon_0 A} + \frac{d}{2\kappa_2 \varepsilon_0 A} = \frac{d(\kappa_1 + \kappa_2)}{2\kappa_1 \kappa_2 \varepsilon_0 A}\)<br>
+      \(C = \frac{2\kappa_1 \kappa_2 \varepsilon_0 A}{d(\kappa_1 + \kappa_2)} = \frac{2(11.0)(12.0)(8.854 \times 10^{-12})(7.89 \times 10^{-4})}{(4.62 \times 10^{-3})(23.0)}\)<br>
+      \(C = \mathbf{1.73 \text{ pF}}\)
+    </div>
+  </div>
+
+  <hr>
+
+  <h3>Tier 1 Answers</h3>
+
+  <div class="problem">
+    <b>1.</b> \(A = 0.040\) m², \(d = 2.0\) mm, \(V = 9.0\) V.
+    <div class="solution">
+      (a) \(C = \frac{\varepsilon_0 A}{d} = \frac{(8.854 \times 10^{-12})(0.040)}{2.0 \times 10^{-3}} = \mathbf{177 \text{ pF}}\)<br>
+      (b) \(q = CV = (177 \times 10^{-12})(9.0) = 1.59 \times 10^{-9}\) C = 1.59 nC<br>
+      \(U = \frac{1}{2}CV^2 = \frac{1}{2}(177 \times 10^{-12})(9.0)^2 = 7.17 \times 10^{-9}\) J = 7.17 nJ
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="problem">
+    <b>2.</b> \(C_1 = 2\) μF, \(C_2 = 4\) μF, \(C_3 = 6\) μF.
+    <div class="solution">
+      (a) All in parallel: \(C_{\text{eq}} = C_1 + C_2 + C_3 = 2 + 4 + 6 = \mathbf{12 \text{ μF}}\)<br>
+      (b) All in series: \(\frac{1}{C_{\text{eq}}} = \frac{1}{2} + \frac{1}{4} + \frac{1}{6} = \frac{6+3+2}{12} = \frac{11}{12}\)<br>
+      \(C_{\text{eq}} = \mathbf{1.09 \text{ μF}}\)<br>
+      (c) \(C_1\) and \(C_2\) in series: \(C_{12} = \frac{C_1 C_2}{C_1+C_2} = \frac{(2)(4)}{6} = 1.33\) μF<br>
+      That in parallel with \(C_3\): \(C_{\text{eq}} = 1.33 + 6 = \mathbf{7.33 \text{ μF}}\)
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="problem">
+    <b>3.</b> \(C_1 = 10\) μF charged to 100 V. Connected to uncharged \(C_2 = 15\) μF.
+    <div class="solution">
+      Total charge (conserved): \(q_{\text{total}} = C_1 V_1 = (10 \times 10^{-6})(100) = 1.0 \times 10^{-3}\) C = 1000 μC<br>
+      (a) Final voltage (parallel): \(V_f = \frac{q_{\text{total}}}{C_1 + C_2} = \frac{1.0 \times 10^{-3}}{25 \times 10^{-6}} = \mathbf{40 \text{ V}}\)<br>
+      (b) Final charges:<br>
+      \(q_1 = C_1 V_f = (10)(40) = 400\) μC<br>
+      \(q_2 = C_2 V_f = (15)(40) = 600\) μC<br>
+      (c) Initial energy: \(U_i = \frac{1}{2}C_1 V_1^2 = \frac{1}{2}(10 \times 10^{-6})(100)^2 = 0.050\) J = 50 mJ<br>
+      Final energy: \(U_f = \frac{1}{2}(C_1 + C_2)V_f^2 = \frac{1}{2}(25 \times 10^{-6})(40)^2 = 0.020\) J = 20 mJ<br>
+      Energy lost: \(\Delta U = 50 - 20 = \mathbf{30 \text{ mJ}}\)<br>
+      This energy was dissipated as heat and electromagnetic radiation during the charge redistribution/spark when the capacitors were connected.
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="problem">
+    <b>4.</b> \(C_{\text{air}} = 50\) pF, \(V = 200\) V (connected). Dielectric \(\kappa = 4.0\) inserted (battery stays on).
+    <div class="solution">
+      (a) New capacitance: \(C_{\text{new}} = \kappa C_{\text{air}} = 4.0(50) = \mathbf{200 \text{ pF}}\)<br>
+      (b) Initial charge: \(q_{\text{old}} = C_{\text{air}} V = (50)(200) = 10,000\) pC = 10 nC<br>
+      New charge (battery connected, V fixed): \(q_{\text{new}} = C_{\text{new}} V = (200)(200) = 40,000\) pC = 40 nC<br>
+      Charge increases by factor 4 (dielectric constant).<br>
+      (c) Old energy: \(U_{\text{old}} = \frac{1}{2}(50 \times 10^{-12})(200)^2 = 1.0 \times 10^{-6}\) J = 1.0 μJ<br>
+      New energy: \(U_{\text{new}} = \frac{1}{2}(200 \times 10^{-12})(200)^2 = 4.0 \times 10^{-6}\) J = 4.0 μJ<br>
+      Energy increases by factor 4. The battery did work pushing additional charge onto the plates.
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="problem">
+    <b>5.</b> Isolated sphere, \(R = 10\) cm = 0.10 m.
+    <div class="solution">
+      (a) \(C = 4\pi \varepsilon_0 R = 4\pi(8.854 \times 10^{-12})(0.10) = \mathbf{11.1 \text{ pF}}\)<br>
+      (b) \(q = CV = (11.1 \times 10^{-12})(500) = 5.56 \times 10^{-9}\) C = 5.56 nC<br>
+      (c) \(U = \frac{1}{2}CV^2 = \frac{1}{2}(11.1 \times 10^{-12})(500)^2 = \mathbf{1.39 \times 10^{-6} \text{ J} = 1.39 \text{ μJ}}\)
+    </div>
+  </div>
+
+  <hr>
+
+  <h3>Tier 2 Answers</h3>
+
+  <div class="problem">
+    <b>6.</b> \(A = 0.10\) m², \(d = 5.0\) mm, initial \(V = 500\) V. Dielectric \(\kappa = 3.0\) inserted (disconnected).
+    <div class="solution">
+      Initial: \(C_0 = \frac{\varepsilon_0 A}{d} = \frac{(8.854 \times 10^{-12})(0.10)}{5.0 \times 10^{-3}} = 1.77 \times 10^{-10}\) F = 177 pF<br>
+      \(q = C_0 V_0 = (177 \times 10^{-12})(500) = 8.85 \times 10^{-8}\) C (fixed, battery disconnected)<br>
+      (a) \(C_{\text{before}} = \mathbf{177 \text{ pF}}\). \(C_{\text{after}} = \kappa C_{\text{before}} = 3.0(177) = \mathbf{531 \text{ pF}}\)<br>
+      (b) \(q_{\text{before}} = \mathbf{88.5 \text{ nC}}\). \(q_{\text{after}} = \mathbf{88.5 \text{ nC}}\) (same, disconnected)<br>
+      (c) \(V_{\text{before}} = \mathbf{500 \text{ V}}\). \(V_{\text{after}} = \frac{q}{C_{\text{after}}} = \frac{88.5 \times 10^{-9}}{531 \times 10^{-12}} = \mathbf{167 \text{ V}}\)<br>
+      (d) \(U_{\text{before}} = \frac{1}{2}C_0 V_0^2 = \frac{1}{2}(177 \times 10^{-12})(500)^2 = 2.21 \times 10^{-5}\) J = 22.1 μJ<br>
+      \(U_{\text{after}} = \frac{q^2}{2C_{\text{after}}} = \frac{(88.5 \times 10^{-9})^2}{2(531 \times 10^{-12})} = 7.37 \times 10^{-6}\) J = 7.37 μJ<br>
+      (e) Work done by electric field: \(W_{\text{field}} = U_{\text{before}} - U_{\text{after}} = 22.1 - 7.37 = 14.7\) μJ<br>
+      The electric field does positive work pulling the dielectric in (stored energy decreases).
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="problem">
+    <b>7.</b> \(C_1 = 8\) μF, \(C_2 = 6\) μF in series, in parallel with \(C_3 = 12\) μF, all in series with \(C_4 = 4\) μF. Connected to 100 V.
+    <div class="solution">
+      Step 1: \(C_1\) and \(C_2\) in series: \(C_{12} = \frac{(8)(6)}{14} = 3.43\) μF<br>
+      Step 2: \(C_{12}\) in parallel with \(C_3\): \(C_{123} = 3.43 + 12 = 15.43\) μF<br>
+      Step 3: \(C_{123}\) in series with \(C_4\): \(C_{\text{eq}} = \frac{(15.43)(4)}{19.43} = \mathbf{3.18 \text{ μF}}\)<br>
+      Total charge from battery: \(q_{\text{total}} = C_{\text{eq}} V = (3.18 \times 10^{-6})(100) = 3.18 \times 10^{-4}\) C = 318 μC (charge on \(C_4\))<br>
+      Voltage across \(C_4\): \(V_4 = \frac{318 \times 10^{-6}}{4 \times 10^{-6}} = 79.5\) V<br>
+      Voltage across \(C_{123}\): \(V_{123} = 100 - 79.5 = 20.5\) V<br>
+      Charge on \(C_3\): \(q_3 = C_3 V_{123} = (12 \times 10^{-6})(20.5) = 246 \times 10^{-6}\) C = 246 μC<br>
+      Charge on \(C_{12}\): \(q_{12} = 318 - 246 = 72\) μC (since \(C_{12}\) and \(C_3\) are in parallel)<br>
+      Since \(C_1\) and \(C_2\) are in series, they have the same charge: \(\mathbf{q_1 = q_2 = 72 \text{ μC}}\)<br>
+      \(V_1 = q_1/C_1 = 72/8 = 9.0\) V, \(V_2 = 72/6 = 12\) V, \(V_{1,2} = 21\) V (check: 21 + 20.5 - ε ≈ close due to rounding)
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="problem">
+    <b>8.</b> Plates area \(A\), separation \(d\). Two dielectrics side-by-side: each covers \(A/2\), full thickness \(d\). \(\kappa_1 = 2.0\), \(\kappa_2 = 5.0\).
+    <div class="solution">
+      Side-by-side → parallel configuration.<br>
+      Each dielectric acts as a capacitor in parallel with the other.<br>
+      \(C_1 = \frac{\kappa_1 \varepsilon_0 (A/2)}{d}\), \(C_2 = \frac{\kappa_2 \varepsilon_0 (A/2)}{d}\)<br>
+      \(C_{\text{eq}} = C_1 + C_2 = \frac{\varepsilon_0 A}{2d}(\kappa_1 + \kappa_2) = \frac{\varepsilon_0 A}{2d}(2.0 + 5.0) = \mathbf{\frac{7.0 \varepsilon_0 A}{2d}} = \mathbf{3.5 \frac{\varepsilon_0 A}{d}}\)
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="problem">
+    <b>9.</b> \(C_1 = 4.0\) μF at 100 V, \(C_2 = 8.0\) μF at 50 V. Both disconnected, connected positive-to-positive.
+    <div class="solution">
+      Initial charges: \(q_1 = (4.0)(100) = 400\) μC, \(q_2 = (8.0)(50) = 400\) μC<br>
+      Total charge: \(q_{\text{total}} = 400 + 400 = 800\) μC<br>
+      (a) Final voltage (parallel): \(V_f = \frac{q_{\text{total}}}{C_1 + C_2} = \frac{800 \times 10^{-6}}{12 \times 10^{-6}} = \mathbf{66.7 \text{ V}}\)<br>
+      (b) \(q_{1,f} = C_1 V_f = (4.0)(66.7) = 267\) μC<br>
+      \(q_{2,f} = C_2 V_f = (8.0)(66.7) = 533\) μC<br>
+      (c) Initial energy: \(U_i = \frac{1}{2}C_1 V_1^2 + \frac{1}{2}C_2 V_2^2 = \frac{1}{2}(4.0)(100)^2 + \frac{1}{2}(8.0)(50)^2\)<br>
+      \(U_i = 20 + 10 = 30\) mJ<br>
+      Final energy: \(U_f = \frac{1}{2}(C_1+C_2)V_f^2 = \frac{1}{2}(12)(66.7)^2 = 26.7\) mJ<br>
+      Energy lost: \(\Delta U = 30 - 26.7 = \mathbf{3.3 \text{ mJ}}\)
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="problem">
+    <b>10.</b> Spherical capacitor, \(a = 5.0\) cm, \(b = 8.0\) cm, \(\kappa = 6.0\).
+    <div class="solution">
+      (a) \(C = \frac{4\pi \kappa \varepsilon_0 ab}{b-a} = \frac{4\pi(6.0)(8.854 \times 10^{-12})(0.050)(0.080)}{0.030}\)<br>
+      \(C = \frac{4\pi(6.0)(8.854 \times 10^{-12})(0.004)}{0.030} = 8.90 \times 10^{-10}\) F = \mathbf{890 pF}\)<br>
+      (b) \(q = CV = (890 \times 10^{-12})(400) = 3.56 \times 10^{-7}\) C = 356 nC<br>
+      (c) \(U = \frac{1}{2}CV^2 = \frac{1}{2}(890 \times 10^{-12})(400)^2 = \mathbf{7.12 \times 10^{-5} \text{ J} = 71.2 \text{ μJ}}\)
+    </div>
+  </div>
+
+  <hr>
+
+  <h3>Tier 3 Answers</h3>
+
+  <div class="problem">
+    <b>11.</b> Derive cylindrical capacitor: \(C = \frac{2\pi\varepsilon_0 L}{\ln(b/a)}\).
+    <div class="solution">
+      <b>Setup:</b> Inner cylinder radius \(a\), outer radius \(b\), length \(L\), with charge \(+q\) on inner, \(-q\) on outer.<br>
+      <b>Gaussian surface:</b> Cylinder of radius \(r\) (where \(a < r < b\)), coaxial with the capacitor, length \(L\).<br>
+      <b>Gauss's law:</b> \(\oint \vec{E} \cdot d\vec{A} = \frac{q_{\text{enc}}}{\varepsilon_0}\)<br>
+      By symmetry, \(E\) is radial. Flux through curved surface: \(E(2\pi r L) = \frac{q}{\varepsilon_0}\)<br>
+      \(E(r) = \frac{q}{2\pi\varepsilon_0 L r}\)<br>
+      <b>Potential difference:</b> \(V = -\int_b^a E(r) dr = \int_a^b \frac{q}{2\pi\varepsilon_0 L r} dr = \frac{q}{2\pi\varepsilon_0 L} \ln(b/a)\)<br>
+      <b>Capacitance:</b> \(C = \frac{q}{V} = \frac{q}{\frac{q}{2\pi\varepsilon_0 L}\ln(b/a)} = \mathbf{\frac{2\pi\varepsilon_0 L}{\ln(b/a)}}\)
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="problem">
+    <b>12.</b> Parallel-plate, \(A = 0.020\) m², \(d = 1.0\) mm, \(V = 200\) V.
+    <div class="solution">
+      (a) \(E = V/d = 200/(1.0 \times 10^{-3}) = \mathbf{2.0 \times 10^5 \text{ V/m}}\)<br>
+      (b) Energy density: \(u = \frac{1}{2}\varepsilon_0 E^2 = \frac{1}{2}(8.854 \times 10^{-12})(2.0 \times 10^5)^2 = \mathbf{0.177 \text{ J/m}^3}\)<br>
+      (c) Volume between plates: \(V_{\text{vol}} = Ad = (0.020)(1.0 \times 10^{-3}) = 2.0 \times 10^{-5}\) m³<br>
+      Total energy: \(U = u \times V_{\text{vol}} = (0.177)(2.0 \times 10^{-5}) = \mathbf{3.54 \times 10^{-6} \text{ J} = 3.54 \text{ μJ}}\)<br>
+      (d) Verification using \(U = \frac{1}{2}CV^2\):<br>
+      \(C = \frac{\varepsilon_0 A}{d} = \frac{(8.854 \times 10^{-12})(0.020)}{1.0 \times 10^{-3}} = 1.77 \times 10^{-10}\) F = 177 pF<br>
+      \(U = \frac{1}{2}(177 \times 10^{-12})(200)^2 = 3.54 \times 10^{-6}\) J ✓
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="problem">
+    <b>13.</b> \(A = 0.050\) m², initial \(d = 2.0\) mm, \(V = 500\) V, disconnected. Pull to \(d_2 = 5.0\) mm. Then insert \(\kappa = 2.5\).
+    <div class="solution">
+      (a) \(C_0 = \frac{\varepsilon_0 A}{d} = \frac{(8.854 \times 10^{-12})(0.050)}{2.0 \times 10^{-3}} = 2.21 \times 10^{-10}\) F = 221 pF<br>
+      \(q = C_0 V = (221 \times 10^{-12})(500) = 1.11 \times 10^{-7}\) C = 111 nC<br>
+      \(U_0 = \frac{1}{2}C_0 V^2 = \frac{1}{2}(221 \times 10^{-12})(500)^2 = \mathbf{2.76 \times 10^{-5} \text{ J} = 27.6 \text{ μJ}}\)<br>
+      (b) After pulling apart: \(C_2 = \frac{\varepsilon_0 A}{d_2} = \frac{(8.854 \times 10^{-12})(0.050)}{5.0 \times 10^{-3}} = 8.85 \times 10^{-11}\) F = 88.5 pF<br>
+      \(V_2 = \frac{q}{C_2} = \frac{111 \times 10^{-9}}{88.5 \times 10^{-12}} = \mathbf{1254 \text{ V}}\)<br>
+      \(U_2 = \frac{q^2}{2C_2} = \frac{(111 \times 10^{-9})^2}{2(88.5 \times 10^{-12})} = \mathbf{6.95 \times 10^{-5} \text{ J} = 69.5 \text{ μJ}}\)<br>
+      (c) Extra energy came from the mechanical work YOU did pulling the plates apart against the electric attraction.<br>
+      (d) After inserting dielectric (still disconnected): \(C_3 = \kappa C_2 = 2.5(88.5) = 221\) pF (= original!)<br>
+      \(V_3 = \frac{q}{C_3} = \frac{111 \times 10^{-9}}{221 \times 10^{-12}} = \mathbf{500 \text{ V}}\) (= original!)<br>
+      \(U_3 = \frac{q^2}{2C_3} = \frac{(111 \times 10^{-9})^2}{2(221 \times 10^{-12})} = \mathbf{2.76 \times 10^{-5} \text{ J} = 27.6 \text{ μJ}}\) (= original!)<br>
+      (e) \(V_3 = 500\) V is the same as the original \(V_0\), not decreased. The dielectric insertion (while disconnected) DECREASED energy from 69.5 to 27.6 μJ. The electric field pulled the dielectric in, doing positive work (energy decreased).
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="problem">
+    <b>14.</b> \(C_1 = 10\) μF, \(C_2 = 20\) μF, \(C_3 = 30\) μF in series, 90 V. Battery disconnected, \(C_3\) removed and shorted, reconnected.
+    <div class="solution">
+      <b>Part (a): Initial state (all in series).</b><br>
+      \(1/C_{\text{series}} = 1/10 + 1/20 + 1/30 = (6+3+2)/60 = 11/60\)<br>
+      \(C_{\text{series}} = 60/11 = 5.45\) μF<br>
+      Total charge: \(q = C_{\text{series}} V = (5.45)(90) = 490.9\) μC ≈ 491 μC<br>
+      Since series: each capacitor has \(q = 491\) μC<br>
+      \(V_1 = q/C_1 = 491/10 = 49.1\) V<br>
+      \(V_2 = q/C_2 = 491/20 = 24.5\) V<br>
+      \(V_3 = q/C_3 = 491/30 = 16.4\) V<br>
+      <b>Part (b): \(C_3\) removed and shorted (discharged).</b><br>
+      Battery is disconnected, so \(C_1\) and \(C_2\) remain in series with \(q = 491\) μC on each.<br>
+      \(C_3\) is shorted (discharged) → \(q_3 = 0\).<br>
+      \(C_3\) is then reconnected in parallel with the series combination of \(C_1\) and \(C_2\).<br>
+      Equivalent of \(C_1\)-\(C_2\) series: \(C_{12} = \frac{(10)(20)}{30} = 6.67\) μF, still holding 491 μC<br>
+      Voltage across \(C_{12}\): \(V_{12} = 491/(6.67) = 73.7\) V<br>
+      When \(C_3\) (initially uncharged) is connected in parallel, charge redistributes:<br>
+      Total charge on (\(C_1\)-\(C_2\) parallel with \(C_3\)): \(q = 491\) μC (conserved)<br>
+      New equivalent: \(C_{\text{new}} = C_{12} + C_3 = 6.67 + 30 = 36.67\) μF<br>
+      Final voltage: \(V_{\text{final}} = 491/36.67 = 13.4\) V<br>
+      Charge on \(C_3\): \(q_3 = C_3 V_{\text{final}} = (30)(13.4) = 401\) μC<br>
+      Charge on \(C_{12}\): \(q_{12} = C_{12} V_{\text{final}} = (6.67)(13.4) = 89.4\) μC<br>
+      Since \(C_1\) and \(C_2\) are in series, each has 89.4 μC.<br>
+      \(V_1 = 89.4/10 = 8.94\) V, \(V_2 = 89.4/20 = 4.47\) V<br>
+      Energy lost in shorting process: \(\Delta U = U_i - U_f\)<br>
+      \(U_i = \frac{1}{2}(5.45)(90)^2 = 22.0\) mJ (before shorting)<br>
+      \(U_f = \frac{1}{2}(36.67)(13.4)^2 = 3.29\) mJ<br>
+      Energy lost = \(22.0 - 3.29 = \mathbf{18.7 \text{ mJ}}\)
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="problem">
+    <b>15.</b> Partial dielectric filling: parallel-plate (\(A\), \(d\)), dielectric slab (\(\kappa\), thickness \(t\) where \(t < d\)). Battery \(V_0\) connected.
+    <div class="solution">
+      <b>Setup:</b> Air gap of thickness \(d - t\), dielectric of thickness \(t\), in series.<br>
+      <b>(a) Electric fields:</b><br>
+      Let \(\sigma\) = surface charge density on plates. By Gauss's law (conductor/dielectric boundary):<br>
+      \(E_{\text{air}} = \frac{\sigma}{\varepsilon_0}\), \(E_{\text{diel}} = \frac{\sigma}{\kappa\varepsilon_0}\)<br>
+      <b>(b) Surface charge density on plates:</b><br>
+      Voltage constraint: \(E_{\text{air}}(d-t) + E_{\text{diel}} \cdot t = V_0\)<br>
+      \(\frac{\sigma}{\varepsilon_0}(d-t) + \frac{\sigma}{\kappa\varepsilon_0}t = V_0\)<br>
+      \(\sigma\left[\frac{d-t}{\varepsilon_0} + \frac{t}{\kappa\varepsilon_0}\right] = V_0\)<br>
+      \(\sigma = \frac{\varepsilon_0 V_0}{d - t + t/\kappa}\)<br>
+      <b>(c) Induced surface charge on dielectric:</b><br>
+      Polarization reduces field by factor \(\kappa\). Bound surface charge density:<br>
+      \(\sigma_{\text{bound}} = \sigma\left(1 - \frac{1}{\kappa}\right) = \frac{\varepsilon_0 V_0}{d - t + t/\kappa}\left(1 - \frac{1}{\kappa}\right)\)<br>
+      <b>(d) Total capacitance:</b><br>
+      \(q = \sigma A\). \(C = \frac{q}{V_0} = \frac{\sigma A}{V_0} = \frac{\varepsilon_0 A}{d - t + t/\kappa}\)<br>
+      <b>(e) Check limits:</b><br>
+      If \(t = 0\) (no dielectric): \(C = \frac{\varepsilon_0 A}{d}\) ✓<br>
+      If \(t = d\) (full dielectric): \(C = \frac{\varepsilon_0 A}{d - d + d/\kappa} = \frac{\kappa\varepsilon_0 A}{d}\) ✓
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

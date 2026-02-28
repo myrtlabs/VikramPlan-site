@@ -1,0 +1,2049 @@
+{
+  "generated": "2026-02-28T13:57:47Z",
+  "generated_by": "engine.py v2",
+  "planning_window": {
+    "start": "2026-02-22",
+    "end": "2026-03-13"
+  },
+  "capacity": {
+    "total_blocks": 59,
+    "committed_blocks": 45,
+    "buffer_blocks": 14,
+    "buffer_pct": 0.24
+  },
+  "deadlines": [
+    {
+      "id": "lit-essay-final",
+      "label": "HL Essay Final (Turnitin)",
+      "course": "IB World Lit",
+      "due": "2026-03-04",
+      "due_time": "8:00 am",
+      "type": "essay_final",
+      "priority": "red"
+    },
+    {
+      "id": "health-assess-5.1",
+      "label": "Assessment 5.1",
+      "course": "Health Online",
+      "due": "2026-03-04",
+      "due_time": "2:00 pm",
+      "type": "assessment",
+      "priority": "yellow"
+    },
+    {
+      "id": "spanish-listening",
+      "label": "Interpretive Listening: Tradiciones",
+      "course": "IB Espanol",
+      "due": "2026-03-04",
+      "due_time": "11:59 pm",
+      "type": "assessment",
+      "priority": "yellow"
+    },
+    {
+      "id": "spanish-reading-trad",
+      "label": "Reading: Tradiciones quincea\u00f1era",
+      "course": "IB Espanol",
+      "due": "2026-03-04",
+      "due_time": "11:59 pm",
+      "type": "reading",
+      "priority": "green"
+    },
+    {
+      "id": "physics-lab-rc",
+      "label": "Lab: RC Circuit",
+      "course": "AP Physics C",
+      "due": "2026-03-05",
+      "due_time": "8:00 am",
+      "type": "lab",
+      "priority": "yellow"
+    },
+    {
+      "id": "history-mex-rev",
+      "label": "Mexican Revolution Reading",
+      "course": "IB History",
+      "due": "2026-03-06",
+      "due_time": "8:00 am",
+      "type": "reading",
+      "priority": "yellow"
+    },
+    {
+      "id": "cs-lab-5.1",
+      "label": "Lab 5.1: Connect Four",
+      "course": "AP Comp Sci A",
+      "due": "2026-03-06",
+      "due_time": "11:59 pm",
+      "type": "lab",
+      "priority": "yellow"
+    },
+    {
+      "id": "physics-test-cap",
+      "label": "Test: Capacitors & Circuits",
+      "course": "AP Physics C",
+      "due": "2026-03-06",
+      "due_time": "in-class",
+      "type": "major_test",
+      "priority": "red"
+    },
+    {
+      "id": "lit-gost-ch1",
+      "label": "GOST Ch 1 + notes + study guide",
+      "course": "IB World Lit",
+      "due": "2026-03-09",
+      "due_time": "8:00 am",
+      "type": "reading",
+      "priority": "yellow"
+    },
+    {
+      "id": "lit-gost-video",
+      "label": "GOST Intro Video + Study Guide notes",
+      "course": "IB World Lit",
+      "due": "2026-03-09",
+      "due_time": "8:00 am",
+      "type": "reading",
+      "priority": "yellow"
+    },
+    {
+      "id": "chem-quiz-2.6",
+      "label": "Quiz 2.6 Kinetics Notes 1-3",
+      "course": "AP Chemistry",
+      "due": "2026-03-09",
+      "due_time": "in-class",
+      "type": "quiz",
+      "priority": "yellow"
+    },
+    {
+      "id": "sysprog-lab-5",
+      "label": "Lab 5: XOR Cipher and LFSR",
+      "course": "Intro Sys Prog",
+      "due": "2026-03-09",
+      "due_time": "11:59 pm",
+      "type": "lab",
+      "priority": "yellow"
+    },
+    {
+      "id": "spanish-folleto",
+      "label": "Writing: Folleto promocional",
+      "course": "IB Espanol",
+      "due": "2026-03-11",
+      "due_time": "1:26 pm",
+      "type": "assignment",
+      "priority": "yellow"
+    },
+    {
+      "id": "spanish-speaking",
+      "label": "Interpersonal Speaking",
+      "course": "IB Espanol",
+      "due": "2026-03-11",
+      "due_time": "in-class",
+      "type": "assessment",
+      "priority": "yellow"
+    },
+    {
+      "id": "nat-spanish-exam",
+      "label": "National Spanish Exam",
+      "course": "IB Espanol",
+      "due": "2026-03-11",
+      "due_time": "in-class",
+      "type": "assessment",
+      "priority": "yellow"
+    },
+    {
+      "id": "spanishdict-repaso",
+      "label": "SPANISHDICT Repaso de Gram\u00e1tica",
+      "course": "IB Espanol",
+      "due": "2026-03-13",
+      "due_time": null,
+      "type": "homework",
+      "priority": "yellow"
+    },
+    {
+      "id": "t2-ends",
+      "label": "Trimester 2 Ends",
+      "course": null,
+      "due": "2026-03-13",
+      "due_time": null,
+      "type": "milestone",
+      "priority": "red"
+    }
+  ],
+  "days": [
+    {
+      "date": "2026-02-22",
+      "day": "Sun",
+      "type": "off",
+      "label": "Sunday \u2014 Mock tests done, final prep",
+      "available_blocks": 4,
+      "day_deadlines": [],
+      "blocks": [
+        {
+          "slot": 1,
+          "time": "10:00-11:00",
+          "task": "Chem: Final review with formula sheet \u2014 redo missed problems from mock",
+          "prep_id": "chem-test-2.3",
+          "course": "AP Chemistry",
+          "done": false,
+          "notes": ""
+        },
+        {
+          "slot": 2,
+          "time": "11:10-12:10",
+          "task": "Calc: Extra practice problems (sections 6.2-6.5) \u2014 struggled on mock",
+          "prep_id": "calc-quiz-feb23",
+          "course": "AP Calc BC",
+          "done": false,
+          "notes": ""
+        },
+        {
+          "slot": 3,
+          "time": "1:00-2:00",
+          "task": "Spanish: Start Blinklearning Unidad 4 Tarea #1 (due Tue)",
+          "prep_id": "spanish-blink-u4",
+          "course": "IB Espanol",
+          "done": false,
+          "notes": ""
+        },
+        {
+          "slot": 4,
+          "time": "2:10-3:10",
+          "task": "Free / light Chem formula review before bed",
+          "prep_id": null,
+          "course": null,
+          "done": false,
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-02-23",
+      "day": "Mon",
+      "type": "school",
+      "label": "Calc quiz + Physics quiz at school",
+      "available_blocks": 3,
+      "day_deadlines": [
+        "Calc BC Quiz (6.2-6.5, 12.1)",
+        "Physics Quiz (Ch 27 Circuits)"
+      ],
+      "blocks": [
+        {
+          "slot": 1,
+          "time": "5:15-6:15",
+          "task": "Chem: FINAL review \u2014 formula sheet + key problem types. TEST TOMORROW.",
+          "prep_id": "chem-test-2.3",
+          "course": "AP Chemistry",
+          "done": false,
+          "notes": ""
+        },
+        {
+          "slot": 2,
+          "time": "6:25-7:25",
+          "task": "Spanish: Finish Blinklearning Tarea #1 (due tomorrow)",
+          "prep_id": "spanish-blink-u4",
+          "course": "IB Espanol",
+          "done": false,
+          "notes": ""
+        },
+        {
+          "slot": 3,
+          "time": "8:00-9:00",
+          "task": "Chem: Light formulas only. Sleep early \u2014 test day tomorrow.",
+          "prep_id": "chem-test-2.3",
+          "course": "AP Chemistry",
+          "done": false,
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-02-24",
+      "day": "Tue",
+      "type": "school",
+      "label": "AP CHEM TEST DAY",
+      "available_blocks": 2,
+      "day_deadlines": [
+        "AP Chem Test 2.3 Thermodynamics",
+        "Blinklearning Unidad 4 Tarea #1",
+        "HW: Chapter 27"
+      ],
+      "blocks": [
+        {
+          "slot": 1,
+          "time": "6:10-7:10",
+          "task": "Calc BC: Start serious test prep \u2014 review all topics from mock quiz",
+          "prep_id": "calc-test-feb26",
+          "course": "AP Calc BC",
+          "done": false,
+          "notes": ""
+        },
+        {
+          "slot": 2,
+          "time": "7:45-8:45",
+          "task": "Calc BC: Practice problems \u2014 volumes of revolution, arc length",
+          "prep_id": "calc-test-feb26",
+          "course": "AP Calc BC",
+          "done": false,
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-02-25",
+      "day": "Wed",
+      "type": "school",
+      "label": "Light day \u2014 Physics lab due 8am!",
+      "available_blocks": 3,
+      "day_deadlines": [
+        "Lab: Internal Resistance"
+      ],
+      "blocks": [
+        {
+          "slot": 1,
+          "time": "5:00-6:00",
+          "task": "Calc BC: Focused practice \u2014 shell method + disk/washer method",
+          "prep_id": "calc-test-feb26",
+          "course": "AP Calc BC",
+          "done": false,
+          "notes": ""
+        },
+        {
+          "slot": 2,
+          "time": "6:10-7:10",
+          "task": "Calc BC: Practice test or problem set \u2014 timed if possible",
+          "prep_id": "calc-test-feb26",
+          "course": "AP Calc BC",
+          "done": false,
+          "notes": ""
+        },
+        {
+          "slot": 3,
+          "time": "7:45-8:45",
+          "task": "Calc BC: Review weak areas from mock + practice. TEST THURSDAY.",
+          "prep_id": "calc-test-feb26",
+          "course": "AP Calc BC",
+          "done": false,
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-02-26",
+      "day": "Thu",
+      "type": "school",
+      "label": "AP CALC BC TEST DAY",
+      "available_blocks": 3,
+      "day_deadlines": [
+        "Calc BC Test"
+      ],
+      "blocks": [
+        {
+          "slot": 1,
+          "time": "5:15-6:15",
+          "task": "Physics: Begin Capacitors & Circuits test prep \u2014 Ch 25 review",
+          "prep_id": "physics-test-cap",
+          "course": "AP Physics C",
+          "done": false,
+          "notes": ""
+        },
+        {
+          "slot": 2,
+          "time": "6:25-7:25",
+          "task": "Physics: Ch 25 problems \u2014 capacitance, combinations, energy",
+          "prep_id": "physics-test-cap",
+          "course": "AP Physics C",
+          "done": false,
+          "notes": ""
+        },
+        {
+          "slot": 3,
+          "time": "8:00-9:00",
+          "task": "Spanish: Quincea\u00f1era reading (due tomorrow)",
+          "prep_id": "spanish-reading-quin",
+          "course": "IB Espanol",
+          "done": false,
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-02-27",
+      "day": "Fri",
+      "type": "school",
+      "label": "Physics test prep begins in earnest",
+      "available_blocks": 2,
+      "day_deadlines": [
+        "Reading: Quincea\u00f1era"
+      ],
+      "blocks": [
+        {
+          "slot": 1,
+          "time": "6:10-7:10",
+          "task": "Physics: Ch 26 review \u2014 current, resistance, Ohm's law",
+          "prep_id": "physics-test-cap",
+          "course": "AP Physics C",
+          "done": false,
+          "notes": ""
+        },
+        {
+          "slot": 2,
+          "time": "7:45-8:45",
+          "task": "Physics: Ch 26-27 problems \u2014 circuits, Kirchhoff's rules",
+          "prep_id": "physics-test-cap",
+          "course": "AP Physics C",
+          "done": false,
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-02-28",
+      "day": "Sat",
+      "type": "off",
+      "label": "Heavy physics prep",
+      "available_blocks": 4,
+      "day_deadlines": [],
+      "blocks": [
+        {
+          "slot": 1,
+          "time": "10:00-11:00",
+          "task": "Physics: Capacitors deep review \u2014 all types, dielectrics, energy",
+          "prep_id": "physics-test-cap",
+          "course": "AP Physics C",
+          "done": false,
+          "notes": ""
+        },
+        {
+          "slot": 2,
+          "time": "11:10-12:10",
+          "task": "Physics: Multi-loop circuits + Kirchhoff's practice",
+          "prep_id": "physics-test-cap",
+          "course": "AP Physics C",
+          "done": false,
+          "notes": ""
+        },
+        {
+          "slot": 3,
+          "time": "1:00-2:00",
+          "task": "Physics: RC circuits \u2014 charging/discharging, time constants",
+          "prep_id": "physics-test-cap",
+          "course": "AP Physics C",
+          "done": false,
+          "notes": ""
+        },
+        {
+          "slot": 4,
+          "time": "2:10-3:10",
+          "task": "World Lit: Plan essay revisions (get tutor feedback before Mar 3)",
+          "prep_id": "lit-essay-final",
+          "course": "IB World Lit",
+          "done": false,
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-03-01",
+      "day": "Sun",
+      "type": "off",
+      "label": "Sunday \u2014 Physics test crunch",
+      "available_blocks": 4,
+      "day_deadlines": [],
+      "blocks": [
+        {
+          "slot": 1,
+          "time": "10:00-11:00",
+          "task": "Physics: TIMED PRACTICE TEST (50 min, paper, Russo format)",
+          "prep_id": "physics-test-cap",
+          "course": "AP Physics C",
+          "done": false,
+          "notes": ""
+        },
+        {
+          "slot": 2,
+          "time": "11:10-12:10",
+          "task": "Physics: Error analysis from practice test \u2014 identify weak spots",
+          "prep_id": "physics-test-cap",
+          "course": "AP Physics C",
+          "done": false,
+          "notes": ""
+        },
+        {
+          "slot": 3,
+          "time": "1:00-2:00",
+          "task": "World Lit: Revise essay based on feedback",
+          "prep_id": "lit-essay-final",
+          "course": "IB World Lit",
+          "done": false,
+          "notes": ""
+        },
+        {
+          "slot": 4,
+          "time": "2:10-3:10",
+          "task": "Physics: Light review of weak spots only. TEST TOMORROW. Rest up.",
+          "prep_id": "physics-test-cap",
+          "course": "AP Physics C",
+          "done": false,
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-03-02",
+      "day": "Mon",
+      "type": "school",
+      "label": "AP PHYSICS TEST DAY \u2014 THE grade lever",
+      "available_blocks": 3,
+      "day_deadlines": [],
+      "blocks": [
+        {
+          "slot": 1,
+          "time": "5:15-6:15",
+          "task": "World Lit: Essay revisions \u2014 strengthen argument + evidence",
+          "prep_id": "lit-essay-final",
+          "course": "IB World Lit",
+          "done": false,
+          "notes": ""
+        },
+        {
+          "slot": 2,
+          "time": "6:25-7:25",
+          "task": "World Lit: Proofread + polish. DUE TOMORROW 11:59pm.",
+          "prep_id": "lit-essay-final",
+          "course": "IB World Lit",
+          "done": false,
+          "notes": ""
+        },
+        {
+          "slot": 3,
+          "time": "8:00-9:00",
+          "task": "Spanish: Interpretive Listening prep (Wed Mar 4)",
+          "prep_id": "spanish-listening",
+          "course": "IB Espanol",
+          "done": false,
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-03-03",
+      "day": "Tue",
+      "type": "school",
+      "label": "Lit essay DUE 11:59pm + Physics RC lab DUE 8am + Admissions Min Day",
+      "available_blocks": 2,
+      "day_deadlines": [],
+      "blocks": [
+        {
+          "slot": 1,
+          "time": "6:10-7:10",
+          "task": "World Lit: FINAL polish + SUBMIT TO TURNITIN by 11:59pm",
+          "prep_id": "lit-essay-final",
+          "course": "IB World Lit",
+          "done": false,
+          "notes": ""
+        },
+        {
+          "slot": 2,
+          "time": "7:45-8:45",
+          "task": "Spanish: Listening practice for Interpretive Listening (tomorrow)",
+          "prep_id": "spanish-listening",
+          "course": "IB Espanol",
+          "done": false,
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-03-04",
+      "day": "Wed",
+      "type": "school",
+      "label": "Light day \u2014 Spanish Listening + Junior Assembly (FDU)",
+      "available_blocks": 3,
+      "day_deadlines": [
+        "HL Essay Final (Turnitin)",
+        "Assessment 5.1",
+        "Interpretive Listening: Tradiciones",
+        "Reading: Tradiciones quincea\u00f1era"
+      ],
+      "blocks": [
+        {
+          "slot": 1,
+          "time": "5:00-6:00",
+          "task": "BWSI: Catch-up on Python modules",
+          "prep_id": null,
+          "course": null,
+          "done": false,
+          "notes": ""
+        },
+        {
+          "slot": 2,
+          "time": "6:10-7:10",
+          "task": "World Lit: Start GOST reading (Ch 1 due Mon Mar 9)",
+          "prep_id": "lit-gost-ch1",
+          "course": "IB World Lit",
+          "done": false,
+          "notes": ""
+        },
+        {
+          "slot": 3,
+          "time": "7:45-8:45",
+          "task": "BWSI: Continue catch-up",
+          "prep_id": null,
+          "course": null,
+          "done": false,
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-03-05",
+      "day": "Thu",
+      "type": "school",
+      "label": "Admissions Min Day + Green Ribbon Day",
+      "available_blocks": 3,
+      "day_deadlines": [
+        "Lab: RC Circuit"
+      ],
+      "blocks": [
+        {
+          "slot": 1,
+          "time": "5:15-6:15",
+          "task": "World Lit: GOST Chapter 1 + notes (due Mon)",
+          "prep_id": "lit-gost-ch1",
+          "course": "IB World Lit",
+          "done": false,
+          "notes": ""
+        },
+        {
+          "slot": 2,
+          "time": "6:25-7:25",
+          "task": "Spanish: Start Interpersonal Speaking prep (Wed Mar 11)",
+          "prep_id": "spanish-speaking",
+          "course": "IB Espanol",
+          "done": false,
+          "notes": ""
+        },
+        {
+          "slot": 3,
+          "time": "8:00-9:00",
+          "task": "BWSI: Catch-up on released units",
+          "prep_id": null,
+          "course": null,
+          "done": false,
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-03-06",
+      "day": "Fri",
+      "type": "school",
+      "label": "",
+      "available_blocks": 2,
+      "day_deadlines": [
+        "Mexican Revolution Reading",
+        "Lab 5.1: Connect Four",
+        "Test: Capacitors & Circuits"
+      ],
+      "blocks": [
+        {
+          "slot": 1,
+          "time": "6:10-7:10",
+          "task": "Spanish: Interpersonal Speaking practice (preterite/imperfect/future)",
+          "prep_id": "spanish-speaking",
+          "course": "IB Espanol",
+          "done": false,
+          "notes": ""
+        },
+        {
+          "slot": 2,
+          "time": "7:45-8:45",
+          "task": "Spanish: Start Folleto writing (due Wed Mar 11)",
+          "prep_id": "spanish-folleto",
+          "course": "IB Espanol",
+          "done": false,
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-03-07",
+      "day": "Sat",
+      "type": "off",
+      "label": "",
+      "available_blocks": 4,
+      "day_deadlines": [],
+      "blocks": [
+        {
+          "slot": 1,
+          "time": "10:00-11:00",
+          "task": "Spanish: Continue Folleto promocional writing",
+          "prep_id": "spanish-folleto",
+          "course": "IB Espanol",
+          "done": false,
+          "notes": ""
+        },
+        {
+          "slot": 2,
+          "time": "11:10-12:10",
+          "task": "SPANISHDICT: Start Repaso de Gram\u00e1tica (due Mar 13)",
+          "prep_id": "spanishdict-repaso",
+          "course": "IB Espanol",
+          "done": false,
+          "notes": ""
+        },
+        {
+          "slot": 3,
+          "time": "1:00-2:00",
+          "task": "BWSI: Catch-up on units",
+          "prep_id": null,
+          "course": null,
+          "done": false,
+          "notes": ""
+        },
+        {
+          "slot": 4,
+          "time": "2:10-3:10",
+          "task": "Free / catch-up on any homework",
+          "prep_id": null,
+          "course": null,
+          "done": false,
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-03-08",
+      "day": "Sun",
+      "type": "off",
+      "label": "",
+      "available_blocks": 4,
+      "day_deadlines": [],
+      "blocks": [
+        {
+          "slot": 1,
+          "time": "10:00-11:00",
+          "task": "World Lit: GOST study guide notes (due tomorrow)",
+          "prep_id": "lit-gost-ch1",
+          "course": "IB World Lit",
+          "done": false,
+          "notes": ""
+        },
+        {
+          "slot": 2,
+          "time": "11:10-12:10",
+          "task": "Spanish: Final Interpersonal Speaking prep",
+          "prep_id": "spanish-speaking",
+          "course": "IB Espanol",
+          "done": false,
+          "notes": ""
+        },
+        {
+          "slot": 3,
+          "time": "1:00-2:00",
+          "task": "Spanish: Finalize Folleto draft",
+          "prep_id": "spanish-folleto",
+          "course": "IB Espanol",
+          "done": false,
+          "notes": ""
+        },
+        {
+          "slot": 4,
+          "time": "2:10-3:10",
+          "task": "BWSI / free catch-up",
+          "prep_id": null,
+          "course": null,
+          "done": false,
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-03-09",
+      "day": "Mon",
+      "type": "school",
+      "label": "GOST Ch 1 + notes due",
+      "available_blocks": 3,
+      "day_deadlines": [
+        "GOST Ch 1 + notes + study guide",
+        "GOST Intro Video + Study Guide notes",
+        "Quiz 2.6 Kinetics Notes 1-3",
+        "Lab 5: XOR Cipher and LFSR"
+      ],
+      "blocks": [
+        {
+          "slot": 1,
+          "time": "5:15-6:15",
+          "task": "Spanish: Folleto final polish (due Wed)",
+          "prep_id": "spanish-folleto",
+          "course": "IB Espanol",
+          "done": false,
+          "notes": ""
+        },
+        {
+          "slot": 2,
+          "time": "6:25-7:25",
+          "task": "Nat. Spanish Exam prep (Wed Mar 11)",
+          "prep_id": "nat-spanish-exam",
+          "course": "IB Espanol",
+          "done": false,
+          "notes": ""
+        },
+        {
+          "slot": 3,
+          "time": "8:00-9:00",
+          "task": "BWSI: Catch-up on released units",
+          "prep_id": null,
+          "course": null,
+          "done": false,
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-03-10",
+      "day": "Tue",
+      "type": "school",
+      "label": "NJ MVC State Exam (flagged \u2014 Vikram relevant?)",
+      "available_blocks": 2,
+      "day_deadlines": [],
+      "blocks": [
+        {
+          "slot": 1,
+          "time": "6:10-7:10",
+          "task": "Spanish: Final prep \u2014 Speaking + Folleto + Nat. Exam all Wed",
+          "prep_id": "spanish-speaking",
+          "course": "IB Espanol",
+          "done": false,
+          "notes": ""
+        },
+        {
+          "slot": 2,
+          "time": "7:45-8:45",
+          "task": "SPANISHDICT: Continue Repaso (due Fri)",
+          "prep_id": "spanishdict-repaso",
+          "course": "IB Espanol",
+          "done": false,
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-03-11",
+      "day": "Wed",
+      "type": "school",
+      "label": "Spanish triple: Interpersonal Speaking + Folleto + Nat. Exam",
+      "available_blocks": 3,
+      "day_deadlines": [
+        "Writing: Folleto promocional",
+        "Interpersonal Speaking",
+        "National Spanish Exam"
+      ],
+      "blocks": [
+        {
+          "slot": 1,
+          "time": "5:00-6:00",
+          "task": "SPANISHDICT: Repaso de Gram\u00e1tica (due Fri Mar 13)",
+          "prep_id": "spanishdict-repaso",
+          "course": "IB Espanol",
+          "done": false,
+          "notes": ""
+        },
+        {
+          "slot": 2,
+          "time": "6:10-7:10",
+          "task": "BWSI: Catch-up on units",
+          "prep_id": null,
+          "course": null,
+          "done": false,
+          "notes": ""
+        },
+        {
+          "slot": 3,
+          "time": "7:45-8:45",
+          "task": "Light catch-up / free",
+          "prep_id": null,
+          "course": null,
+          "done": false,
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-03-12",
+      "day": "Thu",
+      "type": "school",
+      "label": "",
+      "available_blocks": 3,
+      "day_deadlines": [],
+      "blocks": [
+        {
+          "slot": 1,
+          "time": "5:15-6:15",
+          "task": "SPANISHDICT: Finish Repaso (due tomorrow \u2014 T2 ends tomorrow!)",
+          "prep_id": "spanishdict-repaso",
+          "course": "IB Espanol",
+          "done": false,
+          "notes": ""
+        },
+        {
+          "slot": 2,
+          "time": "6:25-7:25",
+          "task": "Any remaining T2 work \u2014 last chance",
+          "prep_id": null,
+          "course": null,
+          "done": false,
+          "notes": ""
+        },
+        {
+          "slot": 3,
+          "time": "8:00-9:00",
+          "task": "Free / celebrate \u2014 T2 almost over",
+          "prep_id": null,
+          "course": null,
+          "done": false,
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-03-13",
+      "day": "Fri",
+      "type": "school",
+      "label": "T2 ENDS \u2014 SPANISHDICT Repaso due",
+      "available_blocks": 2,
+      "day_deadlines": [
+        "SPANISHDICT Repaso de Gram\u00e1tica",
+        "Trimester 2 Ends"
+      ],
+      "blocks": [
+        {
+          "slot": 1,
+          "time": "6:10-7:10",
+          "task": "Any last-minute T2 submissions",
+          "prep_id": null,
+          "course": null,
+          "done": false,
+          "notes": ""
+        },
+        {
+          "slot": 2,
+          "time": "7:45-8:45",
+          "task": "Done. T2 is over. Breathe.",
+          "prep_id": null,
+          "course": null,
+          "done": false,
+          "notes": ""
+        }
+      ]
+    }
+  ],
+  "grades": {
+    "courses": [
+      {
+        "course": "AP Calc BC",
+        "t1": 89.6,
+        "t2": 92.9,
+        "y1": 91.3,
+        "target": 93,
+        "status": "ok",
+        "delta": "\u2014"
+      },
+      {
+        "course": "AP Chemistry",
+        "t1": 93.4,
+        "t2": 96.9,
+        "y1": 95.2,
+        "target": 95,
+        "status": "strong",
+        "delta": "+0.3"
+      },
+      {
+        "course": "AP Comp Sci A",
+        "t1": 94.4,
+        "t2": 94.5,
+        "y1": 94.5,
+        "target": 94,
+        "status": "ok",
+        "delta": "+0.3"
+      },
+      {
+        "course": "AP Physics C",
+        "t1": 93.4,
+        "t2": 86.9,
+        "y1": 90.2,
+        "target": 90,
+        "status": "watch",
+        "delta": "\u2014"
+      },
+      {
+        "course": "IB World Lit",
+        "t1": 94.4,
+        "t2": 93.7,
+        "y1": 94.1,
+        "target": 93,
+        "status": "ok",
+        "delta": "+0.1"
+      },
+      {
+        "course": "IB History",
+        "t1": 97.6,
+        "t2": 95.8,
+        "y1": 96.7,
+        "target": 95,
+        "status": "strong",
+        "delta": "\u2014"
+      },
+      {
+        "course": "IB Espanol",
+        "t1": 94.7,
+        "t2": 93.2,
+        "y1": 94.0,
+        "target": 93,
+        "status": "watch",
+        "delta": "\u2014"
+      },
+      {
+        "course": "Intro Sys Prog",
+        "t1": 96.6,
+        "t2": 93.1,
+        "y1": 94.9,
+        "target": 93,
+        "status": "ok",
+        "delta": "\u2014"
+      },
+      {
+        "course": "Health Online",
+        "t1": 100,
+        "t2": 77.8,
+        "y1": 88.9,
+        "target": 85,
+        "status": "emergency",
+        "delta": "+2.8"
+      }
+    ]
+  },
+  "strategic_notes": {
+    "AP Physics C": "T2 at 86.9 \u2014 tests are 70% of grade. Mar 2 test is THE grade lever. A 95+ could push T2 to ~89.",
+    "AP Calc BC": "Vikram struggled on Feb 22 mock quiz. Thu Feb 26 test needs serious prep.",
+    "AP Chemistry": "Strong at 96.6. Mock test went well, formula sheet created. Tue Feb 24 test should be solid.",
+    "Health Online": "3 zeros can't be recovered. Strategy: nail every remaining assessment. 4.6 already done early.",
+    "IB Espanol": "Dropped 4.5 points. Heavy Spanish week Mar 11 (3 assessments). Start prep early.",
+    "IB World Lit": "Essay final Mar 3. Get tutor review before submission. GOST starts Mar 9."
+  },
+  "teachers": {
+    "AP Calc BC": "Abramson",
+    "AP Chemistry": "Crane",
+    "AP Comp Sci A": "Sen",
+    "AP Physics C": "Russo",
+    "IB World Lit": "Crimmel",
+    "IB History": "Madden",
+    "IB Espanol": "Torres-Perez",
+    "Intro Sys Prog": "Carter",
+    "Health Online": "Marmora"
+  },
+  "grading_weights": {
+    "AP Calc BC": {
+      "system": "Total Points",
+      "categories": [
+        {
+          "name": "Tests",
+          "weight": 71,
+          "note": "100 pts each, all counted"
+        },
+        {
+          "name": "Quizzes",
+          "weight": 29,
+          "note": "25 pts each, lowest dropped (best 5 of 6)"
+        }
+      ],
+      "policy": "No homework grade. Suggested problems only."
+    },
+    "AP Chemistry": {
+      "system": "Total Points",
+      "categories": [
+        {
+          "name": "Tests",
+          "weight": 57,
+          "note": "100 pts each, all counted"
+        },
+        {
+          "name": "Quizzes",
+          "weight": 43,
+          "note": "25 pts each, lowest dropped"
+        }
+      ],
+      "policy": "No explicit homework grade."
+    },
+    "AP Comp Sci A": {
+      "system": "Weighted",
+      "categories": [
+        {
+          "name": "Summative",
+          "weight": 80,
+          "note": "Tests, projects, major assessments"
+        },
+        {
+          "name": "Learning",
+          "weight": 20,
+          "note": "HW, practice, AP Progress Checks"
+        }
+      ],
+      "policy": "One retake per trimester (summative only). Late: -10%/day, max 3 days \u2192 50% cap."
+    },
+    "AP Physics C": {
+      "system": "Weighted",
+      "categories": [
+        {
+          "name": "Tests",
+          "weight": 70,
+          "note": "THE grade lever \u2014 each test moves grade ~3.5%"
+        },
+        {
+          "name": "Labs",
+          "weight": 20,
+          "note": "Lab reports submitted on Schoology"
+        },
+        {
+          "name": "Quizzes",
+          "weight": 10,
+          "note": "Based on nightly HW (2 questions, 10 min)"
+        }
+      ],
+      "policy": "No HW collected. No test retakes. College-level policy."
+    },
+    "IB Espanol": {
+      "system": "Weighted",
+      "categories": [
+        {
+          "name": "Productive",
+          "weight": 40,
+          "note": "Writing, speaking, IOA"
+        },
+        {
+          "name": "Receptive",
+          "weight": 30,
+          "note": "Reading & listening comprehension"
+        },
+        {
+          "name": "Skill Practice",
+          "weight": 30,
+          "note": "SpanishDict, Blinklearning, participation"
+        }
+      ],
+      "policy": "IOA under Productive (40%) \u2014 high-weight single assessment."
+    },
+    "IB History": {
+      "system": "Weighted",
+      "categories": [
+        {
+          "name": "Common Assessment",
+          "weight": 40,
+          "note": "Benchmarks \u2014 investigation, doc analysis"
+        },
+        {
+          "name": "Classwork",
+          "weight": 30,
+          "note": "Discussion, in-class assignments"
+        },
+        {
+          "name": "Participation",
+          "weight": 30,
+          "note": "Class engagement, discussion contribution"
+        }
+      ],
+      "policy": "No traditional tests. Very recoverable through effort."
+    },
+    "IB World Lit": {
+      "system": "Weighted (estimated)",
+      "categories": [
+        {
+          "name": "Classwork",
+          "weight": 40,
+          "note": "Quizzes, essays, passage analysis (10-36 pts)"
+        },
+        {
+          "name": "Completion",
+          "weight": 30,
+          "note": "IO recordings, HL drafts, check-ins"
+        },
+        {
+          "name": "Participation",
+          "weight": 30,
+          "note": "Multiple per trimester (10 pts each)"
+        }
+      ],
+      "policy": "\u26a0 Weights estimated from PowerSchool. Management plan behind school auth."
+    },
+    "Intro Sys Prog": {
+      "system": "Weighted",
+      "categories": [
+        {
+          "name": "Tests",
+          "weight": 50,
+          "note": "Exams on terminal, C, system concepts"
+        },
+        {
+          "name": "Labs",
+          "weight": 30,
+          "note": "Programming assignments"
+        },
+        {
+          "name": "Homework",
+          "weight": 20,
+          "note": "Reading, scavenger hunts"
+        }
+      ],
+      "policy": "Late: -10%/day, max 5 days. Strict academic integrity."
+    },
+    "Health Online": {
+      "system": "Total Points",
+      "categories": [
+        {
+          "name": "Assessments",
+          "weight": 100,
+          "note": "10 pts each, all equal weight"
+        }
+      ],
+      "policy": "9 assessments in T2 \u2192 each ~11.1%. Two zeros (3.4, 3.5) not recoverable."
+    }
+  },
+  "assignments": {
+    "AP Calc BC": [
+      {
+        "date": "2026-02-10",
+        "category": "Assessments",
+        "name": "Quiz #9",
+        "score": "24.5/25",
+        "pct": 98,
+        "grade": "A",
+        "status": "graded"
+      },
+      {
+        "date": "2026-01-22",
+        "category": "Assessments",
+        "name": "Test #4",
+        "score": "88/100",
+        "pct": 88,
+        "grade": "B+",
+        "status": "graded"
+      },
+      {
+        "date": "2026-01-15",
+        "category": "Assessments",
+        "name": "Quiz #8",
+        "score": "25/25",
+        "pct": 100,
+        "grade": "A",
+        "status": "graded"
+      },
+      {
+        "date": "2025-12-16",
+        "category": "Assessments",
+        "name": "Quiz #7",
+        "score": "25/25",
+        "pct": 100,
+        "grade": "A",
+        "status": "graded"
+      },
+      {
+        "date": "2026-02-23",
+        "category": "Assessments",
+        "name": "Quiz (6.2-6.5, 12.1)",
+        "score": null,
+        "pct": null,
+        "grade": null,
+        "status": "upcoming"
+      },
+      {
+        "date": "2026-02-26",
+        "category": "Assessments",
+        "name": "Test #5",
+        "score": null,
+        "pct": null,
+        "grade": null,
+        "status": "upcoming"
+      }
+    ],
+    "AP Chemistry": [
+      {
+        "date": "2026-02-20",
+        "category": "Quiz",
+        "name": "Quiz 2.5",
+        "score": "25/25",
+        "pct": 100,
+        "grade": "A",
+        "status": "graded"
+      },
+      {
+        "date": "2026-02-02",
+        "category": "Quiz",
+        "name": "Quiz 2.4",
+        "score": "24/25",
+        "pct": 96,
+        "grade": "A",
+        "status": "graded"
+      },
+      {
+        "date": "2026-01-27",
+        "category": "Test",
+        "name": "Test 2.2 Bonding etc.",
+        "score": "92/100",
+        "pct": 92,
+        "grade": "A-",
+        "status": "graded"
+      },
+      {
+        "date": "2026-01-19",
+        "category": "Quiz",
+        "name": "Quiz 2.3",
+        "score": "24/25",
+        "pct": 96,
+        "grade": "A",
+        "status": "graded"
+      },
+      {
+        "date": "2026-01-01",
+        "category": "Quiz",
+        "name": "Quiz 2.2",
+        "score": "25/25",
+        "pct": 100,
+        "grade": "A",
+        "status": "graded"
+      },
+      {
+        "date": "2025-12-14",
+        "category": "Test",
+        "name": "Test 2.1 Atomic Structure",
+        "score": "99/100",
+        "pct": 99,
+        "grade": "A",
+        "status": "graded"
+      },
+      {
+        "date": "2025-12-10",
+        "category": "Quiz",
+        "name": "Quiz 2.1 - Atom Struct",
+        "score": "25/25",
+        "pct": 100,
+        "grade": "A",
+        "status": "graded"
+      },
+      {
+        "date": "2026-02-24",
+        "category": "Test",
+        "name": "Test 2.3 Thermodynamics",
+        "score": null,
+        "pct": null,
+        "grade": null,
+        "status": "upcoming"
+      }
+    ],
+    "AP Comp Sci A": [
+      {
+        "date": "2026-01-23",
+        "category": "Summative",
+        "name": "Test: Unit 4 (Polymorphism)",
+        "score": "91/100",
+        "pct": 91,
+        "grade": "A-",
+        "status": "graded"
+      },
+      {
+        "date": "2025-12-19",
+        "category": "Learning",
+        "name": "HW 4.1 - AP Progress Check Unit 2 MCQ Part B",
+        "score": "100/20",
+        "pct": 100,
+        "grade": "A",
+        "status": "graded"
+      },
+      {
+        "date": "2025-12-19",
+        "category": "Learning",
+        "name": "HW 4.2 - AP Unit 2 Progress Check FRQ Part B",
+        "score": "100/30",
+        "pct": 100,
+        "grade": "A",
+        "status": "graded"
+      }
+    ],
+    "AP Physics C": [
+      {
+        "date": "2026-02-17",
+        "category": "Lab",
+        "name": "Lab: Non-Ohmic Resistor",
+        "score": "20/20",
+        "pct": 100,
+        "grade": "A",
+        "status": "graded"
+      },
+      {
+        "date": "2026-02-10",
+        "category": "Quiz",
+        "name": "Quiz: Ch. 26",
+        "score": "9/10",
+        "pct": 90,
+        "grade": "A-",
+        "status": "graded"
+      },
+      {
+        "date": "2026-02-05",
+        "category": "Quiz",
+        "name": "Quiz: Ch. 25",
+        "score": "8/10",
+        "pct": 80,
+        "grade": "B-",
+        "status": "graded"
+      },
+      {
+        "date": "2026-01-30",
+        "category": "Test",
+        "name": "Test: Electrostatics & Potential",
+        "score": "83/100",
+        "pct": 83,
+        "grade": "B",
+        "status": "graded"
+      },
+      {
+        "date": "2026-01-26",
+        "category": "Quiz",
+        "name": "Quiz: Ch. 24",
+        "score": "10/10",
+        "pct": 100,
+        "grade": "A",
+        "status": "graded"
+      },
+      {
+        "date": "2026-01-22",
+        "category": "Quiz",
+        "name": "Quiz: Ch. 23",
+        "score": "9/10",
+        "pct": 90,
+        "grade": "A-",
+        "status": "graded"
+      },
+      {
+        "date": "2026-01-16",
+        "category": "Quiz",
+        "name": "Quiz: Ch. 22",
+        "score": "10/10",
+        "pct": 100,
+        "grade": "A",
+        "status": "graded"
+      },
+      {
+        "date": "2026-01-15",
+        "category": "Lab",
+        "name": "Lab: Electrostatics",
+        "score": "18/20",
+        "pct": 90,
+        "grade": "A-",
+        "status": "graded"
+      },
+      {
+        "date": "2026-01-12",
+        "category": "Quiz",
+        "name": "Quiz: Ch. 21",
+        "score": "10/10",
+        "pct": 100,
+        "grade": "A",
+        "status": "graded"
+      },
+      {
+        "date": "2026-01-09",
+        "category": "Lab",
+        "name": "Lab: Simple Pendulum",
+        "score": "20/20",
+        "pct": 100,
+        "grade": "A",
+        "status": "graded"
+      },
+      {
+        "date": "2025-12-23",
+        "category": "Lab",
+        "name": "Lab: Mass on a Spring",
+        "score": "19/20",
+        "pct": 95,
+        "grade": "A",
+        "status": "graded"
+      },
+      {
+        "date": "2025-12-22",
+        "category": "Test",
+        "name": "Test: Gravitation & Oscillations",
+        "score": "85/100",
+        "pct": 85,
+        "grade": "B",
+        "status": "graded"
+      },
+      {
+        "date": "2025-12-19",
+        "category": "Quiz",
+        "name": "Quiz: Ch. 15",
+        "score": "9/10",
+        "pct": 90,
+        "grade": "A-",
+        "status": "graded"
+      },
+      {
+        "date": "2025-12-15",
+        "category": "Lab",
+        "name": "Lab: Gravitation & Kepler",
+        "score": "18/20",
+        "pct": 90,
+        "grade": "A-",
+        "status": "graded"
+      },
+      {
+        "date": "2025-12-09",
+        "category": "Quiz",
+        "name": "Quiz: Ch. 13",
+        "score": "8/10",
+        "pct": 80,
+        "grade": "B-",
+        "status": "graded"
+      },
+      {
+        "date": "2026-02-23",
+        "category": "Quiz",
+        "name": "Quiz: Ch. 27 Circuits",
+        "score": null,
+        "pct": null,
+        "grade": null,
+        "status": "upcoming"
+      },
+      {
+        "date": "2026-02-25",
+        "category": "Lab",
+        "name": "Lab: Internal Resistance",
+        "score": null,
+        "pct": null,
+        "grade": null,
+        "status": "upcoming"
+      },
+      {
+        "date": "2026-03-02",
+        "category": "Test",
+        "name": "Test: Capacitors & Circuits",
+        "score": null,
+        "pct": null,
+        "grade": null,
+        "status": "upcoming"
+      },
+      {
+        "date": "2026-03-03",
+        "category": "Lab",
+        "name": "Lab: RC Circuit",
+        "score": null,
+        "pct": null,
+        "grade": null,
+        "status": "upcoming"
+      }
+    ],
+    "IB Espanol": [
+      {
+        "date": "2026-02-06",
+        "category": "Productive",
+        "name": "Internal Oral Assessment: El amor",
+        "score": "86/100",
+        "pct": 86,
+        "grade": "B",
+        "status": "graded"
+      },
+      {
+        "date": "2026-02-04",
+        "category": "Skill Practice",
+        "name": "Class Participation Reflection T2",
+        "score": "7/8",
+        "pct": 87.5,
+        "grade": "B+",
+        "status": "graded"
+      },
+      {
+        "date": "2026-01-28",
+        "category": "Receptive",
+        "name": "Interpretive Reading: Parejas interculturales",
+        "score": "93/100",
+        "pct": 93,
+        "grade": "A",
+        "status": "graded"
+      },
+      {
+        "date": "2026-01-20",
+        "category": "Skill Practice",
+        "name": "Article \"\u00bfPor qu\u00e9 los latinos...\"",
+        "score": "2/2",
+        "pct": 100,
+        "grade": "A",
+        "status": "graded"
+      },
+      {
+        "date": "2026-01-14",
+        "category": "Skill Practice",
+        "name": "Blinklearning Unidad 8 Tarea #2",
+        "score": null,
+        "pct": null,
+        "grade": null,
+        "status": "collected"
+      },
+      {
+        "date": "2026-01-14",
+        "category": "Productive",
+        "name": "Interpersonal Writing: Carta informal",
+        "score": "98.8/100",
+        "pct": 98.8,
+        "grade": "A",
+        "status": "graded"
+      },
+      {
+        "date": "2025-12-23",
+        "category": "Receptive",
+        "name": "Interpretive Listening: El amor",
+        "score": "98/100",
+        "pct": 98,
+        "grade": "A",
+        "status": "graded"
+      },
+      {
+        "date": "2025-12-22",
+        "category": "Skill Practice",
+        "name": "Blinklearning Unidad 8 Tarea #1",
+        "score": null,
+        "pct": null,
+        "grade": null,
+        "status": "collected"
+      },
+      {
+        "date": "2025-12-10",
+        "category": "Skill Practice",
+        "name": "SPANISHDICT: Reciprocal Pronouns",
+        "score": null,
+        "pct": null,
+        "grade": null,
+        "status": "missing"
+      },
+      {
+        "date": "2026-02-24",
+        "category": "Skill Practice",
+        "name": "Blinklearning Unidad 4 Tarea #1",
+        "score": null,
+        "pct": null,
+        "grade": null,
+        "status": "upcoming"
+      },
+      {
+        "date": "2026-02-27",
+        "category": "Receptive",
+        "name": "Reading: Quincea\u00f1era",
+        "score": null,
+        "pct": null,
+        "grade": null,
+        "status": "upcoming"
+      },
+      {
+        "date": "2026-03-04",
+        "category": "Receptive",
+        "name": "Interpretive Listening: Tradiciones",
+        "score": null,
+        "pct": null,
+        "grade": null,
+        "status": "upcoming"
+      },
+      {
+        "date": "2026-03-11",
+        "category": "Productive",
+        "name": "Interpersonal Speaking: Mi viaje",
+        "score": null,
+        "pct": null,
+        "grade": null,
+        "status": "upcoming"
+      },
+      {
+        "date": "2026-03-11",
+        "category": "Productive",
+        "name": "Writing - Folleto promocional",
+        "score": null,
+        "pct": null,
+        "grade": null,
+        "status": "upcoming"
+      },
+      {
+        "date": "2026-03-13",
+        "category": "Skill Practice",
+        "name": "SPANISHDICT Repaso de Gram\u00e1tica",
+        "score": null,
+        "pct": null,
+        "grade": null,
+        "status": "upcoming"
+      }
+    ],
+    "IB History": [
+      {
+        "date": "2026-01-30",
+        "category": "Participation",
+        "name": "Class participation - First Half",
+        "score": "48/50",
+        "pct": 96,
+        "grade": "A",
+        "status": "graded"
+      },
+      {
+        "date": "2026-01-14",
+        "category": "Classwork",
+        "name": "America Expansion discussion",
+        "score": "20/20",
+        "pct": 100,
+        "grade": "A",
+        "status": "graded"
+      },
+      {
+        "date": "2025-12-19",
+        "category": "Common Assessment",
+        "name": "Benchmark 1-A",
+        "score": "47/50",
+        "pct": 94,
+        "grade": "A",
+        "status": "graded"
+      }
+    ],
+    "IB World Lit": [
+      {
+        "date": "2026-02-18",
+        "category": "Completion",
+        "name": "HL Draft",
+        "score": null,
+        "pct": null,
+        "grade": null,
+        "status": "collected"
+      },
+      {
+        "date": "2026-02-17",
+        "category": "Participation",
+        "name": "Participation 5",
+        "score": "10/10",
+        "pct": 100,
+        "grade": "A",
+        "status": "graded"
+      },
+      {
+        "date": "2026-02-09",
+        "category": "Classwork",
+        "name": "IO Practice Outline",
+        "score": "20/20",
+        "pct": 100,
+        "grade": "A",
+        "status": "graded"
+      },
+      {
+        "date": "2026-02-09",
+        "category": "Completion",
+        "name": "IO Practice Recording",
+        "score": "10/10",
+        "pct": 100,
+        "grade": "A",
+        "status": "graded"
+      },
+      {
+        "date": "2026-02-06",
+        "category": "Completion",
+        "name": "HL topic sign up Tri 2",
+        "score": "5/5",
+        "pct": 100,
+        "grade": "A",
+        "status": "graded"
+      },
+      {
+        "date": "2026-02-02",
+        "category": "Participation",
+        "name": "Participation 4",
+        "score": "9/10",
+        "pct": 90,
+        "grade": "A-",
+        "status": "graded"
+      },
+      {
+        "date": "2026-02-02",
+        "category": "Classwork",
+        "name": "Passage to 110",
+        "score": "9/10",
+        "pct": 90,
+        "grade": "A-",
+        "status": "graded",
+        "flag": "Late"
+      },
+      {
+        "date": "2026-01-29",
+        "category": "Classwork",
+        "name": "Remains quiz 1",
+        "score": "10/12",
+        "pct": 83.33,
+        "grade": "B",
+        "status": "graded"
+      },
+      {
+        "date": "2026-01-16",
+        "category": "Completion",
+        "name": "IO Check in",
+        "score": "9/10",
+        "pct": 90,
+        "grade": "A-",
+        "status": "graded",
+        "flag": "Late"
+      },
+      {
+        "date": "2026-01-16",
+        "category": "Participation",
+        "name": "Participation 3",
+        "score": "9/10",
+        "pct": 90,
+        "grade": "A-",
+        "status": "graded"
+      },
+      {
+        "date": "2025-12-22",
+        "category": "Participation",
+        "name": "Participation 2",
+        "score": "10/10",
+        "pct": 100,
+        "grade": "A",
+        "status": "graded"
+      },
+      {
+        "date": "2025-12-18",
+        "category": "Classwork",
+        "name": "Small Things Quiz",
+        "score": "13/15",
+        "pct": 86.67,
+        "grade": "B",
+        "status": "graded"
+      },
+      {
+        "date": "2025-12-12",
+        "category": "Participation",
+        "name": "Participation 1",
+        "score": "9/10",
+        "pct": 90,
+        "grade": "A-",
+        "status": "graded"
+      },
+      {
+        "date": "2025-12-12",
+        "category": "Completion",
+        "name": "Passage Chaps 1-3",
+        "score": "5/5",
+        "pct": 100,
+        "grade": "A",
+        "status": "graded"
+      },
+      {
+        "date": "2025-12-08",
+        "category": "Classwork",
+        "name": "Non-Verbal elements groupwork",
+        "score": "34/36",
+        "pct": 94.44,
+        "grade": "A",
+        "status": "graded"
+      },
+      {
+        "date": "2026-03-03",
+        "category": "Classwork",
+        "name": "Final Essay (Turnitin) 11:59pm",
+        "score": null,
+        "pct": null,
+        "grade": null,
+        "status": "upcoming"
+      }
+    ],
+    "Intro Sys Prog": [
+      {
+        "date": "2026-01-28",
+        "category": "Test",
+        "name": "Test: Terminal and C Basics",
+        "score": "84/500",
+        "pct": 84,
+        "grade": "B",
+        "status": "graded"
+      },
+      {
+        "date": "2026-01-13",
+        "category": "Lab",
+        "name": "Lab 2: Paren Check",
+        "score": "100/300",
+        "pct": 100,
+        "grade": "A",
+        "status": "graded"
+      },
+      {
+        "date": "2025-12-31",
+        "category": "Homework",
+        "name": "HW 2: Scavenger Hunt 1",
+        "score": "90/100",
+        "pct": 90,
+        "grade": "A-",
+        "status": "graded",
+        "flag": "Late"
+      },
+      {
+        "date": "2025-12-31",
+        "category": "Homework",
+        "name": "HW 4: Reading (K&R Chapter 1)",
+        "score": "100/50",
+        "pct": 100,
+        "grade": "A",
+        "status": "graded"
+      },
+      {
+        "date": "2025-12-31",
+        "category": "Lab",
+        "name": "Lab 1: Temperature Table",
+        "score": "100/300",
+        "pct": 100,
+        "grade": "A",
+        "status": "graded"
+      },
+      {
+        "date": "2025-12-17",
+        "category": "Homework",
+        "name": "HW 1: Read Ryan's Linux Tutorial",
+        "score": "100/50",
+        "pct": 100,
+        "grade": "A",
+        "status": "graded"
+      }
+    ],
+    "Health Online": [
+      {
+        "date": "2026-02-25",
+        "category": "Health-Participation",
+        "name": "Assessment 4.6",
+        "score": null,
+        "pct": null,
+        "grade": null,
+        "status": "upcoming"
+      },
+      {
+        "date": "2026-02-18",
+        "category": "Health-Participation",
+        "name": "Assessment 4.5",
+        "score": "10/10",
+        "pct": 100,
+        "grade": "A",
+        "status": "graded"
+      },
+      {
+        "date": "2026-02-11",
+        "category": "Health-Participation",
+        "name": "Assessment 4.4",
+        "score": "10/10",
+        "pct": 100,
+        "grade": "A",
+        "status": "graded"
+      },
+      {
+        "date": "2026-02-04",
+        "category": "Health-Participation",
+        "name": "Assessment 4.3",
+        "score": "10/10",
+        "pct": 100,
+        "grade": "A",
+        "status": "graded"
+      },
+      {
+        "date": "2026-01-28",
+        "category": "Health-Participation",
+        "name": "Assessment 4.2",
+        "score": "10/10",
+        "pct": 100,
+        "grade": "A",
+        "status": "graded"
+      },
+      {
+        "date": "2026-01-21",
+        "category": "Health-Participation",
+        "name": "Assessment 4.1",
+        "score": "10/10",
+        "pct": 100,
+        "grade": "A",
+        "status": "graded"
+      },
+      {
+        "date": "2026-01-14",
+        "category": "Health-Participation",
+        "name": "Assessment 3.5",
+        "score": "0/10",
+        "pct": 0,
+        "grade": "F",
+        "status": "zero"
+      },
+      {
+        "date": "2025-12-17",
+        "category": "Health-Participation",
+        "name": "Assessment 3.4",
+        "score": "0/10",
+        "pct": 0,
+        "grade": "F",
+        "status": "zero"
+      },
+      {
+        "date": "2025-12-10",
+        "category": "Health-Participation",
+        "name": "Assessment 3.3",
+        "score": "10/10",
+        "pct": 100,
+        "grade": "A",
+        "status": "graded"
+      }
+    ]
+  },
+  "resources": {
+    "AP Physics C": [
+      {
+        "label": "Ch 25 Capacitance Study Packet",
+        "url": "ch25-capacitance-study-packet.html",
+        "type": "study_packet"
+      },
+      {
+        "label": "Ch 26 Current & Resistance Study Packet",
+        "url": "ch26-current-resistance-study-packet.html",
+        "type": "study_packet"
+      },
+      {
+        "label": "Ch 27 Circuits Study Packet",
+        "url": "ch27-circuits-study-packet.html",
+        "type": "study_packet"
+      },
+      {
+        "label": "Unit Review: Capacitors & Circuits",
+        "url": "unit-review-capacitors-circuits.html",
+        "type": "review"
+      },
+      {
+        "label": "Mock Quiz \u2014 Ch 27 Circuits (Feb 22)",
+        "url": "../course-materials/ap-physics-c/homework/mock-quiz-ch27-circuits-2026-02-22.pdf",
+        "type": "mock_test"
+      }
+    ],
+    "AP Calc BC": [
+      {
+        "label": "Mock Quiz #1 \u2014 Sections 6.2-6.5, 12.1 (Feb 22)",
+        "url": "../course-materials/ap-calc-bc/practice-tests/mock-quiz-2026-02-22-sections-6.2-6.5-12.1.pdf",
+        "type": "mock_test"
+      },
+      {
+        "label": "Mock Quiz #2 \u2014 Sections 6.2-6.5, 12.1 (Feb 23)",
+        "url": "../course-materials/ap-calc-bc/practice-tests/mock-quiz-2-2026-02-23-sections-6.2-6.5-12.1.pdf",
+        "type": "mock_test"
+      }
+    ],
+    "AP Chemistry": [
+      {
+        "label": "Mock Test 2.3 \u2014 Thermodynamics (Feb 22)",
+        "url": "../course-materials/ap-chemistry/unit-6-thermodynamics/mock-test-2.3-thermo-2026-02-22.pdf",
+        "type": "mock_test"
+      },
+      {
+        "label": "Thermo Worksheets Answer Key",
+        "url": "../course-materials/ap-chemistry/unit-6-thermodynamics/thermo-worksheets-ANSWERS.pdf",
+        "type": "answer_key"
+      }
+    ]
+  }
+}
